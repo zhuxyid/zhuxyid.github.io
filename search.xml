@@ -4,6 +4,9 @@
     <title><![CDATA[Nginx]]></title>
     <url>%2F2018%2F11%2F27%2FNginx%2F</url>
     <content type="text"><![CDATA[Nginx是什么Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发） nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求 Netcraft可以查看全球服务器Web服务器占有率。 Nginx特性模块化设计，较好的扩展性，早期不支持模块的动态装载和卸载 高可靠性，基于Master/Worker模式 支持热部署（平滑升级迁移），不停机的状态下更新配置文件，跟换日志文件，更新服务器程序版本 内存消耗低，10K个keep-alive连接模式下的非活动连接只消耗2.5M内存 支持event-driven事件驱动模型，AIO驱动机制，MMAP内存映射机制 多进程模型，进程是个重量级的实体,进程多的时候会出现大量的进程切换，CPU只有一颗的情况下，在某个时刻正真在cpu上运行的只有一个进程.内核的进程调度程序处理进程切换.如果进程过多，大量的时间浪费在进程切换中.内核的sys开销大.]]></content>
+      <categories>
+        <category>Web Service</category>
+      </categories>
       <tags>
         <tag>Nginx</tag>
       </tags>
