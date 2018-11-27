@@ -429,7 +429,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/docker详解/" itemprop="url">Docker基础笔记</a></h1>
+                <a class="post-title-link" href="/2018/11/23/docker详解/" itemprop="url">Docker详解</a></h1>
         
 
         <div class="post-meta">
@@ -756,7 +756,7 @@ docker run --name web2 --network container:web1 -it --rm busybox/httpd
 <p>容器管理卷 docker-managed volume:   宿主机不需要指定路径(docker daemon)，容器中需要指定路径，docker自动将两者绑定 </p>
 </blockquote>
 <h5 id="如何使用卷"><a href="#如何使用卷" class="headerlink" title="如何使用卷"></a>如何使用卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">docker run -v 选项</span><br><span class="line">docker-managed volume</span><br><span class="line">docker run -it --name web1 -v /data busybox</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1	#查看容器卷绑定关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -it -v HOSTDIR:VOLUMEDIR --name web2 busybox</span><br><span class="line">docker run -it -v /data:/test --name web2 busybox            #本机的data跟容器的test绑定，如果data不存在自动创建</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1</span><br><span class="line"></span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Networks.bridge.IPAddress&#125;&#125; web1    #获取web1下的ip地址</span><br><span class="line"></span><br><span class="line">#多个容器的卷使用同一个主机目录</span><br><span class="line">docker run -it --name nginx1 -v /docker/volumes/html:/data busybox</span><br><span class="line">docker run -it --name tomcat1 -v /docker/volumes/class:/data busybox</span><br><span class="line"></span><br><span class="line">#复制使用其他容器的卷，为docker run命令使用--volumes-form</span><br><span class="line">docker run -it --name tomcat2 -v /docker/volumes/class:/data busybox</span><br><span class="line">docker run -it --name tomcat3 --network container:tomcat2 --volumes-from tomcat2 busybox    #共享网络和卷</span><br></pre></td></tr></table></figure>
-<h5 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h5><blockquote>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h4><blockquote>
 <p>主要是讲解一下Docker基础方面，后期的Dockerfile和Docker Registry在慢慢总结，如果本文有错误，还请大牛指出，谢谢:)</p>
 </blockquote>
 
