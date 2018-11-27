@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/docker详解/images/docker/traditional_layer.png">
 <meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/docker详解/images/docker/docker_layer.png">
 <meta property="og:image" content="http://blog.zhuxyid.com/images/docker/docker_event_status.png">
-<meta property="og:updated_time" content="2018-11-27T04:05:42.984Z">
+<meta property="og:updated_time" content="2018-11-27T04:11:33.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker详解">
 <meta name="twitter:description" content="容器是什么？  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些？主机级别 虚拟化 完全 虚拟化::vmware exsi,kvm,xen 半 虚拟化:xen,uml  容器级别 虚拟化 LXC,OpenVz,Solaris Containers,FreeBSD jails  L">
@@ -504,8 +504,20 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<p>传统模式:<img src="images/docker/traditional_layer.png"></p>
-<p>Docker中:<img src="images/docker/docker_layer.png"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">传统模式:</th>
+<th style="text-align:center">Docker:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="images/docker/traditional_layer.png" width="200px" height="200px"></td>
+<td style="text-align:center"><img src="images/docker/docker_layer.png" width="200px" height="200px"></td>
+</tr>
+</tbody>
+</table>
 <h4 id="Docker-Container"><a href="#Docker-Container" class="headerlink" title="Docker Container"></a>Docker Container</h4><p>Docker容器具有生命周期，”STOPD”,’CREATED’,’RUNNING’,’PAUSED’四个稳定状态，容器一旦删除数据就会丢失，所以项目或者配置文件不要直接存放在容器中，通过卷（volume）的方式挂载至容器里，可用一张图表示。</p>
 <p><img src="/images/docker/docker_event_status.png"></p>
 

@@ -619,8 +619,20 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<p>传统模式:<img src="images/docker/traditional_layer.png"></p>
-<p>Docker中:<img src="images/docker/docker_layer.png"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">传统模式:</th>
+<th style="text-align:center">Docker:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="images/docker/traditional_layer.png" width="200px" height="200px"></td>
+<td style="text-align:center"><img src="images/docker/docker_layer.png" width="200px" height="200px"></td>
+</tr>
+</tbody>
+</table>
 <h4 id="Docker-Container"><a href="#Docker-Container" class="headerlink" title="Docker Container"></a>Docker Container</h4><p>Docker容器具有生命周期，”STOPD”,’CREATED’,’RUNNING’,’PAUSED’四个稳定状态，容器一旦删除数据就会丢失，所以项目或者配置文件不要直接存放在容器中，通过卷（volume）的方式挂载至容器里，可用一张图表示。</p>
 <p><img src="/images/docker/docker_event_status.png"></p>
 
