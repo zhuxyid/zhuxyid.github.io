@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Dockerfile]]></title>
+    <url>%2F2018%2F11%2F26%2FDockerfile%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker详解]]></title>
+    <url>%2F2018%2F11%2F23%2Fdocker%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[容器是什么？ 容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些？主机级别 虚拟化 完全 虚拟化::vmware exsi,kvm,xen 半 虚拟化:xen,uml 容器级别 虚拟化 LXC,OpenVz,Solaris Containers,FreeBSD jails LXC(LinuX Container)容器是内核虚拟化技术,可以提供轻量级的虚拟化,以便隔离进程和资源,不需要提供指令解释机制以及全虚拟化的其他复杂性.容器可以有效的将单个操作系统管理的资源划分到孤立的组件中,以便更好的孤立组之间的平衡有冲突的资源使用需求。 早期容器应用在jail中,后来移植到linux中vserver(chroot),chroot所隔离仅仅只是看上去的,并没有真正隔离。 Linux namespace 是linux提供一种内核级别环境隔离的方法，有6种不同名称空间: linux namesapce: namespace 系统调用参数 隔离内容 内核版本 UTS CLONE_NEWUTS 主机名和域名 2.6.19 MOUNT CLONE_NEWNS 挂载点(文件系统) 2.4.19 IPC CLONE_NEWIPC 信号量,消息队列,共享内存 2.6.19 PID CLONE_NEWPID 进程变化 2.6.24 USER CLONE_NEWUSER 用户和用户组 3.8 NETWORK CLONE_NEWNET 网络设备,网络栈,端口等 2.6.29 Docker是什么？Docker是LXC增强版,Docker简化容器使用难度,通常一个容器中只运行一个进程. 对开发来说带来极大便利,分发容易,一次编写到处运行 然而对运维来说(有优点有缺点), 对开发极大便利需要运维干什么? Docker安装环境说明: 操作系统发行版:CentOS7.4 内核版本:3.10+ 安装说明: 使用yum方式安装,下载国内docker的yum源,加速下载. 安装过程:12345wget -P /etc/yum.repos.d/ https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.reposed -i s@https://download.docker.com/@https://mirrors.tuna.tsinghua.edu.cn/docker-ce/@g /etc/yum.repos.d/docker-ce.repoyum repolist | grep docker-ceyum install docker-cesystemctl start docker.service 此时docker已经启动了，现在我们来搞清楚什么是docker Docker架构c/s架构，由三个组件（Docker Daemon,Docker Client,Docker Registry）构成 Docker Registry：​ 类似GitHub,只不过Docker Registry是存放镜像的仓库， 官方 https://hub.docker.com 国内 https://www.docker-cn.com/ 当然也可以自己部署一个仓库，建议用Harbor。 Docker Daemon：​ Docker进程，Docker核心服务。 这个类比数据库，比如数据库是放数据的，启动数据库后，等待客户端连接后才能操作。 也就是当docker启动时，等待docker客户端来操作。 Docker Client：​ Docker客户端工具,用来操作Docker的 比如我想在仓库下载一个镜像，从而启动一个容器，在容器中启动一个nginx服务,都是在客户端操作的。（docker client是发出者，docker daemon是执行者） 这里提到的镜像和容器一定要区分清楚。 如果是开发,那这么理解：镜像就是你创建的类，容器就是你的对象，对象是通过类实例化而来。也就是容器通过镜像而来,（容器依赖于镜像） 不要问镜像怎么来的，上面提过镜像是在仓库中。 也不要问仓库中的镜像怎么来的，那是别人做好的。因为你也可以自己做镜像。 Docker客户端操作:12docker --help 格式:docker [option] command [args] 镜像类操作1234567891011121314docker search SOFTWARE_NAME #查找镜像名称示例: docker search tomcat #查找tomcat相关镜像，通常建议使用官方镜像，OFFICIAL 为OK的，或者Star点赞数高的镜像，原因自己悟docker pull SOFTWARE_NAME:TAGS #下载镜像示例: docker pull tomcat #下载tomcat镜像，如果不指定tags就下载latest版本 docker pull tomcat:7.0.92-jre8-alpine #详见hub.docker.com找到指定的镜像后在看tagdocker image ls #查看本地镜像，如果没有下载那么这里为空docker image rm SOFTWARE_NAME:TAGS #删除本地镜像示例: docker image rm tomcat #如果不指定删除镜像版本默认删除latest 容器类操作123456789101112131415161718192021222324252627282930313233343536373839404142docker run #运行容器，需要指定镜像实例: docker run tomcat #运行镜像为tomcat的容器,容器里面有tomcat,启动容器后tomcat也将运行起来，容器里面的程序都是在前台运行，会占用窗口 docker run --name myapp -d tomcat #启动myapp容器，镜像使用tomcat:latest，以后台运行 更多命令使用:docker run --help docker ps #查看运行中的容器CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMESee1ff8df6e70 tomcat "catalina.sh run" 3 seconds ago Up 2 seconds 8080/tcp myapp说明: 如果在docker run不指定容器名称会随机创建一个容器名称。 端口是容器内的端口.关于docker网络的内容下面会有讲解docker exec实例: docker exec -it myapp /bin/bash #进入myapp容器中 -it #新建一个tty并且进入docker stop实例: docker stop myapp #停止myapp容器 docker ps -a #查看所有容器，如果不加-a不能看到停止的容器 docker start实例: docker start myapp #运行停止的容器docker restart #重启容器实例: docker restart myappdocker rm #删除容器实例: docker rm myappdocker logs #查看容器运行的程序日志实例: docker logs myapp docker kill #杀死容器里的进程，进程一旦停止，容器也就停止。因为容器一般只运行一个前台程序，容器的生命周期下面会讲解实例: docker kill myapp 容器状态]]></content>
+      <categories>
+        <category>容器</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+</search>
