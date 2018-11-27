@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/Docker/images/docker/traditional_layer.png">
 <meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/Docker/images/docker/docker_layer.png">
 <meta property="og:image" content="http://blog.zhuxyid.com/images/docker/docker_event_status.png">
-<meta property="og:updated_time" content="2018-11-27T14:52:09.496Z">
+<meta property="og:updated_time" content="2018-11-27T14:56:14.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker">
 <meta name="twitter:description" content="容器是什么？  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些？主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统">
@@ -647,7 +647,7 @@ docker run --name web2 --network container:web1 -it --rm busybox/httpd
 <p>如：在macOS下面对于 网络 和 卷 都有不同的地方。</p>
 <p>网络在macOS中没有docker0桥，无法ping通容器，只能使用-P 或者-p映射端口的形式访问容器，或者通过host.docker.internal特殊DNS，解析为主机使用的内部IP地址。</p>
 <p>卷的话如果要绑定User以外的目录，则需要修改权限让容器内部可以访问该目录，不然直接挂载会提示权限不足情况</p>
-<p>暂时遇到这么多，感谢zhige<src http="zhige.me">让我遇到这么多坑。</src></p>
+<p>暂时遇到这么多，感谢<a href="http://zhige.me" target="_blank" rel="noopener">志哥</a>让我遇到这么多坑。</p>
 </blockquote>
 <p>主要是讲解一下Docker基础方面，后期的Dockerfile和Docker Registry在慢慢总结，如果本文有错误，还请大牛指出，谢谢:)</p>
 </blockquote>
