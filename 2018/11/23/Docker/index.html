@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="容器是什么？  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些？主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/Docker/images/docker/traditional_layer.png">
-<meta property="og:image" content="http://blog.zhuxyid.com/2018/11/23/Docker/images/docker/docker_layer.png">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/docker/traditional_layer.png">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/docker/docker_layer.png">
 <meta property="og:image" content="http://blog.zhuxyid.com/images/docker/docker_event_status.png">
-<meta property="og:updated_time" content="2018-11-27T14:56:14.974Z">
+<meta property="og:updated_time" content="2018-11-27T15:00:40.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker">
 <meta name="twitter:description" content="容器是什么？  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些？主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统">
-<meta name="twitter:image" content="http://blog.zhuxyid.com/2018/11/23/Docker/images/docker/traditional_layer.png">
+<meta name="twitter:image" content="http://blog.zhuxyid.com/images/docker/traditional_layer.png">
 
 
 
@@ -509,8 +509,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><img src="images/docker/traditional_layer.png" width="200px" height="200px"></td>
-<td style="text-align:center"><img src="images/docker/docker_layer.png" width="200px" height="200px"></td>
+<td style="text-align:center"><img src="/images/docker/traditional_layer.png" width="200px" height="200px"></td>
+<td style="text-align:center"><img src="/images/docker/docker_layer.png" width="200px" height="200px"></td>
 </tr>
 </tbody>
 </table>
@@ -626,10 +626,12 @@ docker run --name web2 --network container:web1 -it --rm busybox/httpd
 <p>在容器写入时候，可以绕过容器内部层级关系 </p>
 <p>命名空间Mount是相互独立的,可以共享,关联到存储卷Volume，只要容器挂载存储卷.当容器被停止或者删除后,文件内容不被删除。 </p>
 <h5 id="为什么用存储卷"><a href="#为什么用存储卷" class="headerlink" title="为什么用存储卷"></a>为什么用存储卷</h5><p>关闭并重启容器，其数据不受影响，但是删除容器，则数据全部丢失 </p>
-<p>存在的问题： </p>
-<p>​    存储于联合文件系统中，不易于宿主机访问 </p>
-<p>​        容器间数据共享不便利 </p>
-<p>​        删除容器其数据丢失 </p>
+<p><strong>存在的问题:</strong></p>
+<blockquote>
+<p>存储于联合文件系统中，不易于宿主机访问 </p>
+<p>容器间数据共享不便利</p>
+<p>删除容器其数据丢失 </p>
+</blockquote>
 <h5 id="卷的描述"><a href="#卷的描述" class="headerlink" title="卷的描述"></a>卷的描述</h5><p>卷在容器初始化时候 会自动创建，由base image提供的卷中数据会于此间 完成复制 </p>
 <p>卷的初衷是独立于容器的生命周期实现数据持久化，因此删除容器时不会删除卷，也不会对哪怕未被应用的卷做垃圾回收 </p>
 <p>卷为docker提供了独立于容器的数据管理机制</p>
