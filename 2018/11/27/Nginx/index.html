@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Nginx,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="旭悦的分享笔记">
-<meta property="og:url" content="http://blog.zhuxyid.com/index.html">
+<meta name="description" content="Nginx是什么Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）  nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求     N">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx">
+<meta property="og:url" content="http://blog.zhuxyid.com/2018/11/27/Nginx/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
+<meta property="og:description" content="Nginx是什么Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）  nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求     N">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-27T15:49:24.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="旭悦的分享笔记">
+<meta name="twitter:title" content="Nginx">
+<meta name="twitter:description" content="Nginx是什么Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）  nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求     N">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.zhuxyid.com/">
+  <link rel="canonical" href="http://blog.zhuxyid.com/2018/11/27/Nginx/">
 
 
 
 
 
-  <title>旭悦的分享笔记</title>
+  <title>Nginx | 旭悦的分享笔记</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -276,9 +280,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -308,9 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/27/Nginx/" itemprop="url">Nginx</a></h1>
+          <h1 class="post-title" itemprop="name headline">Nginx</h1>
         
 
         <div class="post-meta">
@@ -360,21 +362,22 @@
       
 
       
-        
-          
-          Nginx是什么Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。
-Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）
+        <h4 id="Nginx是什么"><a href="#Nginx是什么" class="headerlink" title="Nginx是什么"></a>Nginx是什么</h4><p>Nginx是一个HTTP服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。</p>
+<p>Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）</p>
+<blockquote>
+<p>nginx反向代理支持两种协议 HTTP和MAIL</p>
+<p>C10K 连接超过10K ,1W个请求,1M =100万个请求    </p>
+<p><a href="http://www.netcraft.com" target="_blank" rel="noopener">Netcraft</a>可以查看全球服务器Web服务器占有率。</p>
+</blockquote>
+<h4 id="Nginx特性"><a href="#Nginx特性" class="headerlink" title="Nginx特性"></a>Nginx特性</h4><p>模块化设计，较好的扩展性，早期不支持模块的动态装载和卸载</p>
+<p>高可靠性，基于Master/Worker模式</p>
+<p>支持热部署（平滑升级迁移），不停机的状态下更新配置文件，跟换日志文件，更新服务器程序版本</p>
+<p>内存消耗低，10K个keep-alive连接模式下的非活动连接只消耗2.5M内存</p>
+<p>支持event-driven事件驱动模型，AIO驱动机制，MMAP内存映射机制</p>
+<blockquote>
+<p>多进程模型，进程是个重量级的实体,进程多的时候会出现大量的进程切换，CPU只有一颗的情况下，在某个时刻正真在cpu上运行的只有一个进程.内核的进程调度程序处理进程切换.如果进程过多，大量的时间浪费在进程切换中.内核的sys开销大.</p>
+</blockquote>
 
-nginx反向代理支持两种
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/27/Nginx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -384,324 +387,70 @@ nginx反向代理支持两种
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>看完了?赏个鸡腿钱,谢谢老板!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Zandy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Zandy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zhuxyid.com/2018/11/26/Dockerfile/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zandy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旭悦的分享笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/Dockerfile/" itemprop="url">Dockerfile</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T18:05:48+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/容器/" itemprop="url" rel="index">
-                    <span itemprop="name">容器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          
-关于Docker基础,请看http://blog.zhuxyid.com/2018/11/23/Docker
-
-自制镜像方式​    基于容器方式来制作镜像，这种方法配置繁琐,不适合使用,每次配置文件更该都需要制作镜像
-​    基于Dockerfile
-DockerfileDockerfile是
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/Dockerfile/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/26/Dockerfile/" rel="next" title="Dockerfile">
+                <i class="fa fa-chevron-left"></i> Dockerfile
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zhuxyid.com/2018/11/23/Docker/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zandy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旭悦的分享笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/Docker/" itemprop="url">Docker</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T17:06:33+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/容器/" itemprop="url" rel="index">
-                    <span itemprop="name">容器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          容器是什么？  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物.
-虚拟化技术有哪些？主机级别 虚拟化
-完全 虚拟化：Vmware，Kvm，Xen
-半     虚拟化：Xen,UML
-Xen如果CPU
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/Docker/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -711,10 +460,11 @@ Xen如果CPU
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -722,6 +472,10 @@ Xen如果CPU
 
 
           
+
+  
+
+
 
         </div>
         
@@ -742,8 +496,17 @@ Xen如果CPU
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -859,6 +622,22 @@ Xen如果CPU
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx是什么"><span class="nav-number">1.</span> <span class="nav-text">Nginx是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx特性"><span class="nav-number">2.</span> <span class="nav-text">Nginx特性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -993,6 +772,10 @@ Xen如果CPU
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
