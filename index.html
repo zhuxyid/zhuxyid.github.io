@@ -429,7 +429,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/docker详解/" itemprop="url">Docker详解</a></h1>
+                <a class="post-title-link" href="/2018/11/23/docker详解/" itemprop="url">Docker基础笔记</a></h1>
         
 
         <div class="post-meta">
@@ -505,8 +505,11 @@
           
             <h4 id="容器是什么？"><a href="#容器是什么？" class="headerlink" title="容器是什么？"></a>容器是什么？</h4><p>  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物.</p>
 <h4 id="虚拟化技术有哪些？"><a href="#虚拟化技术有哪些？" class="headerlink" title="虚拟化技术有哪些？"></a>虚拟化技术有哪些？</h4><h5 id="主机级别-虚拟化"><a href="#主机级别-虚拟化" class="headerlink" title="主机级别 虚拟化"></a>主机级别 虚拟化</h5><blockquote>
-<p>完全 虚拟化::vmware exsi,kvm,xen</p>
-<p>半 虚拟化:xen,uml</p>
+<p>完全 虚拟化：Vmware，Kvm，Xen</p>
+<p>半     虚拟化：Xen,UML</p>
+<p>Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化</p>
+<p>半虚拟化：修改内核，通过被虚拟化出来的操作系统它是运行在虚拟化技术软件上的，虚拟化出来的操作系统执行的进程还是运行在真实机器上</p>
+<p>完全虚拟化：不需要修改内核，直接通过虚拟机化技术软件上运行的操作系统。</p>
 </blockquote>
 <h5 id="容器级别-虚拟化"><a href="#容器级别-虚拟化" class="headerlink" title="容器级别 虚拟化"></a>容器级别 虚拟化</h5><blockquote>
 <p>LXC,OpenVz,Solaris Containers,FreeBSD jails</p>
@@ -603,20 +606,13 @@
 <h5 id="镜像类操作"><a href="#镜像类操作" class="headerlink" title="镜像类操作"></a>镜像类操作</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker search SOFTWARE_NAME		#查找镜像名称</span><br><span class="line">示例:</span><br><span class="line"> docker search tomcat			#查找tomcat相关镜像，通常建议使用官方镜像，OFFICIAL 为OK的，或者Star点赞数高的镜像，原因自己悟</span><br><span class="line"></span><br><span class="line">docker pull SOFTWARE_NAME:TAGS		#下载镜像</span><br><span class="line">示例:</span><br><span class="line"> docker pull tomcat			#下载tomcat镜像，如果不指定tags就下载latest版本</span><br><span class="line"> docker pull tomcat:7.0.92-jre8-alpine	#详见hub.docker.com找到指定的镜像后在看tag</span><br><span class="line"></span><br><span class="line">docker image ls				#查看本地镜像，如果没有下载那么这里为空</span><br><span class="line"></span><br><span class="line">docker image rm SOFTWARE_NAME:TAGS	#删除本地镜像</span><br><span class="line">示例:</span><br><span class="line"> docker image rm tomcat			#如果不指定删除镜像版本默认删除latest</span><br></pre></td></tr></table></figure>
 <h5 id="容器类操作"><a href="#容器类操作" class="headerlink" title="容器类操作"></a>容器类操作</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">docker run		#运行容器，需要指定镜像</span><br><span class="line">实例:</span><br><span class="line"> docker run tomcat	#运行镜像为tomcat的容器,容器里面有tomcat,启动容器后tomcat也将运行起来，容器里面的程序都是在前台运行，会占用窗口</span><br><span class="line"> docker run --name myapp -d tomcat	#启动myapp容器，镜像使用tomcat:latest，以后台运行</span><br><span class="line"> 更多命令使用:docker run --help</span><br><span class="line"> </span><br><span class="line">docker ps		#查看运行中的容器</span><br><span class="line">CONTAINER ID	IMAGE	COMMAND			CREATED		STATUS		PORTS		NAMES</span><br><span class="line">ee1ff8df6e70	tomcat	"catalina.sh run" 	3 seconds ago	Up 2 seconds	8080/tcp	myapp</span><br><span class="line">说明:</span><br><span class="line"> 如果在docker run不指定容器名称会随机创建一个容器名称。</span><br><span class="line"> 端口是容器内的端口.关于docker网络的内容下面会有讲解</span><br><span class="line"></span><br><span class="line">docker exec</span><br><span class="line">实例:</span><br><span class="line"> docker exec -it myapp /bin/bash	#进入myapp容器中</span><br><span class="line">   -it	#新建一个tty并且进入</span><br><span class="line"></span><br><span class="line">docker stop</span><br><span class="line">实例:</span><br><span class="line"> docker stop myapp	#停止myapp容器</span><br><span class="line"> docker ps -a		#查看所有容器，如果不加-a不能看到停止的容器</span><br><span class="line"> </span><br><span class="line">docker start</span><br><span class="line">实例:</span><br><span class="line"> docker start myapp	#运行停止的容器</span><br><span class="line"></span><br><span class="line">docker restart	#重启容器</span><br><span class="line">实例:</span><br><span class="line"> docker restart myapp</span><br><span class="line"></span><br><span class="line">docker rm		#删除容器</span><br><span class="line">实例:</span><br><span class="line"> docker rm myapp</span><br><span class="line"></span><br><span class="line">docker logs		#查看容器运行的程序日志</span><br><span class="line">实例:</span><br><span class="line"> docker logs myapp	</span><br><span class="line"></span><br><span class="line">docker kill		#杀死容器里的进程，进程一旦停止，容器也就停止。因为容器一般只运行一个前台程序，容器的生命周期下面会讲解</span><br><span class="line">实例:</span><br><span class="line"> docker kill myapp</span><br></pre></td></tr></table></figure>
 <h4 id="Docker-Image"><a href="#Docker-Image" class="headerlink" title="Docker Image"></a>Docker Image</h4><p>Docker镜像包含启动容器的所需文件系统以及其内容，因此，用于创建并启动docker容器：</p>
-<blockquote>
-<p>镜像采用分层构建机制，最底层为bootfs,其为rootfs。</p>
+<h5 id="分层机制："><a href="#分层机制：" class="headerlink" title="分层机制："></a>分层机制：</h5><p>镜像采用分层构建机制，最底层为bootfs,其为rootfs。</p>
 <blockquote>
 <p>rootfs：用于系统引导的文件系统，包含bootloader和kernel，容器启动完成后被卸载以节约内存资源</p>
 <p>rootfs：位于bootfs之上，表现为docker容器根文件系统</p>
 <blockquote>
 <p>传统模式中，系统启动时，内核挂载rootfs时首先将其挂载为“只读”模式，自检其完整性 完成后将其重新挂载为读写模式</p>
 <p>docker中，rootfs由内核挂载为“只读”模式，而通过“联合挂载”技术额外挂载一个可写层，容器就是在镜像多了一个可写层</p>
-</blockquote>
-<p>docker image layer：</p>
-<blockquote>
-<p>位于下层的镜像 称之为 父镜像(parent image)，最底层的称之为 基础镜像(base image)</p>
-<p>最上层“可读写成”，下面为“只读层”</p>
-</blockquote>
 </blockquote>
 </blockquote>
 <table>
@@ -633,8 +629,136 @@
 </tr>
 </tbody>
 </table>
-<h4 id="Docker-Container"><a href="#Docker-Container" class="headerlink" title="Docker Container"></a>Docker Container</h4><p>Docker容器具有生命周期，”STOPD”,’CREATED’,’RUNNING’,’PAUSED’四个稳定状态，容器一旦删除数据就会丢失，所以项目或者配置文件不要直接存放在容器中，通过卷（volume）的方式挂载至容器里，可用一张图表示。</p>
-<p><img src="/images/docker/docker_event_status.png"></p>
+<h5 id="docker镜像层级："><a href="#docker镜像层级：" class="headerlink" title="docker镜像层级："></a>docker镜像层级：</h5><p>位于下层的镜像 称之为 父镜像(parent image)，最底层的称之为 基础镜像(base image)</p>
+<p>最上层“可读写成”，下面为“只读层”</p>
+<h5 id="联合挂载："><a href="#联合挂载：" class="headerlink" title="联合挂载："></a>联合挂载：</h5><p>Aufs（advanced multi-layered unification filesystem ）   高级多层统一文件系统，同于实现linux平台中的联合挂载</p>
+<p>Aufs是unionFS的重新实现,docker最初使用aufs作为容器文件系统层，目前仍作为存储后端之一来支持</p>
+<p>Aufs另外一个实现是overlayFS，后者从3.18版本中开始被合并到linux内核中，overlayerFS是叠加文件系统</p>
+<p>除了aufs，docker还支持btrFS,Device Mapper和VSF等。在ubuntu中，默认是aufs</p>
+<blockquote>
+<p>device mapper在linux2.6中支持逻辑卷管理的通过设备映射机制，它为实现用于存储资源管理的块设备驱动提供一个高度模块化的内核架构，它通过一个个模块化的target driver插件实现对IO请求的过滤或者重新定向等工作，当前已经实现的target driver插件包括软raid，软加密，逻辑卷条带，多路径，镜像，快照等。 </p>
+<p>docker使用Thin provisioning的snapshot的技术实现了类似auFS分层镜像 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> docker info | grep "Storage Driver:"	#来查看</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h4 id="Docker-Container"><a href="#Docker-Container" class="headerlink" title="Docker Container"></a>Docker Container</h4><p>Docker容器具有生命周期，”STOPD”,’CREATED’,’RUNNING’,’PAUSED’四个稳定状态，</p>
+<p>容器一旦删除数据就会丢失，所以项目或者配置文件不要直接存放在容器中，通过卷（volume）的方式挂载至容器里.</p>
+<h5 id="Docker事件状态图"><a href="#Docker事件状态图" class="headerlink" title="Docker事件状态图:"></a>Docker事件状态图:</h5><p><img src="/images/docker/docker_event_status.png"></p>
+<h4 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h4><p>当容器启动时,docker daemon会试图先从本地获取相关镜像，当本地不存在的时候，其将从registry中下载该镜像并保存在本地</p>
+<p>流程图:</p>
+<blockquote>
+<p>docker client &lt; - - - http/https - - - &gt;docker daemon &lt; - - - http/https - - - &gt;docker registry </p>
+<p>默认是使用https连接到registry，但是可以修改成http </p>
+</blockquote>
+<h5 id="Registry-分类"><a href="#Registry-分类" class="headerlink" title="Registry 分类"></a>Registry 分类</h5><p>registry用于保存docker镜像，包括镜像的层次结构和元数据:</p>
+<blockquote>
+<p>用户可自建registry，也可以使用官方的docker hub  </p>
+<p>分类:</p>
+<blockquote>
+<p>sponsor registry    第三方registry，供客户和docker社区使用</p>
+<p>mirror registry     第三方registry，只让客户用 </p>
+<p>verdor registry     由发布docker镜像的供应商提供registry </p>
+<p>private registry    通过舍友防火墙和额外的安全层的私有实体提供的registry </p>
+</blockquote>
+</blockquote>
+<h5 id="repository及index"><a href="#repository及index" class="headerlink" title="repository及index"></a>repository及index</h5><p><strong>repository</strong></p>
+<blockquote>
+<p>由某种特定的docker镜像的所有迭代版本组成的镜像仓库 </p>
+<p>一个registry中可以存在多个repository </p>
+<p>repository 可以为”顶层仓库”和“用户仓库” </p>
+<p> 用户仓库名称格式”用户名/仓库名”</p>
+<p>每个仓库可以包含多个Tag，每个标签对应一个镜像 </p>
+</blockquote>
+<p><strong>index</strong></p>
+<blockquote>
+<p>维护用户账号,镜像的校验以及公共命名空间的信息 </p>
+<p>相当于为Registry提供了一个完成用户认证等功能的检索接口 </p>
+</blockquote>
+<h4 id="镜像相关操作"><a href="#镜像相关操作" class="headerlink" title="镜像相关操作"></a>镜像相关操作</h4><p>主要介绍镜像如何生成，和如何推送镜像至仓库</p>
+<h5 id="镜像生成方式"><a href="#镜像生成方式" class="headerlink" title="镜像生成方式:"></a>镜像生成方式:</h5><p>​        有三种方式：基于容器方式，Dockerfile方式，Docker Hub Automated Builds </p>
+<h5 id="基于容器制作镜像"><a href="#基于容器制作镜像" class="headerlink" title="基于容器制作镜像:"></a>基于容器制作镜像:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">docker run --name web1 -it busybox </span><br><span class="line"><span class="meta">&gt;</span>mkdir -p /data/www/ </span><br><span class="line"><span class="meta">&gt;</span>echo "&lt;h1&gt;welcome busybox http server&lt;/h1&gt;" &gt; /data/www/index.html </span><br><span class="line"><span class="meta">#</span>注意:基于容器制作镜像，容器必须处于运行状态，这里切换终端 </span><br><span class="line"></span><br><span class="line">docker commit -p web1			#commit制作镜像前需要—p暂停</span><br><span class="line">docker image ls				#可以看到镜像制作完成（缺少tag） </span><br><span class="line">docker tag IMAGEID zhuxyid/busyhttp:v1	#给刚才制作的镜像打标签(可以打多个标签) </span><br><span class="line">docker tag zhuxyid/busyhttp:v1 zhuxyid/busyhttp:test_env	#在打一个标签 </span><br><span class="line">docker image rm zhuxyid/busyhttp:v1				#这里只是删除一个标签，并没有删除镜像 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>查看镜像启动时候运行的命令 </span><br><span class="line">docker inspect web1 | grep -A 5 "Cmd" </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如何在制作镜像运行时执行启动命令 </span><br><span class="line">docker commit -a "作者:zhuxy" -c 'CMD ["/bin/httpd","-f","-h","/data/www"]' -p web1 zhuxyid/busyhttp:test_env</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>运行制作后的镜像 </span><br><span class="line">docker run --name -d webserver zhuxyid/busyhttp:test_env</span><br></pre></td></tr></table></figure>
+<h5 id="基于Dockerfile制作镜像"><a href="#基于Dockerfile制作镜像" class="headerlink" title="基于Dockerfile制作镜像:"></a>基于Dockerfile制作镜像:</h5><blockquote>
+<p>详见:<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+</blockquote>
+<h5 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h5><h6 id="推送到官方"><a href="#推送到官方" class="headerlink" title="推送到官方"></a>推送到官方</h6><p>首先需要有hub.docker.com账号 ，hub.docker.com需要先建立好repositories </p>
+<p>示例：这里的是zhuxyid/busyhttp命名,要跟本地的镜像保持一致</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker login    #输入账号密码才可以登录 </span><br><span class="line"></span><br><span class="line">docker push zhuxyid/busyhttp:test_env    #推送制作的镜像</span><br><span class="line"></span><br><span class="line">docker logout</span><br></pre></td></tr></table></figure>
+<h6 id="推送到阿里云"><a href="#推送到阿里云" class="headerlink" title="推送到阿里云"></a>推送到阿里云</h6><p>需要修改docker配置文件中的推送地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>修改docker配置文件添加registry-mirrors,https://brjvf90f.mirror.aliyuncs.com为我自己的阿里云镜像仓库</span><br><span class="line">vi /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">	"registry-mirrors":["https://registry.docker-cn.com","https://brjvf90f.mirror.aliyuncs.com"]&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>重载配置文件并重启</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker.service </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>阿里云创建命名空间，在创建镜像仓库 </span><br><span class="line">docker login --username=zhuxyid registry.cn-hangzhou.aliyuncs.com </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>先重命名镜像标签 </span><br><span class="line">docker tag imagename registry.cn-hangzhou.aliyuncs.com/zhuxyid/busyhttp:test_env</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在推送到阿里云</span><br><span class="line">docker push registry.cn-hangzhou.aliyuncs.com/zhuxyid/busyhttp:version </span><br><span class="line">docker logout</span><br></pre></td></tr></table></figure>
+<h5 id="镜像导入导出"><a href="#镜像导入导出" class="headerlink" title="镜像导入导出"></a>镜像导入导出</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>在本地导出镜像包，推送到目标机</span><br><span class="line">docker save -o busyhttp.gz zhuxyid/busyhttp:latest ..    #可以打包多个文件 </span><br><span class="line">scp busyhttp.gz root@REMOTEIP:/opt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在目标机上导入推送的镜像</span><br><span class="line">docker load -i busyhttp.gz </span><br><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
+<h4 id="Docker网络"><a href="#Docker网络" class="headerlink" title="Docker网络"></a>Docker网络</h4><p>Docker安装后自动创建docker0网卡(虚拟)</p>
+<p>网络虚拟化技术实现:</p>
+<blockquote>
+<p>OVS：Open VSwitch    开源虚拟交换</p>
+<p>SDN：Software Defined Network    软件定义网络（需要硬件和软件支持）</p>
+</blockquote>
+<h5 id="Docker网络接口"><a href="#Docker网络接口" class="headerlink" title="Docker网络接口"></a>Docker网络接口</h5><p>Docker有三种网络接口：</p>
+<blockquote>
+<p>bridge，host，none，Containers</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">1f03c706f810        bridge              bridge              local</span><br><span class="line">75c5f8de6db4        host                host                local</span><br><span class="line">871ede94efa8        none                null                local</span><br><span class="line"></span><br><span class="line">bridge	桥接物理主机网卡(默认).这里是nat桥接，并不是物理桥接，如果是物理桥接,如果一个交换机下每个宿主机都有十几个容器，很容易导致广播风暴</span><br><span class="line">host	使用物理主机的名称空间</span><br><span class="line">none	不使用网络(特殊场景,有些程序不需要使用网络通信,比如自动任务不需要网络通信)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>docker安装后，会生成docker0，此网卡是个NAT桥，当启动容器的时候，宿主机也会生成<code>veth*</code>虚拟网卡，该网卡和容器内的网卡绑定，而<code>veth*</code>就是跟docker0相连，可以使用<code>brctl show</code>来查看</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install bridge-utils</span><br><span class="line">brctl show		#可以看出veth网络都是跟docker0关联</span><br><span class="line">bridge name	bridge id		STP enabled	interfaces</span><br><span class="line">docker0		8000.024259bff40e	no		veth05116c6</span><br><span class="line">							vethf8f26a6</span><br><span class="line">                            </span><br><span class="line">iptables -t nat -vnL	#查看POSTROUTING链,可以看出容器内访问其他网络都是通过MASQUERADE地址伪装方式访问</span><br><span class="line">Chain POSTROUTING (policy ACCEPT 54 packets, 3570 bytes)</span><br><span class="line"> pkts bytes target     prot opt in     out     source               destination         </span><br><span class="line">    0     0 MASQUERADE  all  --  *      !docker0  172.17.0.0/16        0.0.0.0/0</span><br></pre></td></tr></table></figure>
+<h5 id="Docker通讯"><a href="#Docker通讯" class="headerlink" title="Docker通讯"></a>Docker通讯</h5><p>Docker中如果外部想访问内部的服务有如下三种方式:</p>
+<blockquote>
+<p>Bridge方式：</p>
+<blockquote>
+<p>通过桥接，然后设置dnat才能被其他主机访问</p>
+</blockquote>
+<p>Containers方式:</p>
+<blockquote>
+<p>容器可以将6个名称空间分层:</p>
+<p>如：docker-a和docker-b</p>
+<p>docker-a独立6个名称空间:USER,MOUNT,PID,UTS,NET,IPC</p>
+<p>docker-b独立3个名称空间:USER,MOUNT,PID,另外UTS,NET,IPC共享docker-a的</p>
+</blockquote>
+<p>Host方式：</p>
+<blockquote>
+<p>相当于Open container方式，只不过直接使用宿主机的UTS.NET.IPC</p>
+</blockquote>
+</blockquote>
+<h5 id="Docker-网络相关命令"><a href="#Docker-网络相关命令" class="headerlink" title="Docker 网络相关命令"></a>Docker 网络相关命令</h5><h6 id="指定网络类型以及端口映射"><a href="#指定网络类型以及端口映射" class="headerlink" title="指定网络类型以及端口映射"></a>指定网络类型以及端口映射</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#docker run --name test -it --rm busybox:latest    #运行busybox命名为test，执行完后直接删除</span><br><span class="line">    --network [none|bridge]        #指定网络类型(默认是bridge)</span><br><span class="line">    --hostname|-h HOSTNAME         #指定主机名</span><br><span class="line">    --dns 114.114.114.114          #指定dns</span><br><span class="line">    --add-host HOST:IP             #设置容器hosts</span><br><span class="line"></span><br><span class="line">    #映射</span><br><span class="line">    -p &lt;containerPort&gt;                #将指定的容器端口 映射至 主机所有地址的一个动态端口</span><br><span class="line">    -p &lt;hostPort&gt;:&lt;containerPort&gt;     #将容器端口containerPort 映射至 主机指定的主机端口&lt;host Port&gt;</span><br><span class="line">    -p &lt;ip&gt;::&lt;containerPort&gt;          #将指定的容器端口&lt;containerPort&gt; 映射至 主机指定&lt;ip&gt;的动态端口</span><br><span class="line">    -p &lt;ip&gt;:&lt;HostPort&gt;:&lt;containerPort&gt;#将指定容器端口&lt;containerPort&gt;映射至主机指定&lt;ip&gt;的端口&lt;hostPort&gt;</span><br><span class="line">    -P                                #-P暴露所有端口</span><br></pre></td></tr></table></figure>
+<h6 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name test -it --network bridge --rm busybox:latest</span><br><span class="line">docker run --name test -it -h webserver.node1 --network bridge --rm busybox:latest</span><br><span class="line">docker run --name test -it -h webserver.node1 --dns 114.114.114.114 --rm busybox:latest</span><br><span class="line"></span><br><span class="line">docker run --name webserver -p 80 -d busybox/httpd:latest    #本地随机端口映射到容器的80端口</span><br><span class="line">docker run --name webserver -p 80:80 -d busybox/httpd:latest #本地80端口映射到容器的80端口</span><br><span class="line">docker port webserver     #查看webserver容器端口</span><br></pre></td></tr></table></figure>
+<h6 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h6><p>联盟式容器是指使用某个已存在容器的网络接口的容器，接口被联盟内的各容器共享使用，因此，联盟式容器彼此间完全无隔离</p>
+<pre><code>#创建一个监听于80端口的http服务容器
+docker run -d --it --rm -p 80:80 busybox/httpd:laster
+
+#创建一个联盟式容器
+docker run --name web1 -it --rm busybox/httpd
+docker run --name web2 --network container:web1 -it --rm busybox/httpd
+#在web2中创建的文件web1看不到，因为隔离Mount名称空间，但是web1和web2的ip是一样的，因为web2共享了web1的Net名称空间
+
+#联盟式容器彼此间 虽然 共享同一个网络名称空间，但其他名称空间如User,Mount，Pid等还是隔离的
+#联盟式容器彼此间存在端口冲突的可能性，因此，通常只会在多个容器上的程序需要程序lookback接口互相通信，或对某已存在的容器的网络属性进行监控时才使用此模式的网络模型
+</code></pre><h6 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h6><p> 创建一个宿主机host的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver --network host -it --rm busybox/httpd</span><br><span class="line">#使用宿主机的IP，可能会郁闷，这跟直接在主机上部署个httpd服务在启动有什么不一样么？</span><br><span class="line">#容器，容器可以更加方便移值，直接run container就可以运行了。</span><br></pre></td></tr></table></figure>
+<h4 id="Docker存储"><a href="#Docker存储" class="headerlink" title="Docker存储"></a>Docker存储</h4><h5 id="关于卷"><a href="#关于卷" class="headerlink" title="关于卷"></a>关于卷</h5><p>Docker镜像由多个只读层叠加而成，启动容器时，docker会加载只读镜像层 并在镜像栈顶部 添加一个 读写层，如果运行中容器修改了现有的一个已挂载的文件，那该文件将会从 读写层下面的只读层 复制到读写层，该文件的只读版本依然存在，只是已经被读写层中该文件的副本所修改，即“写时复制(COW)”机制 </p>
+<p><strong><em>注意:在IO要求高应用中，如果使用容器的话，那么效率非常低</em></strong></p>
+<p><code>Container: /data/web &lt; - - - - 建立绑定关系Mount - - - - &gt; Host:/container/web1/data/web</code></p>
+<p>在容器写入时候，可以绕过容器内部层级关系 </p>
+<p>命名空间Mount是相互独立的,可以共享,关联到存储卷Volume，只要容器挂载存储卷.当容器被停止或者删除后,文件内容不被删除。 </p>
+<h5 id="为什么用存储卷"><a href="#为什么用存储卷" class="headerlink" title="为什么用存储卷"></a>为什么用存储卷</h5><p>关闭并重启容器，其数据不受影响，但是删除容器，则数据全部丢失 </p>
+<p>存在的问题： </p>
+<p>​    存储于联合文件系统中，不易于宿主机访问 </p>
+<p>​        容器间数据共享不便利 </p>
+<p>​        删除容器其数据丢失 </p>
+<h5 id="卷的描述"><a href="#卷的描述" class="headerlink" title="卷的描述"></a>卷的描述</h5><p>卷在容器初始化时候 会自动创建，由base image提供的卷中数据会于此间 完成复制 </p>
+<p>卷的初衷是独立于容器的生命周期实现数据持久化，因此删除容器时不会删除卷，也不会对哪怕未被应用的卷做垃圾回收 </p>
+<p>卷为docker提供了独立于容器的数据管理机制</p>
+<p>可以把”镜像” 比作成静态文件，例如“程序” ，把卷类比为动态内容，例如“数据”；于是镜像可以重用，而卷可以共享 </p>
+<p>卷实现了”程序(镜像)”和“数据(卷)”分离，以及 “程序(镜像)”和“制作镜像主机”分离，用户制作镜像时无需考虑镜像运行容器所在的主机环境 </p>
+<h5 id="卷的类型"><a href="#卷的类型" class="headerlink" title="卷的类型"></a>卷的类型</h5><p>docker有两种类型的卷，每种类型都在容器中存在一个挂载点，但其在宿主机上的位置有所不同 </p>
+<blockquote>
+<p>绑定挂载卷 bind mount volume:       在宿主机人工指定特定路径，在容器也人工指定特定路径，将两者绑定 </p>
+<p>容器管理卷 docker-managed volume:   宿主机不需要指定路径(docker daemon)，容器中需要指定路径，docker自动将两者绑定 </p>
+</blockquote>
+<h5 id="如何使用卷"><a href="#如何使用卷" class="headerlink" title="如何使用卷"></a>如何使用卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">docker run -v 选项</span><br><span class="line">docker-managed volume</span><br><span class="line">docker run -it --name web1 -v /data busybox</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1	#查看容器卷绑定关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -it -v HOSTDIR:VOLUMEDIR --name web2 busybox</span><br><span class="line">docker run -it -v /data:/test --name web2 busybox            #本机的data跟容器的test绑定，如果data不存在自动创建</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1</span><br><span class="line"></span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Networks.bridge.IPAddress&#125;&#125; web1    #获取web1下的ip地址</span><br><span class="line"></span><br><span class="line">#多个容器的卷使用同一个主机目录</span><br><span class="line">docker run -it --name nginx1 -v /docker/volumes/html:/data busybox</span><br><span class="line">docker run -it --name tomcat1 -v /docker/volumes/class:/data busybox</span><br><span class="line"></span><br><span class="line">#复制使用其他容器的卷，为docker run命令使用--volumes-form</span><br><span class="line">docker run -it --name tomcat2 -v /docker/volumes/class:/data busybox</span><br><span class="line">docker run -it --name tomcat3 --network container:tomcat2 --volumes-from tomcat2 busybox    #共享网络和卷</span><br></pre></td></tr></table></figure>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h5><blockquote>
+<p>主要是讲解一下Docker基础方面，后期的Dockerfile和Docker Registry在慢慢总结，如果本文有错误，还请大牛指出，谢谢:)</p>
+</blockquote>
 
           
         
