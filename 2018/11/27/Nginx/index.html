@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Nginx是什么Nginx是一个Web服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）  nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求     Ne">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T01:17:29.771Z">
+<meta property="og:updated_time" content="2018-11-28T01:23:38.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx">
 <meta name="twitter:description" content="Nginx是什么Nginx是一个Web服务器,也是个高性能方向代理服务器，Nginx起初为了解决基于进程模型产生的C10k问题，由俄罗斯lgor sysoev研发。 Nginxy有企业版本Nginx Plus，还有二次发行版Tengine，OpenResy（淘宝研发）  nginx反向代理支持两种协议 HTTP和MAIL C10K 连接超过10K ,1W个请求,1M =100万个请求     Ne">
@@ -420,7 +420,7 @@
 </blockquote>
 <p>除此之外配置了缓存时还会有缓存加载器进程<code>cache loader</code>和缓存管理器进程<code>cache manager</code>等，所有进程均是仅含有一个线程，并主要通过“共享内存”的机制实现进程间通信。</p>
 <p>主进程Master以root用户身份运行，而Worker、Cache Loader和Cache Manager均应以非特权用户身份运行。</p>
-<h5 id="Master负责"><a href="#Master负责" class="headerlink" title="Master负责"></a>Master负责</h5><blockquote>
+<h5 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h5><blockquote>
 <p>加载，验证配置文件</p>
 <p>创建，绑定，关闭套接字</p>
 <p>管理worker进程（启动，终止，维护）</p>
@@ -429,14 +429,14 @@
 <p>重新打开日志文件，实现日志滑动</p>
 <p>其他嵌入式perl，go脚本</p>
 </blockquote>
-<h5 id="Worker负责"><a href="#Worker负责" class="headerlink" title="Worker负责"></a>Worker负责</h5><blockquote>
+<h5 id="Worker"><a href="#Worker" class="headerlink" title="Worker"></a>Worker</h5><blockquote>
 <p>响应客户端请求，提供HTTP服务和代理，提供FastCGI，uWSGI，SCGI等代理</p>
 </blockquote>
-<h5 id="Cache-Loader负责"><a href="#Cache-Loader负责" class="headerlink" title="Cache Loader负责"></a>Cache Loader负责</h5><blockquote>
+<h5 id="Cache-Loader"><a href="#Cache-Loader" class="headerlink" title="Cache Loader"></a>Cache Loader</h5><blockquote>
 <p>检查缓存存储中的缓存对象；</p>
 <p> 使用缓存元数据建立内存数据库；</p>
 </blockquote>
-<h5 id="Cache-Manager负责"><a href="#Cache-Manager负责" class="headerlink" title="Cache Manager负责"></a>Cache Manager负责</h5><blockquote>
+<h5 id="Cache-Manager"><a href="#Cache-Manager" class="headerlink" title="Cache Manager"></a>Cache Manager</h5><blockquote>
 <p>缓存的失效及过期检验；</p>
 </blockquote>
 <p>####Nginx安装</p>
@@ -704,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx是什么"><span class="nav-number">1.</span> <span class="nav-text">Nginx是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx特性"><span class="nav-number">2.</span> <span class="nav-text">Nginx特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx基本功能"><span class="nav-number">3.</span> <span class="nav-text">Nginx基本功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx服务相关功能"><span class="nav-number">4.</span> <span class="nav-text">Nginx服务相关功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx架构"><span class="nav-number">5.</span> <span class="nav-text">Nginx架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Master负责"><span class="nav-number">5.1.</span> <span class="nav-text">Master负责</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Worker负责"><span class="nav-number">5.2.</span> <span class="nav-text">Worker负责</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Loader负责"><span class="nav-number">5.3.</span> <span class="nav-text">Cache Loader负责</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Manager负责"><span class="nav-number">5.4.</span> <span class="nav-text">Cache Manager负责</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx是什么"><span class="nav-number">1.</span> <span class="nav-text">Nginx是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx特性"><span class="nav-number">2.</span> <span class="nav-text">Nginx特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx基本功能"><span class="nav-number">3.</span> <span class="nav-text">Nginx基本功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx服务相关功能"><span class="nav-number">4.</span> <span class="nav-text">Nginx服务相关功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx架构"><span class="nav-number">5.</span> <span class="nav-text">Nginx架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Master"><span class="nav-number">5.1.</span> <span class="nav-text">Master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Worker"><span class="nav-number">5.2.</span> <span class="nav-text">Worker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Loader"><span class="nav-number">5.3.</span> <span class="nav-text">Cache Loader</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Manager"><span class="nav-number">5.4.</span> <span class="nav-text">Cache Manager</span></a></li></ol></li></ol></div>
             
 
           </div>
