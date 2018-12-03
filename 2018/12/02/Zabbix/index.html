@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T01:40:51.794Z">
+<meta property="og:updated_time" content="2018-12-03T02:29:00.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix">
 <meta name="twitter:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
@@ -378,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  903
+                  2.3k
                 </span>
               
 
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  9
                 </span>
               
             </div>
@@ -448,7 +448,7 @@
 </blockquote>
 <p>主机性能指标: </p>
 <p>趋势数据(时间序列): </p>
-<h5 id="SNMP"><a href="#SNMP" class="headerlink" title="SNMP"></a>SNMP</h5><h6 id="架构："><a href="#架构：" class="headerlink" title="架构："></a>架构：</h6><blockquote>
+<h5 id="SNMP协议"><a href="#SNMP协议" class="headerlink" title="SNMP协议"></a>SNMP协议</h5><h6 id="架构："><a href="#架构：" class="headerlink" title="架构："></a>架构：</h6><blockquote>
 <p>C/S架构：被监控端(Agent)，监控端(NMS),</p>
 <p>udp协议：Agent：161端口，NMS：162端口</p>
 </blockquote>
@@ -499,10 +499,10 @@
 <p>Open-Falcon    小米开源监控系统</p>
 </blockquote>
 <h5 id="Zabbix监控功能"><a href="#Zabbix监控功能" class="headerlink" title="Zabbix监控功能"></a>Zabbix监控功能</h5><blockquote>
-<p>zabbix agent,snmp,ping,ssh,ipmi,web监控,数据库监控,内部监控,内部支持复杂计算,自定义命令监控 </p>
-<p>zabbix agent,snmp,ipmi可以监控cpu,内存,网络,磁盘,服务,日志,文件监控 </p>
-<p>web监控可以监控到 响应时间,下载速度,响应代码,获取特定要求内容,支持http/https</p>
-<p>报警方式:email,sms,jabber,chat message,命令执行</p>
+<p>zabbix agent，snmp，ping，ssh，ipmi，web监控,数据库监控,内部监控,内部支持复杂计算,自定义命令监控 </p>
+<p>zabbix agent，snmp，ipmi可以监控CPU、内存、网络、磁盘、服务、日志、文件监控 </p>
+<p>web监控可以监控到 响应时间、下载速度、响应代码、获取特定要求内容、支持http/https</p>
+<p>报警方式:email、sms、jabber、chat message、自定义命令</p>
 </blockquote>
 <h5 id="Zabbix组件"><a href="#Zabbix组件" class="headerlink" title="Zabbix组件"></a>Zabbix组件</h5><blockquote>
 <p>zabbix-server：（C）</p>
@@ -510,6 +510,102 @@
 <p>zabbix-web：GUI接口设定展示zabbix（php） </p>
 <p>zabbix-proxy:分布式监控环境中专用组件(大规模才能用到) </p>
 </blockquote>
+<h4 id="Zabbix安装"><a href="#Zabbix安装" class="headerlink" title="Zabbix安装"></a>Zabbix安装</h4><h5 id="配置需求"><a href="#配置需求" class="headerlink" title="配置需求"></a>配置需求</h5><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>平台</th>
+<th>cpu/内存</th>
+<th>数据库</th>
+<th>监控主机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>ubuntu linux</td>
+<td>PII 350MHz 256M</td>
+<td>SQLite</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>ubuntu linux64 bit</td>
+<td>AMD Athlon 3200+ 2G</td>
+<td>MySQL InnoDB</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>ubuntu linux64 bit</td>
+<td>Inter Dual Core6400 4G</td>
+<td>RAID10 MySQL InnoDB or PostgreSQL</td>
+<td>&gt;1000</td>
+</tr>
+<tr>
+<td>Very large</td>
+<td>RedHat Enterprise</td>
+<td>Inter Xeon 2*CPU 8G</td>
+<td>Fatst RAID10 MySQL or PostgreSQL</td>
+<td>&gt;10000</td>
+</tr>
+</tbody>
+</table>
+<h5 id="zabbix数据"><a href="#zabbix数据" class="headerlink" title="zabbix数据"></a>zabbix数据</h5><blockquote>
+<p>配置数据：很小</p>
+<p>历史数据：50bytes/1m</p>
+<p>历史趋势数据：128bytes/1m</p>
+<p>事件数据：130bytes/1m</p>
+<p>通常五分钟采集一次，一个监控项目就是320bytes，一小时3.8KB，一年就是34M，一台机器34M</p>
+</blockquote>
+<h5 id="zabbix数据计算公式"><a href="#zabbix数据计算公式" class="headerlink" title="zabbix数据计算公式"></a>zabbix数据计算公式</h5><p>假设，如果一个主机60个监控项，1k个主机就是6万个监控项目。zabbix database需要用到的空间，60000/60 = 1000条，默认90天，趋势图默认一年</p>
+<blockquote>
+<p>历史数据</p>
+<p>历史数据 = 天数 x 每秒处理数据量 x 24 x 3600 x 50Bytes </p>
+<blockquote>
+<p>每个历史数据50bytes</p>
+<p>90x1000x24x3600x50 三个月产生360G数据</p>
+</blockquote>
+<p>趋势数据</p>
+<p>趋势数据 = 天数 x 监控项数 x 24 x 128bytes</p>
+<blockquote>
+<p>每个趋势数据大概128bytes，按小时保存，假设保存一年</p>
+<p>365x6000x24x128 一年大概62G数据</p>
+</blockquote>
+<p>事件数据</p>
+<p>事件数据 = 天数 x 86400 X 130bytes</p>
+<blockquote>
+<p>每个事件数据大概130bytes，假设保存一年</p>
+<p>365 x 86400 x 130bytes 一年大约3G数据</p>
+</blockquote>
+</blockquote>
+<p>每分钟取一次数据，每秒请求数据大概千次，数据库写压力巨大（建议，监控5分钟取一次）</p>
+<h5 id="Zabbix安装-1"><a href="#Zabbix安装-1" class="headerlink" title="Zabbix安装"></a>Zabbix安装</h5><h6 id="yum安装"><a href="#yum安装" class="headerlink" title="yum安装"></a>yum安装</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>需要实现安装mysql or PostreSQL</span><br><span class="line">yum install mysql-server</span><br><span class="line">rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/6/x86_64/zabbix-release-3.2-1.el6.noarch.rpm</span><br><span class="line">yum install zabbix-agent zabbix-get zabbix-java-gateway zabbix-proxy-mysql zabbix-sender zabbix-server-mysql zabbix-web zabbix-web-mysql</span><br></pre></td></tr></table></figure>
+<h6 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h6><p>下载zabbix源码包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>需事先安装好LAMP平台，编译zabbix同时安装server和agent，并支持将数据放入mysql数据库中</span><br><span class="line">./configure --prefix=/usr/local/zabbix --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-ssh2</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>安装Server端，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --enable-server --with-mysql --with-net-snmp --with-libcurl</span><br></pre></td></tr></table></figure>
+<p>安装Agent端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --enable-agent --with-ssh2</span><br></pre></td></tr></table></figure>
+<p>导入数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#导入数据库顺序(schema.sql，images.sql，data.sql)</span><br><span class="line">CREATE DATABASE zabbix CHARACTER SET UTF8;</span><br><span class="line">GRANT ALL PRIVILEGES ON zabbix.* TO &apos;zabbix&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;zabbixpass&apos;</span><br><span class="line">USE zabbix;</span><br><span class="line">source schema.sql</span><br><span class="line">source images.sql</span><br><span class="line">source data.sql</span><br></pre></td></tr></table></figure>
+<h5 id="Zabbix配置文件"><a href="#Zabbix配置文件" class="headerlink" title="Zabbix配置文件"></a>Zabbix配置文件</h5><h6 id="Zabbix-Server端"><a href="#Zabbix-Server端" class="headerlink" title="Zabbix-Server端"></a>Zabbix-Server端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">etc/zabbix/zabbix_server.conf</span><br><span class="line">LogFile=/tmp/zabbix_server.log    #日志文件</span><br><span class="line">LogFileSize=0                     #不做日志滚动</span><br><span class="line">DBHost=127.0.0.1</span><br><span class="line">DBName=zabbix</span><br><span class="line">DBUser=zabbix</span><br><span class="line">DBPassword=zabbixpass</span><br><span class="line">DBPort=3306</span><br><span class="line">StartPollers=5                   #启动poller进程多少个,各agent拉取对应指标</span><br><span class="line">StartIPMIPollers=0               #启动多少ipmi的poller进程,默认空闲</span><br><span class="line">StartPollersUnreachable=1        #不可达的poller</span><br><span class="line">StartTrappers=5                  #如果经常拉取对zabbix性能又影响,agent可以自动发送数据到server端,这个Trapper就是捕获该数据</span><br><span class="line">StartPingers=1                   #icmp探测主机是否在线</span><br><span class="line">StartDiscoverers=1               #启动多个自动发现进程(消耗带宽)</span><br><span class="line">StartHTTPPoller=1                #启动web的拉取数据进程</span><br><span class="line">StartTimers=1                    #启动计时器</span><br><span class="line">JavaGateway=127.0.0.1            #启动java网关连接jmx</span><br><span class="line">JavaGatewayPort=10052            #使用10052端口</span><br><span class="line">StartJavaPollers=5               #启动多少java的poller进程</span><br><span class="line">StartVMwareCollectors=0          #监控vm的虚拟主机</span><br><span class="line">VMwareFrequency=60               #监控vm的频率</span><br><span class="line">AlertScriptsPath=/usr/local/zabbix/alertscripts      #脚本报警路径</span><br><span class="line">ExternalScripts=/usr/local/zabbix/externalscripts    #外部脚本路径</span><br><span class="line">FpingLocation=/usr/sbin/fping                        #fping程序路径需要事先安装,fping(并行ping)</span><br></pre></td></tr></table></figure>
+<h6 id="Zabbix-Agent端"><a href="#Zabbix-Agent端" class="headerlink" title="Zabbix-Agent端"></a>Zabbix-Agent端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server=192.168.1.2            #服务端ip可用逗号分隔</span><br><span class="line">ListenPort=10050</span><br><span class="line">ListenIP=192.168.1.100</span><br><span class="line">ServerActive=192.168.1.2      #自动推送数据到监控端(默认是被动监控)</span><br><span class="line">Hostname=node1                #主机名,唯一</span><br></pre></td></tr></table></figure>
+<h5 id="Zabbix-Server-Process"><a href="#Zabbix-Server-Process" class="headerlink" title="Zabbix Server Process"></a>Zabbix Server Process</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">watchdog</span><br><span class="line">howsekeeper</span><br><span class="line">alerter</span><br><span class="line">proller		(拉取)</span><br><span class="line">httppoller	(web拉取)</span><br><span class="line">discoverer	(自动发现)</span><br><span class="line">pinger		(探测主机)</span><br><span class="line">nodewatcher	(监控各节点)    </span><br><span class="line">timer		(计时器)    </span><br><span class="line">escalator	(报警升级)</span><br><span class="line">db_config_syncer	(数据库配置同步)</span><br><span class="line">db_data_syncer		(数据库数据同步)</span><br></pre></td></tr></table></figure>
+<h4 id="Zabbix配置详解"><a href="#Zabbix配置详解" class="headerlink" title="Zabbix配置详解"></a>Zabbix配置详解</h4><h5 id="Zabbix术语"><a href="#Zabbix术语" class="headerlink" title="Zabbix术语"></a>Zabbix术语</h5><h6 id="Host-主机"><a href="#Host-主机" class="headerlink" title="Host  主机"></a>Host  主机</h6><p>要监控的网络设备,由ip或dns名称指定 </p>
+<h6 id="Host-Group-主机组"><a href="#Host-Group-主机组" class="headerlink" title="Host Group  主机组"></a>Host Group  主机组</h6><p>主机的逻辑容器,可以包含主机和模板,但同一个组内的主机和模板不能互相链接,主机组通常在给用户和用户组指派监控权限时候使用 </p>
+<h6 id="Item-监控项"><a href="#Item-监控项" class="headerlink" title="Item  监控项"></a>Item  监控项</h6><p>一个特定监控指标的相关数据,这些数据来自于被监控对象,对于item是zabbix进行数据收集的核心,没有item将没有数据;相对某监控对象来说,每个item都是由”key”标识 </p>
+<h6 id="Trigger-触发器"><a href="#Trigger-触发器" class="headerlink" title="Trigger  触发器"></a>Trigger  触发器</h6><p>一个表达式,用于评估某监控对像的特定item内所接受到的数据是否在合理范围内,即阈值;接受到数据量大于阈值时,触发器状态将从”ok”转变成”problem”,当数据量再次回归到合理范围内从”problem”转成”ok”. </p>
+<h6 id="Even-事件"><a href="#Even-事件" class="headerlink" title="Even  事件"></a>Even  事件</h6><p>即发生的一个值得关注的事情,例如触发器的状态转变,新的agent或重新上线的agent自动注册等 </p>
+<h6 id="Action-动作"><a href="#Action-动作" class="headerlink" title="Action  动作"></a>Action  动作</h6><p>指对特定时间事先定义的处理方法，通过包含操作(如发送通知)和条件(何时执行操作)</p>
+<h6 id="Escalation-报警升级"><a href="#Escalation-报警升级" class="headerlink" title="Escalation  报警升级"></a>Escalation  报警升级</h6><p>发送报警或执行远程命令的自定义方案,如每隔5分钟发送一次报警,发5次</p>
+<h6 id="Media-媒介"><a href="#Media-媒介" class="headerlink" title="Media  媒介"></a>Media  媒介</h6><p>发送通知的手段或者通道,如email,jabber或者sms</p>
+<h6 id="Notification-通知"><a href="#Notification-通知" class="headerlink" title="Notification  通知"></a>Notification  通知</h6><p>通过选的的媒体向用户发送有关某事件的信息</p>
+<h6 id="Remote-command-远程命令"><a href="#Remote-command-远程命令" class="headerlink" title="Remote command 远程命令"></a>Remote command 远程命令</h6><p>预定义的命令,可在被监控主机处于某特定条件下自动执行 </p>
+<h6 id="Template-模板"><a href="#Template-模板" class="headerlink" title="Template  模板"></a>Template  模板</h6><p>用于快速定义被监控主机的预设定条目集合,通常包含item,trigger,graph,screen,application以及<strong>low-level discovery rule(自动发现)</strong>;模板可以直接链接到单个主机</p>
+<h6 id="Application-应用"><a href="#Application-应用" class="headerlink" title="Application  应用"></a>Application  应用</h6><p>一组item的集合</p>
+<h6 id="Web-Scennario-web场景"><a href="#Web-Scennario-web场景" class="headerlink" title="Web Scennario  web场景"></a>Web Scennario  web场景</h6><p>用于检测web站定可用性一个或多个http请求</p>
+<h6 id="Fronted-前端"><a href="#Fronted-前端" class="headerlink" title="Fronted  前端"></a>Fronted  前端</h6><p>zabbix的web接口 </p>
 
       
     </div>
@@ -769,7 +865,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Zabbix"><span class="nav-number">1.</span> <span class="nav-text">Zabbix</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#监控的过程"><span class="nav-number">1.1.</span> <span class="nav-text">监控的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix监控实现"><span class="nav-number">1.2.</span> <span class="nav-text">Zabbix监控实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix可监控对象"><span class="nav-number">1.3.</span> <span class="nav-text">Zabbix可监控对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SNMP"><span class="nav-number">1.4.</span> <span class="nav-text">SNMP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#架构："><span class="nav-number">1.4.1.</span> <span class="nav-text">架构：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#工作模式"><span class="nav-number">1.4.2.</span> <span class="nav-text">工作模式:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#组件"><span class="nav-number">1.4.3.</span> <span class="nav-text">组件:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SNMP说明"><span class="nav-number">1.4.4.</span> <span class="nav-text">SNMP说明</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SNMP协议版本"><span class="nav-number">1.4.5.</span> <span class="nav-text">SNMP协议版本</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开源监控工具对比"><span class="nav-number">1.5.</span> <span class="nav-text">开源监控工具对比</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Cacti"><span class="nav-number">1.5.1.</span> <span class="nav-text">Cacti</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Nagios"><span class="nav-number">1.5.2.</span> <span class="nav-text">Nagios</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Zabbix-1"><span class="nav-number">1.5.3.</span> <span class="nav-text">Zabbix</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他监控软件"><span class="nav-number">1.5.4.</span> <span class="nav-text">其他监控软件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix监控功能"><span class="nav-number">1.6.</span> <span class="nav-text">Zabbix监控功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix组件"><span class="nav-number">1.7.</span> <span class="nav-text">Zabbix组件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Zabbix"><span class="nav-number">1.</span> <span class="nav-text">Zabbix</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#监控的过程"><span class="nav-number">1.1.</span> <span class="nav-text">监控的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix监控实现"><span class="nav-number">1.2.</span> <span class="nav-text">Zabbix监控实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix可监控对象"><span class="nav-number">1.3.</span> <span class="nav-text">Zabbix可监控对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SNMP协议"><span class="nav-number">1.4.</span> <span class="nav-text">SNMP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#架构："><span class="nav-number">1.4.1.</span> <span class="nav-text">架构：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#工作模式"><span class="nav-number">1.4.2.</span> <span class="nav-text">工作模式:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#组件"><span class="nav-number">1.4.3.</span> <span class="nav-text">组件:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SNMP说明"><span class="nav-number">1.4.4.</span> <span class="nav-text">SNMP说明</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SNMP协议版本"><span class="nav-number">1.4.5.</span> <span class="nav-text">SNMP协议版本</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开源监控工具对比"><span class="nav-number">1.5.</span> <span class="nav-text">开源监控工具对比</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Cacti"><span class="nav-number">1.5.1.</span> <span class="nav-text">Cacti</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Nagios"><span class="nav-number">1.5.2.</span> <span class="nav-text">Nagios</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Zabbix-1"><span class="nav-number">1.5.3.</span> <span class="nav-text">Zabbix</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他监控软件"><span class="nav-number">1.5.4.</span> <span class="nav-text">其他监控软件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix监控功能"><span class="nav-number">1.6.</span> <span class="nav-text">Zabbix监控功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix组件"><span class="nav-number">1.7.</span> <span class="nav-text">Zabbix组件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zabbix安装"><span class="nav-number">2.</span> <span class="nav-text">Zabbix安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置需求"><span class="nav-number">2.1.</span> <span class="nav-text">配置需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zabbix数据"><span class="nav-number">2.2.</span> <span class="nav-text">zabbix数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zabbix数据计算公式"><span class="nav-number">2.3.</span> <span class="nav-text">zabbix数据计算公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix安装-1"><span class="nav-number">2.4.</span> <span class="nav-text">Zabbix安装</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#yum安装"><span class="nav-number">2.4.1.</span> <span class="nav-text">yum安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#源码安装"><span class="nav-number">2.4.2.</span> <span class="nav-text">源码安装</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix配置文件"><span class="nav-number">2.5.</span> <span class="nav-text">Zabbix配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Zabbix-Server端"><span class="nav-number">2.5.1.</span> <span class="nav-text">Zabbix-Server端</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Zabbix-Agent端"><span class="nav-number">2.5.2.</span> <span class="nav-text">Zabbix-Agent端</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix-Server-Process"><span class="nav-number">2.6.</span> <span class="nav-text">Zabbix Server Process</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zabbix配置详解"><span class="nav-number">3.</span> <span class="nav-text">Zabbix配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Zabbix术语"><span class="nav-number">3.1.</span> <span class="nav-text">Zabbix术语</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Host-主机"><span class="nav-number">3.1.1.</span> <span class="nav-text">Host  主机</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Host-Group-主机组"><span class="nav-number">3.1.2.</span> <span class="nav-text">Host Group  主机组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Item-监控项"><span class="nav-number">3.1.3.</span> <span class="nav-text">Item  监控项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Trigger-触发器"><span class="nav-number">3.1.4.</span> <span class="nav-text">Trigger  触发器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Even-事件"><span class="nav-number">3.1.5.</span> <span class="nav-text">Even  事件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Action-动作"><span class="nav-number">3.1.6.</span> <span class="nav-text">Action  动作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Escalation-报警升级"><span class="nav-number">3.1.7.</span> <span class="nav-text">Escalation  报警升级</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Media-媒介"><span class="nav-number">3.1.8.</span> <span class="nav-text">Media  媒介</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Notification-通知"><span class="nav-number">3.1.9.</span> <span class="nav-text">Notification  通知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Remote-command-远程命令"><span class="nav-number">3.1.10.</span> <span class="nav-text">Remote command 远程命令</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Template-模板"><span class="nav-number">3.1.11.</span> <span class="nav-text">Template  模板</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Application-应用"><span class="nav-number">3.1.12.</span> <span class="nav-text">Application  应用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Web-Scennario-web场景"><span class="nav-number">3.1.13.</span> <span class="nav-text">Web Scennario  web场景</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Fronted-前端"><span class="nav-number">3.1.14.</span> <span class="nav-text">Fronted  前端</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
