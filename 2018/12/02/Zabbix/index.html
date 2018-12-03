@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T07:20:52.468Z">
+<meta property="og:updated_time" content="2018-12-03T07:21:28.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix">
 <meta name="twitter:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
@@ -878,12 +878,10 @@
 <p>执行远程脚本 </p>
 </blockquote>
 <h6 id="Network-Discovery"><a href="#Network-Discovery" class="headerlink" title="Network Discovery"></a>Network Discovery</h6><p>网络发现是zabbix最具特色功能,他能够根据用户实现定义的规则自动添加监控的主机或服务</p>
-<blockquote>
 <p>发现中的事件有如下两种: </p>
 <blockquote>
 <p>服务:service discovered,service lost,service up,service down </p>
 <p>主机:host discovered,host lost,host up,host down </p>
-</blockquote>
 </blockquote>
 <p>zabbix的网络发现功能可基于如下信息进行 </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IP rang</span><br><span class="line">ftp,ssh,web,pop3,imap,tcp,etc </span><br><span class="line">zabbix agent </span><br><span class="line">snmp agent</span><br></pre></td></tr></table></figure>
