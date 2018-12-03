@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T03:00:43.304Z">
+<meta property="og:updated_time" content="2018-12-03T03:02:25.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix">
 <meta name="twitter:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
@@ -613,9 +613,9 @@
 <p>zabbix服务器在与被监控端通讯时就使用相应的协议或机制去询问被监控端这个key值,被监控端则调用与此key对应的监控脚本获取数据并返回给服务端</p>
 <p> key的命名只能使用”0-9a-zA-Z_-.”等字符,且可以接受参数,其命令习惯如system.cpu.load[<cpi>,<mode>],其中括号中的内容为参数,且分别可按次序使用$1,$2,进行引用,此实例中仅有两个参数 </mode></cpi></p>
 <p>若要使用不定数目的参数,则使用”*”表示 </p>
-<p>zabbix有需要预先定义的key</p>
+<p>zabbix有需要预先定义的key，获取详细地址</p>
 <blockquote>
-<p>详细信息获取地址 <a href="https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent" target="_blank" rel="noopener">https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent</a> </p>
+<p><a href="https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent" target="_blank" rel="noopener">https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent</a> </p>
 </blockquote>
 <p>对于每一个Item,zabbix服务器还定义了这么存储这个item数据以及数据采集频率及历史数据的保存时长等,</p>
 <p>多个item还可归类为一个由”Application”定义逻辑组 </p>
