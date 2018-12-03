@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="MongoDB介绍官方站点 MongoDB：适用海量存储，基于文档数据库，C++编写，开源产品，遵循GNU AGPL，支持OSX，Linux，Windows，Solaris。 MongoDB：适用于web站点，cacheing，高大数据量，高扩展场景，事物要求性不高的场景。 MongoDB面向集合的数据库 ：  数据库：但数据库无须创建  集合：无须事先定义，一个文档相当于mysql中的一行，集合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T10:16:20.370Z">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/mongodb/mongodb_sharding.png">
+<meta property="og:updated_time" content="2018-12-03T10:20:11.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB">
 <meta name="twitter:description" content="MongoDB介绍官方站点 MongoDB：适用海量存储，基于文档数据库，C++编写，开源产品，遵循GNU AGPL，支持OSX，Linux，Windows，Solaris。 MongoDB：适用于web站点，cacheing，高大数据量，高扩展场景，事物要求性不高的场景。 MongoDB面向集合的数据库 ：  数据库：但数据库无须创建  集合：无须事先定义，一个文档相当于mysql中的一行，集合">
+<meta name="twitter:image" content="http://blog.zhuxyid.com/images/mongodb/mongodb_sharding.png">
 
 
 
@@ -611,7 +613,7 @@
 <p>高并发的查询会耗尽cpu的资源 </p>
 <p>sharding可以降低单台服务器的I/O压力 </p>
 </blockquote>
-<h5 id="Sharding架构"><a href="#Sharding架构" class="headerlink" title="Sharding架构"></a>Sharding架构</h5><p><a href="https://blog.zhuxyid.com/images/mongodb/mongodb_sharding.png">MongoDB Sharding架构图</a></p>
+<h5 id="Sharding架构"><a href="#Sharding架构" class="headerlink" title="Sharding架构"></a>Sharding架构</h5><p><img src="/images/mongodb/mongodb_sharding.png"></p>
 <blockquote>
 <p>router           跟config server通讯(router可以有一个，可以有多个) </p>
 <p>config server    存储元数据(分区键)，在生产环节中建议使用三个config server，一个单点故障，两个不方便选举 </p>
