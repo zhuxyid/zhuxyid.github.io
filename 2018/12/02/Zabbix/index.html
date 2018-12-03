@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T02:29:00.798Z">
+<meta property="og:updated_time" content="2018-12-03T02:50:11.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix">
 <meta name="twitter:description" content="Zabbixzabbix是一种开源监控软件，能实现各种强大监控功能（数据采集，展示，报警）等功能。 监控的过程 数据采集—&amp;gt;数据存储—&amp;gt;数据显示 时间序列数据（趋式，陡式），采集点连成线会生成数据趋式图 报警:采集到的数据超出阈值（如系统应用指标，文件变化，应用状态）  Zabbix监控实现zabbix可使用Zabbix-Agent，ICMP，SNMP，HTTP，JMX，IPMI来监控">
@@ -378,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k
+                  3k
                 </span>
               
 
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  11
                 </span>
               
             </div>
@@ -589,12 +589,91 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --enable-agent --with-ssh2</span><br></pre></td></tr></table></figure>
 <p>导入数据库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#导入数据库顺序(schema.sql，images.sql，data.sql)</span><br><span class="line">CREATE DATABASE zabbix CHARACTER SET UTF8;</span><br><span class="line">GRANT ALL PRIVILEGES ON zabbix.* TO &apos;zabbix&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;zabbixpass&apos;</span><br><span class="line">USE zabbix;</span><br><span class="line">source schema.sql</span><br><span class="line">source images.sql</span><br><span class="line">source data.sql</span><br></pre></td></tr></table></figure>
-<h5 id="Zabbix配置文件"><a href="#Zabbix配置文件" class="headerlink" title="Zabbix配置文件"></a>Zabbix配置文件</h5><h6 id="Zabbix-Server端"><a href="#Zabbix-Server端" class="headerlink" title="Zabbix-Server端"></a>Zabbix-Server端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">etc/zabbix/zabbix_server.conf</span><br><span class="line">LogFile=/tmp/zabbix_server.log    #日志文件</span><br><span class="line">LogFileSize=0                     #不做日志滚动</span><br><span class="line">DBHost=127.0.0.1</span><br><span class="line">DBName=zabbix</span><br><span class="line">DBUser=zabbix</span><br><span class="line">DBPassword=zabbixpass</span><br><span class="line">DBPort=3306</span><br><span class="line">StartPollers=5                   #启动poller进程多少个,各agent拉取对应指标</span><br><span class="line">StartIPMIPollers=0               #启动多少ipmi的poller进程,默认空闲</span><br><span class="line">StartPollersUnreachable=1        #不可达的poller</span><br><span class="line">StartTrappers=5                  #如果经常拉取对zabbix性能又影响,agent可以自动发送数据到server端,这个Trapper就是捕获该数据</span><br><span class="line">StartPingers=1                   #icmp探测主机是否在线</span><br><span class="line">StartDiscoverers=1               #启动多个自动发现进程(消耗带宽)</span><br><span class="line">StartHTTPPoller=1                #启动web的拉取数据进程</span><br><span class="line">StartTimers=1                    #启动计时器</span><br><span class="line">JavaGateway=127.0.0.1            #启动java网关连接jmx</span><br><span class="line">JavaGatewayPort=10052            #使用10052端口</span><br><span class="line">StartJavaPollers=5               #启动多少java的poller进程</span><br><span class="line">StartVMwareCollectors=0          #监控vm的虚拟主机</span><br><span class="line">VMwareFrequency=60               #监控vm的频率</span><br><span class="line">AlertScriptsPath=/usr/local/zabbix/alertscripts      #脚本报警路径</span><br><span class="line">ExternalScripts=/usr/local/zabbix/externalscripts    #外部脚本路径</span><br><span class="line">FpingLocation=/usr/sbin/fping                        #fping程序路径需要事先安装,fping(并行ping)</span><br></pre></td></tr></table></figure>
-<h6 id="Zabbix-Agent端"><a href="#Zabbix-Agent端" class="headerlink" title="Zabbix-Agent端"></a>Zabbix-Agent端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server=192.168.1.2            #服务端ip可用逗号分隔</span><br><span class="line">ListenPort=10050</span><br><span class="line">ListenIP=192.168.1.100</span><br><span class="line">ServerActive=192.168.1.2      #自动推送数据到监控端(默认是被动监控)</span><br><span class="line">Hostname=node1                #主机名,唯一</span><br></pre></td></tr></table></figure>
-<h5 id="Zabbix-Server-Process"><a href="#Zabbix-Server-Process" class="headerlink" title="Zabbix Server Process"></a>Zabbix Server Process</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">watchdog</span><br><span class="line">howsekeeper</span><br><span class="line">alerter</span><br><span class="line">proller		(拉取)</span><br><span class="line">httppoller	(web拉取)</span><br><span class="line">discoverer	(自动发现)</span><br><span class="line">pinger		(探测主机)</span><br><span class="line">nodewatcher	(监控各节点)    </span><br><span class="line">timer		(计时器)    </span><br><span class="line">escalator	(报警升级)</span><br><span class="line">db_config_syncer	(数据库配置同步)</span><br><span class="line">db_data_syncer		(数据库数据同步)</span><br></pre></td></tr></table></figure>
-<h4 id="Zabbix配置详解"><a href="#Zabbix配置详解" class="headerlink" title="Zabbix配置详解"></a>Zabbix配置详解</h4><h5 id="Zabbix术语"><a href="#Zabbix术语" class="headerlink" title="Zabbix术语"></a>Zabbix术语</h5><h6 id="Host-主机"><a href="#Host-主机" class="headerlink" title="Host  主机"></a>Host  主机</h6><p>要监控的网络设备,由ip或dns名称指定 </p>
+<h5 id="Zabbix配置文件"><a href="#Zabbix配置文件" class="headerlink" title="Zabbix配置文件"></a>Zabbix配置文件</h5><h6 id="Zabbix-Server端"><a href="#Zabbix-Server端" class="headerlink" title="Zabbix-Server端"></a>Zabbix-Server端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>/etc/zabbix/zabbix_server.conf</span><br><span class="line">LogFile=/tmp/zabbix_server.log    #日志文件</span><br><span class="line">LogFileSize=0                     #不做日志滚动</span><br><span class="line">DBHost=127.0.0.1</span><br><span class="line">DBName=zabbix</span><br><span class="line">DBUser=zabbix</span><br><span class="line">DBPassword=zabbixpass</span><br><span class="line">DBPort=3306</span><br><span class="line">StartPollers=5                   #启动poller进程多少个,各agent拉取对应指标</span><br><span class="line">StartIPMIPollers=0               #启动多少ipmi的poller进程,默认空闲</span><br><span class="line">StartPollersUnreachable=1        #不可达的poller</span><br><span class="line">StartTrappers=5                  #如果经常拉取对zabbix性能又影响,agent可以自动发送数据到server端,这个Trapper就是捕获该数据</span><br><span class="line">StartPingers=1                   #icmp探测主机是否在线</span><br><span class="line">StartDiscoverers=1               #启动多个自动发现进程(消耗带宽)</span><br><span class="line">StartHTTPPoller=1                #启动web的拉取数据进程</span><br><span class="line">StartTimers=1                    #启动计时器</span><br><span class="line">JavaGateway=127.0.0.1            #启动java网关连接jmx</span><br><span class="line">JavaGatewayPort=10052            #使用10052端口</span><br><span class="line">StartJavaPollers=5               #启动多少java的poller进程</span><br><span class="line">StartVMwareCollectors=0          #监控vm的虚拟主机</span><br><span class="line">VMwareFrequency=60               #监控vm的频率</span><br><span class="line">AlertScriptsPath=/usr/local/zabbix/alertscripts      #脚本报警路径</span><br><span class="line">ExternalScripts=/usr/local/zabbix/externalscripts    #外部脚本路径</span><br><span class="line">FpingLocation=/usr/sbin/fping                        #fping程序路径需要事先安装,fping(并行ping)</span><br></pre></td></tr></table></figure>
+<h6 id="Zabbix-Agent端"><a href="#Zabbix-Agent端" class="headerlink" title="Zabbix-Agent端"></a>Zabbix-Agent端</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>/etc/zabbix/zabbix_agent.conf</span><br><span class="line">Server=192.168.1.2            #服务端ip可用逗号分隔</span><br><span class="line">ListenPort=10050</span><br><span class="line">ListenIP=192.168.1.100</span><br><span class="line">ServerActive=192.168.1.2      #自动推送数据到监控端(默认是被动监控)</span><br><span class="line">Hostname=node1                #主机名,唯一</span><br></pre></td></tr></table></figure>
+<h5 id="Zabbix-Server-Process"><a href="#Zabbix-Server-Process" class="headerlink" title="Zabbix Server Process"></a>Zabbix Server Process</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">watchdog</span><br><span class="line">howsekeeper</span><br><span class="line">alerter</span><br><span class="line">proller		(拉取)</span><br><span class="line">httppoller	(web拉取)</span><br><span class="line">discoverer	(自动发现)</span><br><span class="line">pinger		(探测主机)</span><br><span class="line">nodewatcher	(监控各节点)    </span><br><span class="line">timer		(计时器)    </span><br><span class="line">escalator	(报警升级)</span><br><span class="line">db_config_syncer(数据库配置同步)</span><br><span class="line">db_data_syncer	(数据库数据同步)</span><br></pre></td></tr></table></figure>
+<h4 id="Zabbix配置详解"><a href="#Zabbix配置详解" class="headerlink" title="Zabbix配置详解"></a>Zabbix配置详解</h4><h5 id="Zabbix术语"><a href="#Zabbix术语" class="headerlink" title="Zabbix术语"></a>Zabbix术语</h5><h6 id="Host-主机"><a href="#Host-主机" class="headerlink" title="Host  主机"></a>Host  主机</h6><p>要监控的网络设备,由IP或DNS名称指定 </p>
 <h6 id="Host-Group-主机组"><a href="#Host-Group-主机组" class="headerlink" title="Host Group  主机组"></a>Host Group  主机组</h6><p>主机的逻辑容器,可以包含主机和模板,但同一个组内的主机和模板不能互相链接,主机组通常在给用户和用户组指派监控权限时候使用 </p>
-<h6 id="Item-监控项"><a href="#Item-监控项" class="headerlink" title="Item  监控项"></a>Item  监控项</h6><p>一个特定监控指标的相关数据,这些数据来自于被监控对象,对于item是zabbix进行数据收集的核心,没有item将没有数据;相对某监控对象来说,每个item都是由”key”标识 </p>
+<h6 id="Item-监控项"><a href="#Item-监控项" class="headerlink" title="Item  监控项"></a>Item  监控项</h6><p>一个特定监控指标的相关数据，这些数据来自于被监控对象，对于item是zabbix进行数据收集的核心，没有item将没有数据；相对某监控对象来说，每个item都是由”key”标识</p>
+<p>监控项 </p>
+<blockquote>
+<p>是zabbix服务器用于监控一个特定对象上的一个特定指标,并负载针对其收集相关监控数据</p>
+<blockquote>
+<p>如CPU每分钟平均负载可以是一个item，每五分钟平均负载是一个item</p>
+<p>在比如特定网口接受报文速率也是一个item</p>
+</blockquote>
+<p>每一个item都拥有相应的的类型”type”</p>
+<blockquote>
+<p>例如”zabbix_agent”，“snmp”，“external check”，“IPMI Agent”，“SSH Agent”，“JMX Agent”</p>
+<p>Zabbix服务器会自动使用相应类型的协议或机制同时被监控端通讯</p>
+</blockquote>
+</blockquote>
+<p>监控项目Key</p>
+<blockquote>
+<p>zabbix服务器在与被监控端通讯时就使用相应的协议或机制去询问被监控端这个key值,被监控端则调用与此key对应的监控脚本获取数据并返回给服务端</p>
+<p> key的命名只能使用”0-9a-zA-Z_-.”等字符,且可以接受参数,其命令习惯如system.cpu.load[<cpi>,<mode>],其中括号中的内容为参数,且分别可按次序使用$1,$2,进行引用,此实例中仅有两个参数 </mode></cpi></p>
+<p>若要使用不定数目的参数,则使用”*”表示 </p>
+<p>zabbix有需要预先定义的key，详细信息获取地址 <a href="https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent" target="_blank" rel="noopener">https://www.zabbix.com/documentation/2.0/manual/items/itemtypes/zabbx_agent</a> </p>
+<p>对于每一个Item,zabbix服务器还定义了这么存储这个item数据以及数据采集频率及历史数据的保存时长等,</p>
+<p>多个item还可归类为一个由”Application”定义逻辑组 </p>
+</blockquote>
+<p>数据库查看zabbix自定义的Key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USE zabbix;</span><br><span class="line">SELECT keys_ FROM items;</span><br></pre></td></tr></table></figure>
+<p>如何获取Key</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>ZABBIX/bin/zabbix_get -s IP -p PORT -k "system.uname"</span><br></pre></td></tr></table></figure>
+<p>创建Item过程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configuration- - &gt; hosts - - &gt;(选择对应主机的items) - - &gt;create item</span><br></pre></td></tr></table></figure>
+<p>Item默认Items由多类型</p>
+<blockquote>
+<p>zabbix-agent：工作模式passive,active</p>
+<p>网卡流量相关:</p>
+<blockquote>
+<p>net.if.in[if,<mode>]     进入</mode></p>
+<p>net.if.out[if,<mode>]    流出</mode></p>
+<p>net.if.total[if,<mode>]    总流量</mode></p>
+<blockquote>
+<p>if：接口  如eth0 </p>
+<p>mode: bytes,packets,erros,dropped </p>
+</blockquote>
+<p>实例：create items</p>
+<blockquote>
+<p>key:net.if.in[eth0,bytes]     监控eth0网卡</p>
+<p>store value:delta(speed per second)，计算上一次和这一次</p>
+</blockquote>
+</blockquote>
+<p>端口相关</p>
+<blockquote>
+<p>net.tcp.listen[port]            #监听的端口,布尔值float </p>
+<p>net.tcp.port[<ip>,port] </ip></p>
+<p>net.tcp.service[service,<ip>,<port>] </port></ip></p>
+<p>net.upd.listen[port] </p>
+</blockquote>
+<p>进程相关 </p>
+<blockquote>
+<p>kernel.maxfiles   最大文件数</p>
+<p>kernel.maxproc    最大进程数 </p>
+</blockquote>
+<p>​         </p>
+<p>cpu相关 </p>
+<blockquote>
+<p>system.cpu.intr                中断次数 </p>
+<p>system.cpu.load[<cpu>,<mode>]负载</mode></cpu></p>
+<p>system.cpu.num[<type>]        CPU颗数</type></p>
+<p>system.cpu.switches            CPU上下文切换次数</p>
+<p>system.cpu.util[<cpu>,<type>,<mode>]        CPU利用率 </mode></type></cpu></p>
+</blockquote>
+<p>磁盘io或文件系统相关</p>
+<blockquote>
+<p>vfs.dev.read[<device>,<type>,<mode>]    磁盘读 </mode></type></device></p>
+<p>vfs.dev.write[<device>,<type>,<mode>]   磁盘写</mode></type></device></p>
+<p>vfs.fs.inode[fs,<mode>]                 磁盘inode值 </mode></p>
+</blockquote>
+<p> 用户可定义item: </p>
+<blockquote>
+<p>关键:选取一个唯一的key </p>
+<p>命令:收集数据的命令或脚本 </p>
+</blockquote>
+</blockquote>
 <h6 id="Trigger-触发器"><a href="#Trigger-触发器" class="headerlink" title="Trigger  触发器"></a>Trigger  触发器</h6><p>一个表达式,用于评估某监控对像的特定item内所接受到的数据是否在合理范围内,即阈值;接受到数据量大于阈值时,触发器状态将从”ok”转变成”problem”,当数据量再次回归到合理范围内从”problem”转成”ok”. </p>
 <h6 id="Even-事件"><a href="#Even-事件" class="headerlink" title="Even  事件"></a>Even  事件</h6><p>即发生的一个值得关注的事情,例如触发器的状态转变,新的agent或重新上线的agent自动注册等 </p>
 <h6 id="Action-动作"><a href="#Action-动作" class="headerlink" title="Action  动作"></a>Action  动作</h6><p>指对特定时间事先定义的处理方法，通过包含操作(如发送通知)和条件(何时执行操作)</p>
@@ -602,7 +681,7 @@
 <h6 id="Media-媒介"><a href="#Media-媒介" class="headerlink" title="Media  媒介"></a>Media  媒介</h6><p>发送通知的手段或者通道,如email,jabber或者sms</p>
 <h6 id="Notification-通知"><a href="#Notification-通知" class="headerlink" title="Notification  通知"></a>Notification  通知</h6><p>通过选的的媒体向用户发送有关某事件的信息</p>
 <h6 id="Remote-command-远程命令"><a href="#Remote-command-远程命令" class="headerlink" title="Remote command 远程命令"></a>Remote command 远程命令</h6><p>预定义的命令,可在被监控主机处于某特定条件下自动执行 </p>
-<h6 id="Template-模板"><a href="#Template-模板" class="headerlink" title="Template  模板"></a>Template  模板</h6><p>用于快速定义被监控主机的预设定条目集合,通常包含item,trigger,graph,screen,application以及<strong>low-level discovery rule(自动发现)</strong>;模板可以直接链接到单个主机</p>
+<h6 id="Template-模板"><a href="#Template-模板" class="headerlink" title="Template  模板"></a>Template  模板</h6><p>用于快速定义被监控主机的预设定条目集合,通常包含item,trigger,graph,screen,application以及low-level discovery rule(自动发现);模板可以直接链接到单个主机</p>
 <h6 id="Application-应用"><a href="#Application-应用" class="headerlink" title="Application  应用"></a>Application  应用</h6><p>一组item的集合</p>
 <h6 id="Web-Scennario-web场景"><a href="#Web-Scennario-web场景" class="headerlink" title="Web Scennario  web场景"></a>Web Scennario  web场景</h6><p>用于检测web站定可用性一个或多个http请求</p>
 <h6 id="Fronted-前端"><a href="#Fronted-前端" class="headerlink" title="Fronted  前端"></a>Fronted  前端</h6><p>zabbix的web接口 </p>
