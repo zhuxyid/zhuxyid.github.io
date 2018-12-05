@@ -5,7 +5,7 @@
     <url>%2F2018%2F12%2F05%2FNginx-uWSGI-Django%2F</url>
     <content type="text"><![CDATA[前言：在生产环境中，如果需要部署一个Python 的web框架，通常不会直接使用web框架中自带的轻量级web服务。 比如在Django中执行python manage.py runserver这只是纯粹用python编写的轻量级web服务，它包含在Django中，因此可以快速开发，只是在开发时候使用，Django是注重Web框架，并不注重Web服务器。详见地址 此时如果我们想要将django所开发的网站放入生成环境改如何实现？ uWSGI是什么？uWSGI是一个Web服务器，实现了WSGI，uwsgi，HTTP协议。 uwsgi是一种线路协议（不是通讯协议，用于uWSGI与其他服务数据通讯），类似于fastcgi。 WSGI（Web Server Gateway Interface）顾名思义：web服务器网关接口，它只是一个规范，描述Web服务器如何与Web应用程序通讯，以及Web应用程序如何连接在一起处理一个请求。可参考PEP-3333 这里实现HTTP协议我们可以使用Nginx。 客户端请求django流程大致过程： Client &lt;=====&gt; Nginx &lt;======&gt; socket (uwsgi)&lt; ======&gt; uWSGI &lt; ====== &gt; Django 安装uWSGI安装并测试123456789101112131415161718192021#uwsgi是实现uWSGI的软件，可以安装uwsgi软件$pip install uwsgi$uwsgi --http :8080 --chdir /www/blog/ --wsgi-file blog/wsgi.py --master --processes 4 --threads 2#--http 启用http端口#--chdir 执行运行目录#--wsgi-file 载入wsgi-file目录#--master 允许主进程存在#--processes 开启进程数量#--threads 运行线程个数#--pidfile 指定PID#--vacuum 当服务器退出时，自动清理环境,删除unix socket文件和pid#--daemonize 使进程在后台运行,并将日志打印到指定文件或者udp服务器中#tree -d blog├── blog ├── wsgi.py├── static├── Template└── web#此时可以直接访问8080端口看是否可以访问到django所创建的blog项目,如果正常访问说明正常 配置文件1234567891011121314151617181920212223#实例#more /etc/uwsgi.ini[uwsgi]protocol = http#socket = 192.168.0.10:8000 #uwsgi端口,本机地址,如果nginx在其他机器可以使用此方式来访问socket = /var/run/uwsgi.sockmaster = trueprocesses = 4max-requests = 1000 #每个进程请求上限limit-as = 512 #限制虚拟内存单位Mbuffer-size = 30000 #包解析缓存区大小,默认4kchdir = /www/blog/wsgi-file = blog/wsgi.pyhome = /root/.pyenv/versions/zhuxuyue #如果有不同python根据需求制定static-map = /static=/www/blog/staticuid = wwwgid = wwwvacuum = trueharakiri = 30#stats = 127.0.0.1:8001 #状态信息也可以使用端口访问stats = /var/run/uwsgi.statusdaemonize = /var/log/uwsgi.logpidfile = /var/run/uwsgi.pid uwsgi常用命令123456uwsgi --ini /etc/uwsgi.iniuwsgi --stop /etc/uwsgi.iniuwsgi --reload /etc/uwsgi.ini#uwsgi --connect-and-read 127.0.0.1:8002uwsgi --connect-and-read /var/run/uwsgi.status Nginx配置：12345678910111213141516171819202122232425#more vhost.confuwsgi_cache_path /data/nginx/cache/blog levels=1:2 keys_zone=blog:20m max_size=1g;#uwsgi_cache_path /data/nginx/cache/image levels=1:2 keys_zone=image:20m max_size=1g;server &#123; listen 81; server_name www.zhuxyid.com; add_header X-Cache $upstream_cache_status;# location /static &#123; #如需开启nginx处理静态资源请求需注释## alias /www/blog/static;# expires 90d;# uwsgi_cache image;# uwsgi_cache_key $request_uri;# uwsgi_cache_valid 200 302 30m;# uwsgi_cache_valid any 1h;# &#125; location / &#123; include uwsgi_params; uwsgi_pass unix:///var/run/uwsgi.sock; #如果uwsgi在本地运行可以直接使用sock文件通讯，效率高 #uwsgi_pass 192.168.0.10:8000; #如果uwsgi在其他机器使用sock地址通讯 uwsgi_cache blog; uwsgi_cache_key $request_uri; uwsgi_cache_valid 200 302 30m; uwsgi_cache_valid any 1h; &#125;&#125;]]></content>
       <categories>
-        <category>Nginx</category>
+        <category>Web Service</category>
       </categories>
       <tags>
         <tag>Django</tag>
@@ -89,7 +89,7 @@
       </categories>
       <tags>
         <tag>DevOps</tag>
-        <tag>docker</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -100,7 +100,7 @@
         <category>Container</category>
       </categories>
       <tags>
-        <tag>docker</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
 </search>
