@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="容器是什么  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统它是">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="http://blog.zhuxyid.com/2018/11/23/Docker/index.html">
+<meta property="og:site_name" content="旭悦的分享笔记">
+<meta property="og:description" content="容器是什么  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统它是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3404095691,37019292&fm=26&gp=0.jpg">
+<meta property="og:updated_time" content="2018-12-05T13:01:43.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker">
+<meta name="twitter:description" content="容器是什么  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物. 虚拟化技术有哪些主机级别 虚拟化 完全 虚拟化：Vmware，Kvm，Xen 半     虚拟化：Xen,UML Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化 半虚拟化：修改内核，通过被虚拟化出来的操作系统它是">
+<meta name="twitter:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3404095691,37019292&fm=26&gp=0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.zhuxyid.com/2018/11/23/Docker/">
+
+
+
+
+
+  <title>Docker | 旭悦的分享笔记</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旭悦的分享笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">坚持下去,总有一天会如你所愿</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhuxyid.com/2018/11/23/Docker/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zandy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旭悦的分享笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T17:06:33+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Container/" itemprop="url" rel="index">
+                    <span itemprop="name">Container</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/Docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/Docker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox" href="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3404095691,37019292&fm=26&gp=0.jpg" rel="gallery_cjpb8hb0a000x8p4y51slybgr" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3404095691,37019292&fm=26&gp=0.jpg" itemprop="contentUrl">
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <h4 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h4><p>  容器是一种基础工具，泛指任何可以用于容纳其他物品的工具，可以部分或完全封闭，被用于容纳，存储，运输物品；物体可以被放置在容器中，而容器可以保护内容物.</p>
+<h4 id="虚拟化技术有哪些"><a href="#虚拟化技术有哪些" class="headerlink" title="虚拟化技术有哪些"></a>虚拟化技术有哪些</h4><h5 id="主机级别-虚拟化"><a href="#主机级别-虚拟化" class="headerlink" title="主机级别 虚拟化"></a>主机级别 虚拟化</h5><blockquote>
+<p>完全 虚拟化：Vmware，Kvm，Xen</p>
+<p>半     虚拟化：Xen,UML</p>
+<p>Xen如果CPU不支持虚拟化技术那就是半虚拟化，如果支持就是全虚拟化</p>
+<p>半虚拟化：修改内核，通过被虚拟化出来的操作系统它是运行在虚拟化技术软件上的，虚拟化出来的操作系统执行的进程还是运行在真实机器上</p>
+<p>完全虚拟化：不需要修改内核，直接通过虚拟机化技术软件上运行的操作系统。</p>
+</blockquote>
+<h5 id="容器级别-虚拟化"><a href="#容器级别-虚拟化" class="headerlink" title="容器级别 虚拟化"></a>容器级别 虚拟化</h5><blockquote>
+<p>LXC,OpenVz,Solaris Containers,FreeBSD jails</p>
+<blockquote>
+<p>LXC(LinuX Container)容器是内核虚拟化技术,可以提供轻量级的虚拟化,以便隔离进程和资源,不需要提供指令解释机制以及全虚拟化的其他复杂性.容器可以有效的将单个操作系统管理的资源划分到孤立的组件中,以便更好的孤立组之间的平衡有冲突的资源使用需求。</p>
+<p>早期容器应用在jail中,后来移植到linux中vserver(chroot),chroot所隔离仅仅只是看上去的,并没有真正隔离。</p>
+</blockquote>
+<p>Linux namespace 是linux提供一种内核级别环境隔离的方法，有6种不同名称空间:</p>
+<p><strong>linux namesapce:</strong></p>
+<table>
+<thead>
+<tr>
+<th>namespace</th>
+<th>系统调用参数</th>
+<th>隔离内容</th>
+<th>内核版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UTS</td>
+<td>CLONE_NEWUTS</td>
+<td>主机名和域名</td>
+<td>2.6.19</td>
+</tr>
+<tr>
+<td>MOUNT</td>
+<td>CLONE_NEWNS</td>
+<td>挂载点(文件系统)</td>
+<td>2.4.19</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td>CLONE_NEWIPC</td>
+<td>信号量,消息队列,共享内存</td>
+<td>2.6.19</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>CLONE_NEWPID</td>
+<td>进程变化</td>
+<td>2.6.24</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>CLONE_NEWUSER</td>
+<td>用户和用户组</td>
+<td>3.8</td>
+</tr>
+<tr>
+<td>NETWORK</td>
+<td>CLONE_NEWNET</td>
+<td>网络设备,网络栈,端口等</td>
+<td>2.6.29</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么"></a>Docker是什么</h4><p>Docker是LXC增强版,Docker简化容器使用难度,通常一个容器中只运行一个进程.</p>
+<blockquote>
+<p>对开发来说带来极大便利,分发容易,一次编写到处运行</p>
+<p>然而对运维来说(有优点有缺点), 对开发极大便利需要运维干什么?</p>
+</blockquote>
+<h4 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h4><h5 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h5><blockquote>
+<p>操作系统发行版:CentOS7.4</p>
+<p>内核版本:3.10+</p>
+</blockquote>
+<h5 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明:"></a>安装说明:</h5><blockquote>
+<p>使用yum方式安装,下载国内docker的yum源,加速下载.</p>
+</blockquote>
+<h5 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程:"></a>安装过程:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -P /etc/yum.repos.d/ https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">sed -i s@https://download.docker.com/@https://mirrors.tuna.tsinghua.edu.cn/docker-ce/@g /etc/yum.repos.d/docker-ce.repo</span><br><span class="line">yum repolist | grep docker-ce</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+<p>此时docker已经启动了，现在我们来搞清楚什么是docker</p>
+<h4 id="Docker架构"><a href="#Docker架构" class="headerlink" title="Docker架构"></a>Docker架构</h4><p>c/s架构，由三个组件（Docker Daemon,Docker Client,Docker Registry）构成</p>
+<h5 id="Docker-Registry："><a href="#Docker-Registry：" class="headerlink" title="Docker Registry："></a>Docker Registry：</h5><p>​    类似GitHub,只不过Docker Registry是存放镜像的仓库，</p>
+<blockquote>
+<p>官方 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a></p>
+<p>国内 <a href="https://www.docker-cn.com/" target="_blank" rel="noopener">https://www.docker-cn.com/</a></p>
+<p>当然也可以自己部署一个仓库，建议用Harbor。</p>
+</blockquote>
+<h5 id="Docker-Daemon："><a href="#Docker-Daemon：" class="headerlink" title="Docker Daemon："></a>Docker Daemon：</h5><p>​    Docker进程，Docker核心服务。</p>
+<blockquote>
+<p>这个类比数据库，比如数据库是放数据的，启动数据库后，等待客户端连接后才能操作。</p>
+<p>也就是当docker启动时，等待docker客户端来操作。</p>
+</blockquote>
+<h5 id="Docker-Client："><a href="#Docker-Client：" class="headerlink" title="Docker Client："></a>Docker Client：</h5><p>​    Docker客户端工具,用来操作Docker的</p>
+<blockquote>
+<p>比如我想在仓库下载一个镜像，从而启动一个容器，在容器中启动一个nginx服务,都是在客户端操作的。（docker client是发出者，docker daemon是执行者）</p>
+<p>这里提到的镜像和容器一定要区分清楚。</p>
+<p>如果是开发,那这么理解：镜像就是你创建的类，容器就是你的对象，对象是通过类实例化而来。也就是容器通过镜像而来,（容器依赖于镜像）</p>
+<p>不要问镜像怎么来的，上面提过镜像是在仓库中。</p>
+<p>也不要问仓库中的镜像怎么来的，那是别人做好的。因为你也可以自己做镜像。</p>
+</blockquote>
+<h4 id="Docker客户端操作"><a href="#Docker客户端操作" class="headerlink" title="Docker客户端操作"></a>Docker客户端操作</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker --help</span><br><span class="line">	格式:docker [option] command [args]</span><br></pre></td></tr></table></figure>
+<h5 id="镜像类操作"><a href="#镜像类操作" class="headerlink" title="镜像类操作"></a>镜像类操作</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker search SOFTWARE_NAME		#查找镜像名称</span><br><span class="line">示例:</span><br><span class="line"> docker search tomcat			#查找tomcat相关镜像，通常建议使用官方镜像，OFFICIAL 为OK的，或者Star点赞数高的镜像，原因自己悟</span><br><span class="line"></span><br><span class="line">docker pull SOFTWARE_NAME:TAGS		#下载镜像</span><br><span class="line">示例:</span><br><span class="line"> docker pull tomcat			#下载tomcat镜像，如果不指定tags就下载latest版本</span><br><span class="line"> docker pull tomcat:7.0.92-jre8-alpine	#详见hub.docker.com找到指定的镜像后在看tag</span><br><span class="line"></span><br><span class="line">docker image ls				#查看本地镜像，如果没有下载那么这里为空</span><br><span class="line"></span><br><span class="line">docker image rm SOFTWARE_NAME:TAGS	#删除本地镜像</span><br><span class="line">示例:</span><br><span class="line"> docker image rm tomcat			#如果不指定删除镜像版本默认删除latest</span><br></pre></td></tr></table></figure>
+<h5 id="容器类操作"><a href="#容器类操作" class="headerlink" title="容器类操作"></a>容器类操作</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">docker run		#运行容器，需要指定镜像</span><br><span class="line">实例:</span><br><span class="line"> docker run tomcat	#运行镜像为tomcat的容器,容器里面有tomcat,启动容器后tomcat也将运行起来，容器里面的程序都是在前台运行，会占用窗口</span><br><span class="line"> docker run --name myapp -d tomcat	#启动myapp容器，镜像使用tomcat:latest，以后台运行</span><br><span class="line"> 更多命令使用:docker run --help</span><br><span class="line"> </span><br><span class="line">docker ps		#查看运行中的容器</span><br><span class="line">CONTAINER ID	IMAGE	COMMAND			CREATED		STATUS		PORTS		NAMES</span><br><span class="line">ee1ff8df6e70	tomcat	"catalina.sh run" 	3 seconds ago	Up 2 seconds	8080/tcp	myapp</span><br><span class="line">说明:</span><br><span class="line"> 如果在docker run不指定容器名称会随机创建一个容器名称。</span><br><span class="line"> 端口是容器内的端口.关于docker网络的内容下面会有讲解</span><br><span class="line"></span><br><span class="line">docker exec</span><br><span class="line">实例:</span><br><span class="line"> docker exec -it myapp /bin/bash	#进入myapp容器中</span><br><span class="line">   -it	#新建一个tty并且进入</span><br><span class="line"></span><br><span class="line">docker stop</span><br><span class="line">实例:</span><br><span class="line"> docker stop myapp	#停止myapp容器</span><br><span class="line"> docker ps -a		#查看所有容器，如果不加-a不能看到停止的容器</span><br><span class="line"> </span><br><span class="line">docker start</span><br><span class="line">实例:</span><br><span class="line"> docker start myapp	#运行停止的容器</span><br><span class="line"></span><br><span class="line">docker restart	#重启容器</span><br><span class="line">实例:</span><br><span class="line"> docker restart myapp</span><br><span class="line"></span><br><span class="line">docker rm		#删除容器</span><br><span class="line">实例:</span><br><span class="line"> docker rm myapp</span><br><span class="line"></span><br><span class="line">docker logs		#查看容器运行的程序日志</span><br><span class="line">实例:</span><br><span class="line"> docker logs myapp	</span><br><span class="line"></span><br><span class="line">docker kill		#杀死容器里的进程，进程一旦停止，容器也就停止。因为容器一般只运行一个前台程序，容器的生命周期下面会讲解</span><br><span class="line">实例:</span><br><span class="line"> docker kill myapp</span><br></pre></td></tr></table></figure>
+<h4 id="Docker-Image"><a href="#Docker-Image" class="headerlink" title="Docker Image"></a>Docker Image</h4><p>Docker镜像包含启动容器的所需文件系统以及其内容，因此，用于创建并启动docker容器：</p>
+<h5 id="分层机制："><a href="#分层机制：" class="headerlink" title="分层机制："></a>分层机制：</h5><p>镜像采用分层构建机制，最底层为bootfs,其为rootfs。</p>
+<blockquote>
+<p>rootfs：用于系统引导的文件系统，包含bootloader和kernel，容器启动完成后被卸载以节约内存资源</p>
+<p>rootfs：位于bootfs之上，表现为docker容器根文件系统</p>
+<blockquote>
+<p>传统模式中，系统启动时，内核挂载rootfs时首先将其挂载为“只读”模式，自检其完整性 完成后将其重新挂载为读写模式</p>
+<p>docker中，rootfs由内核挂载为“只读”模式，而通过“联合挂载”技术额外挂载一个可写层，容器就是在镜像多了一个可写层</p>
+</blockquote>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">传统模式:</th>
+<th style="text-align:center">Docker:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/docker/traditional_layer.png" width="200px" height="200px"></td>
+<td style="text-align:center"><img src="/images/docker/docker_layer.png" width="200px" height="200px"></td>
+</tr>
+</tbody>
+</table>
+<h5 id="docker镜像层级："><a href="#docker镜像层级：" class="headerlink" title="docker镜像层级："></a>docker镜像层级：</h5><p>位于下层的镜像 称之为 父镜像(parent image)，最底层的称之为 基础镜像(base image)</p>
+<p>最上层“可读写成”，下面为“只读层”</p>
+<h5 id="联合挂载："><a href="#联合挂载：" class="headerlink" title="联合挂载："></a>联合挂载：</h5><p>Aufs（advanced multi-layered unification filesystem ）   高级多层统一文件系统，同于实现linux平台中的联合挂载</p>
+<p>Aufs是unionFS的重新实现,docker最初使用aufs作为容器文件系统层，目前仍作为存储后端之一来支持</p>
+<p>Aufs另外一个实现是overlayFS，后者从3.18版本中开始被合并到linux内核中，overlayerFS是叠加文件系统</p>
+<p>除了aufs，docker还支持btrFS,Device Mapper和VSF等。在ubuntu中，默认是aufs</p>
+<blockquote>
+<p>device mapper在linux2.6中支持逻辑卷管理的通过设备映射机制，它为实现用于存储资源管理的块设备驱动提供一个高度模块化的内核架构，它通过一个个模块化的target driver插件实现对IO请求的过滤或者重新定向等工作，当前已经实现的target driver插件包括软raid，软加密，逻辑卷条带，多路径，镜像，快照等。 </p>
+<p>docker使用Thin provisioning的snapshot的技术实现了类似auFS分层镜像 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> docker info | grep "Storage Driver:"	#来查看</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h4 id="Docker-Container"><a href="#Docker-Container" class="headerlink" title="Docker Container"></a>Docker Container</h4><p>Docker容器具有生命周期，”STOPD”,’CREATED’,’RUNNING’,’PAUSED’四个稳定状态，</p>
+<p>容器一旦删除数据就会丢失，所以项目或者配置文件不要直接存放在容器中，通过卷（volume）的方式挂载至容器里.</p>
+<h5 id="Docker事件状态图"><a href="#Docker事件状态图" class="headerlink" title="Docker事件状态图:"></a>Docker事件状态图:</h5><p><img src="/images/docker/docker_event_status.png"></p>
+<h4 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h4><p>当容器启动时,docker daemon会试图先从本地获取相关镜像，当本地不存在的时候，其将从registry中下载该镜像并保存在本地</p>
+<p>流程图:</p>
+<blockquote>
+<p>docker client &lt; - - - http/https - - - &gt;docker daemon &lt; - - - http/https - - - &gt;docker registry </p>
+<p>默认是使用https连接到registry，但是可以修改成http </p>
+</blockquote>
+<h5 id="Registry-分类"><a href="#Registry-分类" class="headerlink" title="Registry 分类"></a>Registry 分类</h5><p>registry用于保存docker镜像，包括镜像的层次结构和元数据:</p>
+<blockquote>
+<p>用户可自建registry，也可以使用官方的docker hub  </p>
+<p>分类:</p>
+<blockquote>
+<p>sponsor registry    第三方registry，供客户和docker社区使用</p>
+<p>mirror registry     第三方registry，只让客户用 </p>
+<p>verdor registry     由发布docker镜像的供应商提供registry </p>
+<p>private registry    通过舍友防火墙和额外的安全层的私有实体提供的registry </p>
+</blockquote>
+</blockquote>
+<h5 id="repository及index"><a href="#repository及index" class="headerlink" title="repository及index"></a>repository及index</h5><p><strong>repository</strong></p>
+<blockquote>
+<p>由某种特定的docker镜像的所有迭代版本组成的镜像仓库 </p>
+<p>一个registry中可以存在多个repository </p>
+<p>repository 可以为”顶层仓库”和“用户仓库” </p>
+<p> 用户仓库名称格式”用户名/仓库名”</p>
+<p>每个仓库可以包含多个Tag，每个标签对应一个镜像 </p>
+</blockquote>
+<p><strong>index</strong></p>
+<blockquote>
+<p>维护用户账号,镜像的校验以及公共命名空间的信息 </p>
+<p>相当于为Registry提供了一个完成用户认证等功能的检索接口 </p>
+</blockquote>
+<h4 id="镜像相关操作"><a href="#镜像相关操作" class="headerlink" title="镜像相关操作"></a>镜像相关操作</h4><p>主要介绍镜像如何生成，和如何推送镜像至仓库</p>
+<h5 id="镜像生成方式"><a href="#镜像生成方式" class="headerlink" title="镜像生成方式:"></a>镜像生成方式:</h5><p>​        有三种方式：基于容器方式，Dockerfile方式，Docker Hub Automated Builds </p>
+<h5 id="基于容器制作镜像"><a href="#基于容器制作镜像" class="headerlink" title="基于容器制作镜像:"></a>基于容器制作镜像:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">docker run --name web1 -it busybox </span><br><span class="line"><span class="meta">&gt;</span>mkdir -p /data/www/ </span><br><span class="line"><span class="meta">&gt;</span>echo "&lt;h1&gt;welcome busybox http server&lt;/h1&gt;" &gt; /data/www/index.html </span><br><span class="line"><span class="meta">#</span>注意:基于容器制作镜像，容器必须处于运行状态，这里切换终端 </span><br><span class="line"></span><br><span class="line">docker commit -p web1			#commit制作镜像前需要—p暂停</span><br><span class="line">docker image ls				#可以看到镜像制作完成（缺少tag） </span><br><span class="line">docker tag IMAGEID zhuxyid/busyhttp:v1	#给刚才制作的镜像打标签(可以打多个标签) </span><br><span class="line">docker tag zhuxyid/busyhttp:v1 zhuxyid/busyhttp:test_env	#在打一个标签 </span><br><span class="line">docker image rm zhuxyid/busyhttp:v1				#这里只是删除一个标签，并没有删除镜像 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>查看镜像启动时候运行的命令 </span><br><span class="line">docker inspect web1 | grep -A 5 "Cmd" </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如何在制作镜像运行时执行启动命令 </span><br><span class="line">docker commit -a "作者:zhuxy" -c 'CMD ["/bin/httpd","-f","-h","/data/www"]' -p web1 zhuxyid/busyhttp:test_env</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>运行制作后的镜像 </span><br><span class="line">docker run --name -d webserver zhuxyid/busyhttp:test_env</span><br></pre></td></tr></table></figure>
+<h5 id="基于Dockerfile制作镜像"><a href="#基于Dockerfile制作镜像" class="headerlink" title="基于Dockerfile制作镜像:"></a>基于Dockerfile制作镜像:</h5><blockquote>
+<p>详见:<a href="http://blog.zhuxyid.com/2018/11/26/Dockerfile/">http://blog.zhuxyid.com/2018/11/26/Dockerfile/</a></p>
+</blockquote>
+<h5 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h5><h6 id="推送到官方"><a href="#推送到官方" class="headerlink" title="推送到官方"></a>推送到官方</h6><p>首先需要有hub.docker.com账号 ，hub.docker.com需要先建立好repositories </p>
+<p>示例：这里的是zhuxyid/busyhttp命名,要跟本地的镜像保持一致</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker login    #输入账号密码才可以登录 </span><br><span class="line"></span><br><span class="line">docker push zhuxyid/busyhttp:test_env    #推送制作的镜像</span><br><span class="line"></span><br><span class="line">docker logout</span><br></pre></td></tr></table></figure>
+<h6 id="推送到阿里云"><a href="#推送到阿里云" class="headerlink" title="推送到阿里云"></a>推送到阿里云</h6><p>需要修改docker配置文件中的推送地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>修改docker配置文件添加registry-mirrors,https://brjvf90f.mirror.aliyuncs.com为我自己的阿里云镜像仓库</span><br><span class="line">vi /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">	"registry-mirrors":["https://registry.docker-cn.com","https://brjvf90f.mirror.aliyuncs.com"]&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>重载配置文件并重启</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker.service </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>阿里云创建命名空间，在创建镜像仓库 </span><br><span class="line">docker login --username=zhuxyid registry.cn-hangzhou.aliyuncs.com </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>先重命名镜像标签 </span><br><span class="line">docker tag imagename registry.cn-hangzhou.aliyuncs.com/zhuxyid/busyhttp:test_env</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在推送到阿里云</span><br><span class="line">docker push registry.cn-hangzhou.aliyuncs.com/zhuxyid/busyhttp:version </span><br><span class="line">docker logout</span><br></pre></td></tr></table></figure>
+<h5 id="镜像导入导出"><a href="#镜像导入导出" class="headerlink" title="镜像导入导出"></a>镜像导入导出</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>在本地导出镜像包，推送到目标机</span><br><span class="line">docker save -o busyhttp.gz zhuxyid/busyhttp:latest ..    #可以打包多个文件 </span><br><span class="line">scp busyhttp.gz root@REMOTEIP:/opt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在目标机上导入推送的镜像</span><br><span class="line">docker load -i busyhttp.gz </span><br><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
+<h4 id="Docker网络"><a href="#Docker网络" class="headerlink" title="Docker网络"></a>Docker网络</h4><p>Docker安装后自动创建docker0网卡(虚拟)</p>
+<p>网络虚拟化技术实现:</p>
+<blockquote>
+<p>OVS：Open VSwitch    开源虚拟交换</p>
+<p>SDN：Software Defined Network    软件定义网络（需要硬件和软件支持）</p>
+</blockquote>
+<h5 id="Docker网络接口"><a href="#Docker网络接口" class="headerlink" title="Docker网络接口"></a>Docker网络接口</h5><p>Docker有三种网络接口：</p>
+<blockquote>
+<p>bridge，host，none，Containers</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">1f03c706f810        bridge              bridge              local</span><br><span class="line">75c5f8de6db4        host                host                local</span><br><span class="line">871ede94efa8        none                null                local</span><br><span class="line"></span><br><span class="line">bridge	桥接物理主机网卡(默认).这里是nat桥接，并不是物理桥接，如果是物理桥接,如果一个交换机下每个宿主机都有十几个容器，很容易导致广播风暴</span><br><span class="line">host	使用物理主机的名称空间</span><br><span class="line">none	不使用网络(特殊场景,有些程序不需要使用网络通信,比如自动任务不需要网络通信)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>docker安装后，会生成docker0，此网卡是个NAT桥，当启动容器的时候，宿主机也会生成<code>veth*</code>虚拟网卡，该网卡和容器内的网卡绑定，而<code>veth*</code>就是跟docker0相连，可以使用<code>brctl show</code>来查看</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install bridge-utils</span><br><span class="line">brctl show		#可以看出veth网络都是跟docker0关联</span><br><span class="line">bridge name	bridge id		STP enabled	interfaces</span><br><span class="line">docker0		8000.024259bff40e	no		veth05116c6</span><br><span class="line">							vethf8f26a6</span><br><span class="line">                            </span><br><span class="line">iptables -t nat -vnL	#查看POSTROUTING链,可以看出容器内访问其他网络都是通过MASQUERADE地址伪装方式访问</span><br><span class="line">Chain POSTROUTING (policy ACCEPT 54 packets, 3570 bytes)</span><br><span class="line"> pkts bytes target     prot opt in     out     source               destination         </span><br><span class="line">    0     0 MASQUERADE  all  --  *      !docker0  172.17.0.0/16        0.0.0.0/0</span><br></pre></td></tr></table></figure>
+<h5 id="Docker通讯"><a href="#Docker通讯" class="headerlink" title="Docker通讯"></a>Docker通讯</h5><p>Docker中如果外部想访问内部的服务有如下三种方式:</p>
+<blockquote>
+<p>Bridge方式：</p>
+<blockquote>
+<p>通过桥接，然后设置dnat才能被其他主机访问</p>
+</blockquote>
+<p>Containers方式:</p>
+<blockquote>
+<p>容器可以将6个名称空间分层:</p>
+<p>如：docker-a和docker-b</p>
+<p>docker-a独立6个名称空间:USER,MOUNT,PID,UTS,NET,IPC</p>
+<p>docker-b独立3个名称空间:USER,MOUNT,PID,另外UTS,NET,IPC共享docker-a的</p>
+</blockquote>
+<p>Host方式：</p>
+<blockquote>
+<p>相当于Open container方式，只不过直接使用宿主机的UTS.NET.IPC</p>
+</blockquote>
+</blockquote>
+<h5 id="Docker-网络相关命令"><a href="#Docker-网络相关命令" class="headerlink" title="Docker 网络相关命令"></a>Docker 网络相关命令</h5><h6 id="指定网络类型以及端口映射"><a href="#指定网络类型以及端口映射" class="headerlink" title="指定网络类型以及端口映射"></a>指定网络类型以及端口映射</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#docker run --name test -it --rm busybox:latest    #运行busybox命名为test，执行完后直接删除</span><br><span class="line">    --network [none|bridge]        #指定网络类型(默认是bridge)</span><br><span class="line">    --hostname|-h HOSTNAME         #指定主机名</span><br><span class="line">    --dns 114.114.114.114          #指定dns</span><br><span class="line">    --add-host HOST:IP             #设置容器hosts</span><br><span class="line"></span><br><span class="line">    #映射</span><br><span class="line">    -p &lt;containerPort&gt;                #将指定的容器端口 映射至 主机所有地址的一个动态端口</span><br><span class="line">    -p &lt;hostPort&gt;:&lt;containerPort&gt;     #将容器端口containerPort 映射至 主机指定的主机端口&lt;host Port&gt;</span><br><span class="line">    -p &lt;ip&gt;::&lt;containerPort&gt;          #将指定的容器端口&lt;containerPort&gt; 映射至 主机指定&lt;ip&gt;的动态端口</span><br><span class="line">    -p &lt;ip&gt;:&lt;HostPort&gt;:&lt;containerPort&gt;#将指定容器端口&lt;containerPort&gt;映射至主机指定&lt;ip&gt;的端口&lt;hostPort&gt;</span><br><span class="line">    -P                                #-P暴露所有端口</span><br></pre></td></tr></table></figure>
+<h6 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name test -it --network bridge --rm busybox:latest</span><br><span class="line">docker run --name test -it -h webserver.node1 --network bridge --rm busybox:latest</span><br><span class="line">docker run --name test -it -h webserver.node1 --dns 114.114.114.114 --rm busybox:latest</span><br><span class="line"></span><br><span class="line">docker run --name webserver -p 80 -d busybox/httpd:latest    #本地随机端口映射到容器的80端口</span><br><span class="line">docker run --name webserver -p 80:80 -d busybox/httpd:latest #本地80端口映射到容器的80端口</span><br><span class="line">docker port webserver     #查看webserver容器端口</span><br></pre></td></tr></table></figure>
+<h6 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h6><p>联盟式容器是指使用某个已存在容器的网络接口的容器，接口被联盟内的各容器共享使用，因此，联盟式容器彼此间完全无隔离</p>
+<pre><code>#创建一个监听于80端口的http服务容器
+docker run -d --it --rm -p 80:80 busybox/httpd:laster
+
+#创建一个联盟式容器
+docker run --name web1 -it --rm busybox/httpd
+docker run --name web2 --network container:web1 -it --rm busybox/httpd
+#在web2中创建的文件web1看不到，因为隔离Mount名称空间，但是web1和web2的ip是一样的，因为web2共享了web1的Net名称空间
+
+#联盟式容器彼此间 虽然 共享同一个网络名称空间，但其他名称空间如User,Mount，Pid等还是隔离的
+#联盟式容器彼此间存在端口冲突的可能性，因此，通常只会在多个容器上的程序需要程序lookback接口互相通信，或对某已存在的容器的网络属性进行监控时才使用此模式的网络模型
+</code></pre><h6 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h6><p> 创建一个宿主机host的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver --network host -it --rm busybox/httpd</span><br><span class="line">#使用宿主机的IP，可能会郁闷，这跟直接在主机上部署个httpd服务在启动有什么不一样么？</span><br><span class="line">#容器，容器可以更加方便移值，直接run container就可以运行了。</span><br></pre></td></tr></table></figure>
+<h4 id="Docker存储"><a href="#Docker存储" class="headerlink" title="Docker存储"></a>Docker存储</h4><h5 id="关于卷"><a href="#关于卷" class="headerlink" title="关于卷"></a>关于卷</h5><p>Docker镜像由多个只读层叠加而成，启动容器时，docker会加载只读镜像层 并在镜像栈顶部 添加一个 读写层，如果运行中容器修改了现有的一个已挂载的文件，那该文件将会从 读写层下面的只读层 复制到读写层，该文件的只读版本依然存在，只是已经被读写层中该文件的副本所修改，即“写时复制(COW)”机制 </p>
+<p><strong><em>注意:在IO要求高应用中，如果使用容器的话，那么效率非常低</em></strong></p>
+<p><code>Container: /data/web &lt; - - - - 建立绑定关系Mount - - - - &gt; Host:/container/web1/data/web</code></p>
+<p>在容器写入时候，可以绕过容器内部层级关系 </p>
+<p>命名空间Mount是相互独立的,可以共享,关联到存储卷Volume，只要容器挂载存储卷.当容器被停止或者删除后,文件内容不被删除。 </p>
+<h5 id="为什么用存储卷"><a href="#为什么用存储卷" class="headerlink" title="为什么用存储卷"></a>为什么用存储卷</h5><p>关闭并重启容器，其数据不受影响，但是删除容器，则数据全部丢失 </p>
+<p><strong>存在的问题:</strong></p>
+<blockquote>
+<p>存储于联合文件系统中，不易于宿主机访问 </p>
+<p>容器间数据共享不便利</p>
+<p>删除容器其数据丢失 </p>
+</blockquote>
+<h5 id="卷的描述"><a href="#卷的描述" class="headerlink" title="卷的描述"></a>卷的描述</h5><p>卷在容器初始化时候 会自动创建，由base image提供的卷中数据会于此间 完成复制 </p>
+<p>卷的初衷是独立于容器的生命周期实现数据持久化，因此删除容器时不会删除卷，也不会对哪怕未被应用的卷做垃圾回收 </p>
+<p>卷为docker提供了独立于容器的数据管理机制</p>
+<p>可以把”镜像” 比作成静态文件，例如“程序” ，把卷类比为动态内容，例如“数据”；于是镜像可以重用，而卷可以共享 </p>
+<p>卷实现了”程序(镜像)”和“数据(卷)”分离，以及 “程序(镜像)”和“制作镜像主机”分离，用户制作镜像时无需考虑镜像运行容器所在的主机环境 </p>
+<h5 id="卷的类型"><a href="#卷的类型" class="headerlink" title="卷的类型"></a>卷的类型</h5><p>docker有两种类型的卷，每种类型都在容器中存在一个挂载点，但其在宿主机上的位置有所不同 </p>
+<blockquote>
+<p>绑定挂载卷 bind mount volume:       在宿主机人工指定特定路径，在容器也人工指定特定路径，将两者绑定 </p>
+<p>容器管理卷 docker-managed volume:   宿主机不需要指定路径(docker daemon)，容器中需要指定路径，docker自动将两者绑定 </p>
+</blockquote>
+<h5 id="如何使用卷"><a href="#如何使用卷" class="headerlink" title="如何使用卷"></a>如何使用卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">docker run -v 选项</span><br><span class="line">docker-managed volume</span><br><span class="line">docker run -it --name web1 -v /data busybox</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1	#查看容器卷绑定关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -it -v HOSTDIR:VOLUMEDIR --name web2 busybox</span><br><span class="line">docker run -it -v /data:/test --name web2 busybox            #本机的data跟容器的test绑定，如果data不存在自动创建</span><br><span class="line">docker inspect -f &#123;&#123;.Mounts&#125;&#125; web1</span><br><span class="line"></span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Networks.bridge.IPAddress&#125;&#125; web1    #获取web1下的ip地址</span><br><span class="line"></span><br><span class="line">#多个容器的卷使用同一个主机目录</span><br><span class="line">docker run -it --name nginx1 -v /docker/volumes/html:/data busybox</span><br><span class="line">docker run -it --name tomcat1 -v /docker/volumes/class:/data busybox</span><br><span class="line"></span><br><span class="line">#复制使用其他容器的卷，为docker run命令使用--volumes-form</span><br><span class="line">docker run -it --name tomcat2 -v /docker/volumes/class:/data busybox</span><br><span class="line">docker run -it --name tomcat3 --network container:tomcat2 --volumes-from tomcat2 busybox    #共享网络和卷</span><br></pre></td></tr></table></figure>
+<h4 id="Docker资源限制"><a href="#Docker资源限制" class="headerlink" title="Docker资源限制"></a>Docker资源限制</h4><p>默认情况下,系统对容器没有做任何资源限制，容器可以使用掉宿主机所有资源。</p>
+<p>docker provides可以控制Memory，CPU， Block IO（其实只能控制内存和CPU）</p>
+<p>依赖于Linux Capabilities 。</p>
+<p>这里需要注意:内存是非可压缩资源，CPU可压缩资源 </p>
+<p>​    如何内存被进程耗尽会触发OOME直接KILL进程，而CPU没有关系 </p>
+<h5 id="OOM"><a href="#OOM" class="headerlink" title="OOM"></a>OOM</h5><p>在linux主机中，如果内核探测到当前宿主机没有足够内存可用(用于执行某些重要的系统功能)会抛出OOME 异常，并且kill掉某些进行保证其正常,一旦发生OOME,任何进程包括docker daemon在内,都有可能杀死。因此docker特地调整 docker daemon的OOM优先级，以免它被内核”杀死”，但容器的优先级并未被调整 。</p>
+<blockquote>
+<p>优先级越低，得分越低，通常检测oom-adj，分数越高越容易被kill </p>
+<p>不重要的业务建议oom-adj默认值，重要的调低oom-adj</p>
+</blockquote>
+<h5 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h5><p>从ram，swap两个层面:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">限制单位k,b,m,g</span><br><span class="line">-m | --memory      限制ram内存    -m 1g    限制ram为1g，如果后期资源占用超过1G，可能被kill掉，-m|--memory可以单独设置</span><br><span class="line">--memory-swap *    限制swap内存   必须先设置-m|--memory</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">–memory-swap</th>
+<th style="text-align:center">–memory</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">正数S</td>
+<td style="text-align:center">正数M</td>
+<td style="text-align:left">容器可用总空间为S,其中ram为M,swap为(S-M),如果S=M，则无可用swap资源</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">正数M</td>
+<td style="text-align:left">相当没有设置swap(unset)</td>
+</tr>
+<tr>
+<td style="text-align:center">unset</td>
+<td style="text-align:center">正数M</td>
+<td style="text-align:left">若主机(docker host)启用swap,则容器可用的swap为2*M</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">正数M</td>
+<td style="text-align:left">若主机(docker host)启用了swap,则容器可使用最大至主机上的所有swap空间的swap资源</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注:在容器使用free命令可用看到swap空间并不具有 其所展现出空间的指示意义</p>
+<p>设置–memory-swap必须大于–memory</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--memory-swapiness        限制容器的虚拟内存控制行为0~100间整数</span><br><span class="line">--memory-reservation      限制预留空间大小</span><br><span class="line">--kernel-memory           核心内存的限制</span><br><span class="line">--oom-kill-disable        如果容器重要，禁止oom被kill掉</span><br><span class="line">--oom-score-adj           容器被OOM killer杀死的优先级，范围[-1000,1000]默认为0</span><br></pre></td></tr></table></figure>
+<h5 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h5><p>默认情况下每个容器，可以使用CPU的资源.大多数系统，系统在调度时候使用CFS调度 (CFS完全公平调度器)</p>
+<p>在docker1.13后，可以设置实时调度</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--cpus=&lt;value&gt;       #设置CPU使用几核心，如果容器只设置了--cpus = 2，那么该容器只能使用200%的cpu</span><br><span class="line">--cpu-period=&lt;value&gt; #最多使用多长时间</span><br><span class="line">--cpu-quota=&lt;value&gt;  #指定周期内</span><br><span class="line">--cpuset-cpus        #设置容器只能运行在那核心CPU上,如果4核心这里是0~3  如果上面设置--cpus=2 --cpuset-cpus 1,2    意思是使用2核心，只在cpu2和cpu3上面使用</span><br><span class="line">--cpu-shares         #设置cpu权重，按比例切分，默认权重是1024，CPU是资源共享(因为可以压缩)，只有在系统cpu繁忙时候才体现出来，比如1核心的CPU，两个容器，其中一个A容器设置1024，另一个B设置512，当cpu都需要使用cpu的时候，就按比例分2:1(a是b的两倍) (a使用66% b使用33%)</span><br><span class="line"><span class="meta">#</span>当512的权重空闲的时候，1024的容器可以吃掉所有CPU。</span><br><span class="line"><span class="meta">#</span>如果3核心CPU，三个容器，a设置2048，b设置512，c设置1024，当三个都繁忙的时候比例是(4:1:2) (a使用56%,b使用14%,c使用28%)</span><br></pre></td></tr></table></figure>
+<h5 id="docekr-stress-ng压缩"><a href="#docekr-stress-ng压缩" class="headerlink" title="docekr-stress-ng压缩"></a>docekr-stress-ng压缩</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm lorel/docker-stress-ng --help</span><br><span class="line">docker run --name stree1 -it --rm -m 256 lorel/docker-stressng --vm 2</span><br><span class="line">docker run --name stree2 -it --rm -cpus 2 lorel/docker-stress-ng --cpu 8</span><br><span class="line">docker run --name stree2 -it --rm --cpu-shares 1024 lorel/docker-stress-ng --cpu 8</span><br><span class="line"></span><br><span class="line">docker top stree1   查看stree1的进程运行情况</span><br><span class="line">docker stats        查看容器状态</span><br></pre></td></tr></table></figure>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><blockquote>
+<p>这些主要是针对CentOS7.4，对于其他平台或者版本可能实现方式略有不同。</p>
+<blockquote>
+<p>如：在macOS下面对于 网络 和 卷 都有不同的地方。</p>
+<p>网络在macOS中没有docker0桥，无法ping通容器，只能使用-P 或者-p映射端口的形式访问容器，或者通过host.docker.internal特殊DNS，解析为主机使用的内部IP地址。</p>
+<p>卷的话如果要绑定User以外的目录，则需要修改权限让容器内部可以访问该目录，不然直接挂载会提示权限不足情况</p>
+<p>暂时遇到这么多，感谢<a href="http://zhige.me" target="_blank" rel="noopener">志哥</a>让我遇到这么多坑。</p>
+</blockquote>
+<p>主要是讲解一下Docker基础方面，后期的<a href="http://blog.zhuxyid.com/2018/11/26/Dockerfile/">Dockerfile</a>和Docker Registry在慢慢总结，如果本文有错误，还请大牛指出，谢谢:)</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>看完了?赏个鸡腿钱,谢谢老板!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Zandy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Zandy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/26/Dockerfile/" rel="prev" title="Dockerfile">
+                Dockerfile <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Zandy">
+            
+              <p class="site-author-name" itemprop="name">Zandy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhuxyid" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhuxyid@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope-o"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/nihaozhuxy" target="_blank" title="WeiBo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>WeiBo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/zhuxyid" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhige.me/" title="211志哥" target="_blank">211志哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://haobing.wang/" title="上海黄牛浩兵" target="_blank">上海黄牛浩兵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://weibo.com/u/1729104997" title="河西最美敏爷" target="_blank">河西最美敏爷</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bidianer.com/" title="未来首富严颖" target="_blank">未来首富严颖</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.yuhang.tech/" title="未来阿里CTO_大眼" target="_blank">未来阿里CTO_大眼</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器是什么"><span class="nav-number">1.</span> <span class="nav-text">容器是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化技术有哪些"><span class="nav-number">2.</span> <span class="nav-text">虚拟化技术有哪些</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主机级别-虚拟化"><span class="nav-number">2.1.</span> <span class="nav-text">主机级别 虚拟化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#容器级别-虚拟化"><span class="nav-number">2.2.</span> <span class="nav-text">容器级别 虚拟化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker是什么"><span class="nav-number">3.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker安装"><span class="nav-number">4.</span> <span class="nav-text">Docker安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境说明"><span class="nav-number">4.1.</span> <span class="nav-text">环境说明:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装说明"><span class="nav-number">4.2.</span> <span class="nav-text">安装说明:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装过程"><span class="nav-number">4.3.</span> <span class="nav-text">安装过程:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker架构"><span class="nav-number">5.</span> <span class="nav-text">Docker架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker-Registry："><span class="nav-number">5.1.</span> <span class="nav-text">Docker Registry：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker-Daemon："><span class="nav-number">5.2.</span> <span class="nav-text">Docker Daemon：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker-Client："><span class="nav-number">5.3.</span> <span class="nav-text">Docker Client：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker客户端操作"><span class="nav-number">6.</span> <span class="nav-text">Docker客户端操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#镜像类操作"><span class="nav-number">6.1.</span> <span class="nav-text">镜像类操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#容器类操作"><span class="nav-number">6.2.</span> <span class="nav-text">容器类操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-Image"><span class="nav-number">7.</span> <span class="nav-text">Docker Image</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分层机制："><span class="nav-number">7.1.</span> <span class="nav-text">分层机制：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#docker镜像层级："><span class="nav-number">7.2.</span> <span class="nav-text">docker镜像层级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#联合挂载："><span class="nav-number">7.3.</span> <span class="nav-text">联合挂载：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-Container"><span class="nav-number">8.</span> <span class="nav-text">Docker Container</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker事件状态图"><span class="nav-number">8.1.</span> <span class="nav-text">Docker事件状态图:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">9.</span> <span class="nav-text">Docker Registry</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Registry-分类"><span class="nav-number">9.1.</span> <span class="nav-text">Registry 分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#repository及index"><span class="nav-number">9.2.</span> <span class="nav-text">repository及index</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜像相关操作"><span class="nav-number">10.</span> <span class="nav-text">镜像相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#镜像生成方式"><span class="nav-number">10.1.</span> <span class="nav-text">镜像生成方式:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基于容器制作镜像"><span class="nav-number">10.2.</span> <span class="nav-text">基于容器制作镜像:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基于Dockerfile制作镜像"><span class="nav-number">10.3.</span> <span class="nav-text">基于Dockerfile制作镜像:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#推送镜像"><span class="nav-number">10.4.</span> <span class="nav-text">推送镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#推送到官方"><span class="nav-number">10.4.1.</span> <span class="nav-text">推送到官方</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#推送到阿里云"><span class="nav-number">10.4.2.</span> <span class="nav-text">推送到阿里云</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#镜像导入导出"><span class="nav-number">10.5.</span> <span class="nav-text">镜像导入导出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker网络"><span class="nav-number">11.</span> <span class="nav-text">Docker网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker网络接口"><span class="nav-number">11.1.</span> <span class="nav-text">Docker网络接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker通讯"><span class="nav-number">11.2.</span> <span class="nav-text">Docker通讯</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Docker-网络相关命令"><span class="nav-number">11.3.</span> <span class="nav-text">Docker 网络相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#指定网络类型以及端口映射"><span class="nav-number">11.3.1.</span> <span class="nav-text">指定网络类型以及端口映射</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Bridge"><span class="nav-number">11.3.2.</span> <span class="nav-text">Bridge</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Containers"><span class="nav-number">11.3.3.</span> <span class="nav-text">Containers</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Host"><span class="nav-number">11.3.4.</span> <span class="nav-text">Host</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker存储"><span class="nav-number">12.</span> <span class="nav-text">Docker存储</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关于卷"><span class="nav-number">12.1.</span> <span class="nav-text">关于卷</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么用存储卷"><span class="nav-number">12.2.</span> <span class="nav-text">为什么用存储卷</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#卷的描述"><span class="nav-number">12.3.</span> <span class="nav-text">卷的描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#卷的类型"><span class="nav-number">12.4.</span> <span class="nav-text">卷的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何使用卷"><span class="nav-number">12.5.</span> <span class="nav-text">如何使用卷</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker资源限制"><span class="nav-number">13.</span> <span class="nav-text">Docker资源限制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#OOM"><span class="nav-number">13.1.</span> <span class="nav-text">OOM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Memory"><span class="nav-number">13.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CPU"><span class="nav-number">13.3.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#docekr-stress-ng压缩"><span class="nav-number">13.4.</span> <span class="nav-text">docekr-stress-ng压缩</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">14.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zandy</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://英雄.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.zhuxyid.com/2018/11/23/Docker/';
+          this.page.identifier = '2018/11/23/Docker/';
+          this.page.title = 'Docker';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://英雄.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

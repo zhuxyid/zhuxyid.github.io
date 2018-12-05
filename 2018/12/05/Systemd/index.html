@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Systemd,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
+<meta name="keywords" content="Systemd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Systemd">
+<meta property="og:url" content="http://blog.zhuxyid.com/2018/12/05/Systemd/index.html">
+<meta property="og:site_name" content="旭悦的分享笔记">
+<meta property="og:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-05T08:46:05.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Systemd">
+<meta name="twitter:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.zhuxyid.com/2018/12/05/Systemd/">
+
+
+
+
+
+  <title>Systemd | 旭悦的分享笔记</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旭悦的分享笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">坚持下去,总有一天会如你所愿</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhuxyid.com/2018/12/05/Systemd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zandy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旭悦的分享笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Systemd</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T10:46:49+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-Base/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux Base</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/05/Systemd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/05/Systemd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Systemd"><a href="#Systemd" class="headerlink" title="Systemd"></a>Systemd</h4><p>Systemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd</p>
+<h5 id="System-V介绍"><a href="#System-V介绍" class="headerlink" title="System V介绍"></a>System V介绍</h5><ol>
+<li><p>Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init.d文件下，在/etc存放rc0~rc6等目录指向init.d下的相应目录，这些目录下的文件即为不同运行级别需要启动或者禁止的服务。</p>
+</li>
+<li><p>System V有7个级别：runlevel0~runlevel7</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">级别</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">关机状态，默认系统启动级别不能设置0，否则不能正常启动</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">单用户，无网络，用于系统维护，类似windows下的安全模式</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">多用户</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">完整多用户模式。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">自定义，通常保留不用</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">图形模式，如果系统有安装GUI软件，XWindows会进入图形模式</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">重启系统，默认系统启动级别也不能设置6，否则不能正常启动</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>标准运行级别是3和5，可在/etc/inittab 下的<code>id:{$levelnum}:initdefault:</code>修改启动级别，如修改为3级别<code>id:3:initdefault</code>，下次启动后生效，Linux系统init进程会根据inittab配置文件确定当前运行级别并执行相应级别<code>rc3</code> 的服务脚本程序。</li>
+</ol>
+<blockquote>
+<p>rc3目录下存放两种文件，一种S开头：表示启动服务，一种K开头：表示禁止服务，字母后面的数字表示启动顺序，按小到大执行</p>
+</blockquote>
+<h5 id="System-V基本工具"><a href="#System-V基本工具" class="headerlink" title="System V基本工具"></a>System V基本工具</h5><p>System V主要用<code>chkconfig</code>,<code>service</code>,命令管理服务，在使用命令前需要将相应服务脚本放在/etc/init.d目录下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>chekconfig格式</span><br><span class="line">chkconfig --add | --del | --list | --level &lt;levelnum&gt; &lt;servicename&gt; &lt;on|off|reset&gt; | &lt;servicename&gt;</span><br><span class="line"><span class="meta">#</span>实例:</span><br><span class="line">chkconfig --add httpd			#添加httpd服务</span><br><span class="line">chkconfig --list			#查看所有服务的启动级别</span><br><span class="line">chkconfig --del httpd			#删除httpd服务</span><br><span class="line">chkconfig --level 35 httpd on		#将httpd服务运行在3,5级别模式下，下次开机后生效</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>service格式</span><br><span class="line">service &lt;servicename&gt; start|stop|restart</span><br><span class="line"><span class="meta">#</span>实例</span><br><span class="line">service httpd start</span><br><span class="line">service httpd stop</span><br><span class="line">service httpd restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果需要修改启动优先级可以使用如下方法</span><br><span class="line">ln -s /etc/init.d/httpd /etc/rc.d/rc3.d/S60httpd	</span><br><span class="line"><span class="meta">#</span>将httpd服务在init3级别下的开机启动优先级为60，值越大启动顺序越低</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在ubuntu下可使用update-rc.d命令</span><br><span class="line">update-rc.d -f httpd remove</span><br><span class="line">update-rc.d httpd start 2 3 5 . stop 60 0 1 6 .</span><br><span class="line"><span class="meta">#</span>在235级别启动，优先级016级别关闭，优先级60，值越大启动顺序越低</span><br></pre></td></tr></table></figure>
+<h5 id="Systemd介绍"><a href="#Systemd介绍" class="headerlink" title="Systemd介绍"></a>Systemd介绍</h5><p>Systemd是Linux最新的初始化系统。取代了之前Unix时代一直使用的init系统，兼容Syst V init 和 LSB  init script，而且在进程启动过程中更有效的引导加载服务。</p>
+<p>在Systemd管理体系中，老的<code>运行级别(runlevel)</code>的概念被新的    <code>运行目标(target)</code> 所取代。</p>
+<p><code>target</code>命名类似<code>multi-user.targe</code>t这种形式。</p>
+<table>
+<thead>
+<tr>
+<th>old</th>
+<th>new</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runlevel3</td>
+<td>multi-user.target</td>
+</tr>
+<tr>
+<td>runlevel5</td>
+<td>graphical.target</td>
+</tr>
+</tbody>
+</table>
+<p>在新版的CentOS上默认target是通过软连接形式实现</p>
+<p><code>ln -s /lib/systemd/system/runlevel3.target /etc/systemd/system/default.target</code></p>
+<p>在/lib/systemd/system/下面定义的<code>runlevelX</code>文件目的主要是为了兼容以前运行<code>levelrunX</code>的管理方式，实际是被链接到了<code>multi-user.target</code></p>
+<h4 id="Systemd特点"><a href="#Systemd特点" class="headerlink" title="Systemd特点"></a>Systemd特点</h4><ol>
+<li><p>兼容SysVinit和LSB init scripts</p>
+</li>
+<li><p>更快的启动速度，以并发启动的原理</p>
+<blockquote>
+<p>尽可能启动更少进程</p>
+<p>尽可能将更多进程并行启动</p>
+</blockquote>
+</li>
+<li><p>提供按需启动能力</p>
+</li>
+<li>采用Linux的CGroup特性跟踪和管理进程的生命周期</li>
+<li>启动挂载点自动挂载管理</li>
+<li>实现事务性依赖关系管理</li>
+<li>能够对系统进行快照和恢复</li>
+<li>日志服务</li>
+<li>能够向后支持SysV的服务脚本</li>
+</ol>
+<h5 id="特点说明："><a href="#特点说明：" class="headerlink" title="特点说明："></a>特点说明：</h5><ul>
+<li><p>按需提供能力</p>
+<blockquote>
+<p>当Sysinit系统初始化的时候，它会将所有可能用到的后台服务进程全部启动运行，并且系统必须等待所有服务都启动就绪后才可以运行用户登录。</p>
+<p>这种方式的缺陷启动时间过长，系统资源浪费。如果某些服务可能很长一段时间内或者运行期间没有被使用过的服务，如CPUS，如果花费在启动这些服务上的时间完全没有必要，对系统资源也是一种浪费。</p>
+<p>Systemd可以按需启动，在某个服务被真正请求的时候才启动它，当服务结束时，systemd可以关闭它，在下次需要的时候在启动它</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>采用Linux的CGroup特性跟踪和管理进程的生命周期</p>
+<blockquote>
+<p>init系统的一个重要职责就是负责跟踪和管理服务进程生命周期，它不仅可以启动一个服务，也必须也能停止一个服务，看上去没特别的，但是在真正用到代码实现的时候，获取就会发现停止服务比一开始想的要困难。</p>
+<p>服务进程一般都会作为<code>daemon</code>在后台运行，为此服务程序有时会派生<code>fork</code>两次。在UpStart中，需要在配置文件中正确配置<code>expect</code>,这样Upstart通过对<code>fork</code>系统调用进行计数，从而获得真正的<code>daemon PID</code> 如果Upstart找错了，则会出现误杀死情况</p>
+<p>还有特殊的情况，比如一个CGI程序会派生两次，从而脱离了和apache的父子关系，当apache进程被停止后，该CGI程序还继续运行，而我们希望服务停止后，所有由它所启动的相关进程也会被停止。为了处理这类问题，UpStart通过<code>strace</code>来跟踪<code>fork</code>和<code>exit</code>等系统调用，但是这种方式简单粗暴，且扩展性弱。Systemd则利用Linux内核CGroup特性来完成跟踪任务，当服务停止后，查询CGroup，Systemd可以确保找到所有相关的进程，从而干净停止服务。</p>
+<p>CGroup提供能类似文件系统的接口，使用方便，主要实现系统资源配额管理。当创建子进程时，子进程会继承父进程的CGroup，因此无论服务如何启动新的子进程，所有这些相关的进程都会属于同一个CGroup。Systemd只需要简单的遍历指定的CGroup，即可正取找到所有相关进程，将它逐步停止</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>启动挂载点自动挂载管理</p>
+<blockquote>
+<p>传统Linux系统中，用户可以用<code>/etc/fstab</code>文件来维护固定文件系统挂载点，这些挂载点在系统启动的过程中被自动挂载，一旦启动过程结束，这些挂载点会确保存在。挂载点是对系统运行至关重要的文件系统，如home目录。和SysVinit一样，Systemd管理这些挂载点，以便在系统启动时自动挂载它们，有时候用户还需要动态挂载，比如打算访问DVD内容时，才临时执行挂载一遍访问其内容，而不访问光盘时候，该挂载点被卸载<code>umount</code>以便节约资源，SysVinit依赖autofs服务来实现这种功能，Systemd内建自动挂载服务，无需额外安装autofs服务，可以直接用systemd提供的自动挂载管理能力来实现autofs功能。另外Systemd也兼容/etc/fstab文件，可以继续使用该文件管理挂载点</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>实现事务性依赖关系管理</p>
+<blockquote>
+<p>系统启动过程是由很多独立组件共同组成，这些组件存在依赖关系，如果挂载一个NFS文件系统必须依赖网络才能正常工作，System虽然能够最大限度的并发执行很多依赖关系的工作，但是类似<code>挂载NFS</code>和<code>启动网络</code>这两个工作还是存在先后关系，无法并发执行，对于这些任务，Systemd维护一个’事物一致性‘’的概念，保证所有相关服务都可以正常启动而不会出现互相依赖，以至于死锁情况</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>能够对系统进程快照和恢复</p>
+<blockquote>
+<p>Systemd支持按需启动，因此系统的运行状态是动态变化的，无法确定和准确知道系统当前运行了哪些服务，System快照提供了一种将当前系统运行状态保存并恢复的能力。</p>
+<p>如系统当前正运行服务APP1和APP2，可以使用Systemd命令对当前系统运行状况创建快照，然后将APP1停止，或者做其他任意对系统的改变（如启动新的程序APP3），在改变后运行Systemd的快照恢复命令，即可立即将系统恢复到创建快照时候的状态，即只有APP1和APP2运行。常见场景：比如服务器出现一些异常，为了调试用户当前状态保存快照，然后可以任意操作，比如停止服务等，当调试完成后，恢复操作即可。（注意：改功能并不完善，使用时需要慎重）</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>日志服务</p>
+<blockquote>
+<p>简单性：代码少，依赖少，开销最小</p>
+<p>零维护：日志是排错和监控系统的核心功能，因此它自己不能再产生问题，比如自动管理磁盘空间，避免由于日志不断产生的磁盘空间耗尽</p>
+<p>移植性：日志文件在所有类型的Linux系统可用</p>
+<p>性能：添加 和 游览日志 非常快</p>
+<p>最小资源占用：日志数据文件小</p>
+<p>统一化：各种不同日志存储应该统一，将所有可记录事件保存在同一个数据存储中，所以日志内容的全局上下文都会被保存并且可供日后查看，如一条固件记录后通常会跟随一条内核记录，最终还有一条用户态记录。重要的是当保存到硬盘上时这三种关系不会丢失。早期Syslog会将不同信息保存到不同文件中，分析时候很难确定哪些条目是相关的</p>
+<p>扩展性：日志使用范围广，嵌入式或者超级计算群集都可以满足</p>
+<p>安全性：日志文件可以验证</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Systemd基本概念"><a href="#Systemd基本概念" class="headerlink" title="Systemd基本概念"></a>Systemd基本概念</h4><h5 id="Systemd单元概念"><a href="#Systemd单元概念" class="headerlink" title="Systemd单元概念"></a>Systemd单元概念</h5><p>系统初始化需要做很多事情。需要启动后台服务，如sshd服务，需要做配置工作，比如挂载文件系统，这个过程中每一步都被systemd抽象成一个配置单元，即unit，可以认为一个服务就是一个配置单元；一个挂载点是一个配置单元，一个交换分区配置是一个配置单元。systemd将配置单元归纳为以下不同的类型。</p>
+<h5 id="配置单元常见类型"><a href="#配置单元常见类型" class="headerlink" title="配置单元常见类型"></a>配置单元常见类型</h5><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>扩展名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>service unit</td>
+<td>.service</td>
+<td>定义系统类服务</td>
+</tr>
+<tr>
+<td>target unit</td>
+<td>.target</td>
+<td>实现模拟“运行级别”</td>
+</tr>
+<tr>
+<td>device unit</td>
+<td>.device</td>
+<td>定义实现内核识别设备</td>
+</tr>
+<tr>
+<td>mount unit</td>
+<td>.mount</td>
+<td>定义文件系统挂载点，利用logind服务，为用户会话进程分配CGroup资源</td>
+</tr>
+<tr>
+<td>socket unit</td>
+<td>.socket</td>
+<td>定义表示进程间通信的socket文件</td>
+</tr>
+<tr>
+<td>snapshot unit</td>
+<td>.snapshot</td>
+<td>管理系统快照</td>
+</tr>
+<tr>
+<td>swap unit</td>
+<td>.swap</td>
+<td>表示swap设备</td>
+</tr>
+<tr>
+<td>automount unit</td>
+<td>.automount</td>
+<td>文件系统自动挂载设备</td>
+</tr>
+<tr>
+<td>path unit</td>
+<td>.path</td>
+<td>定义文件系统中</td>
+</tr>
+<tr>
+<td>timer unit</td>
+<td>.timer</td>
+<td>定时器配置单元，用来定义触发用户定义的操作，取代了atd，crond等传统定时服务</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Target和运行级别对应关系"><a href="#Target和运行级别对应关系" class="headerlink" title="Target和运行级别对应关系"></a>Target和运行级别对应关系</h5><table>
+<thead>
+<tr>
+<th>Sys V init</th>
+<th>Systemd target</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>poweroff.target</td>
+<td>关机</td>
+</tr>
+<tr>
+<td>1，s，single</td>
+<td>rescue.target</td>
+<td>单用户</td>
+</tr>
+<tr>
+<td>2，4</td>
+<td>multi-user.target</td>
+<td>用户定义，默认等同于3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>multi-user.target</td>
+<td>多用户，非图形化</td>
+</tr>
+<tr>
+<td>5</td>
+<td>graphical.target</td>
+<td>多用户，图形模式</td>
+</tr>
+<tr>
+<td>6</td>
+<td>reboot.target</td>
+<td>重启</td>
+</tr>
+<tr>
+<td>emergency</td>
+<td>emergency.target</td>
+<td>紧急shell</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Systemd并发启动原理"><a href="#Systemd并发启动原理" class="headerlink" title="Systemd并发启动原理"></a>Systemd并发启动原理</h5><ul>
+<li>解决socket依赖</li>
+</ul>
+<p>绝大多数的服务依赖是套接字依赖。比如服务 A 通过一个套接字端口 S1 提供自己的服务，其他的服务如果需要服务 A，则需要连接 S1。因此如果服务 A 尚未启动，S1 就不存在，其他的服务就会得到启动错误。所以传统地，人们需要先启动服务 A，等待它进入就绪状态，再启动其他需要它的服务。Systemd 认为，只要我们预先把 S1 建立好，那么其他所有的服务就可以同时启动而无需等待服务 A 来创建 S1 了。如果服务 A 尚未启动，那么其他进程向 S1 发送的服务请求实际上会被 Linux 操作系统缓存，其他进程会在这个请求的地方等待。一旦服务 A 启动就绪，就可以立即处理缓存的请求，一切都开始正常运行。</p>
+<p>那么服务如何使用由 init 进程创建的套接字呢？Linux 操作系统有一个特性，当进程调用 fork 或者 exec 创建子进程之后，所有在父进程中被打开的文件句柄 (file descriptor) 都被子进程所继承。套接字也是一种文件句柄，进程 A 可以创建一个套接字，此后当进程 A 调用 exec 启动一个新的子进程时，只要确保该套接字的 close_on_exec 标志位被清空，那么新的子进程就可以继承这个套接字。子进程看到的套接字和父进程创建的套接字是同一个系统套接字，就仿佛这个套接字是子进程自己创建的一样，没有任何区别。</p>
+<p>这个特性以前被一个叫做 inetd 的系统服务所利用。Inetd 进程会负责监控一些常用套接字端口，比如 Telnet，当该端口有连接请求时，inetd 才启动 telnetd 进程，并把有连接的套接字传递给新的 telnetd 进程进行处理。这样，当系统没有 telnet 客户端连接时，就不需要启动 telnetd 进程。Inetd 可以代理很多的网络服务，这样就可以节约很多的系统负载和内存资源，只有当有真正的连接请求时才启动相应服务，并把套接字传递给相应的服务进程。</p>
+<p>和 inetd 类似，systemd 是所有其他进程的父进程，它可以先建立所有需要的套接字，然后在调用 exec 的时候将该套接字传递给新的服务进程，而新进程直接使用该套接字进行服务即可。</p>
+<p>###### </p>
+<ul>
+<li>解决D-bus依赖</li>
+</ul>
+<p>D-Bus 是 desktop-bus 的简称，是一个低延迟、低开销、高可用性的进程间通信机制。它越来越多地用于应用程序之间通信，也用于应用程序和操作系统内核之间的通信。很多现代的服务进程都使用D-Bus 取代套接字作为进程间通信机制，对外提供服务。比如简化 Linux 网络配置的 NetworkManager 服务就使用 D-Bus 和其他的应用程序或者服务进行交互：邮件客户端软件 evolution 可以通过 D-Bus 从 NetworkManager 服务获取网络状态的改变，以便做出相应的处理。</p>
+<p>D-Bus 支持所谓”bus activation”功能。如果服务 A 需要使用服务 B 的 D-Bus 服务，而服务 B 并没有运行，则 D-Bus 可以在服务 A 请求服务 B 的 D-Bus 时自动启动服务 B。而服务 A 发出的请求会被 D-Bus 缓存，服务 A 会等待服务 B 启动就绪。利用这个特性，依赖 D-Bus 的服务就可以实现并行启动。</p>
+<ul>
+<li>解决文件系统依赖</li>
+</ul>
+<p>系统启动过程中，文件系统相关的活动是最耗时的，比如挂载文件系统，对文件系统进行磁盘检查（fsck），磁盘配额检查等都是非常耗时的操作。在等待这些工作完成的同时，系统处于空闲状态。那些想使用文件系统的服务似乎必须等待文件系统初始化完成才可以启动。但是 systemd 发现这种依赖也是可以避免的。</p>
+<p>Systemd 参考了 autofs 的设计思路，使得依赖文件系统的服务和文件系统本身初始化两者可以并发工作。autofs 可以监测到某个文件系统挂载点真正被访问到的时候才触发挂载操作，这是通过内核 automounter 模块的支持而实现的。比如一个 open()系统调用作用在”/misc/cd/file1”的时候，/misc/cd 尚未执行挂载操作，此时 open()调用被挂起等待，Linux 内核通知 autofs，autofs 执行挂载。这时候，控制权返回给 open()系统调用，并正常打开文件。</p>
+<p>Systemd 集成了 autofs 的实现，对于系统中的挂载点，比如/home，当系统启动的时候，systemd 为其创建一个临时的自动挂载点。在这个时刻/home 真正的挂载设备尚未启动好，真正的挂载操作还没有执行，文件系统检测也还没有完成。可是那些依赖该目录的进程已经可以并发启动，他们的 open()操作被内建在 systemd 中的 autofs 捕获，将该 open()调用挂起（可中断睡眠状态）。然后等待真正的挂载操作完成，文件系统检测也完成后，systemd 将该自动挂载点替换为真正的挂载点，并让 open()调用返回。由此，实现了那些依赖于文件系统的服务和文件系统本身同时并发启动。</p>
+<p>当然对于”/“根目录的依赖实际上一定还是要串行执行，因为 systemd 自己也存放在/之下，必须等待系统根目录挂载检查好。</p>
+<p>不过对于类似/home 等挂载点，这种并发可以提高系统的启动速度，尤其是当/home 是远程的 NFS 节点，或者是加密盘等，需要耗费较长的时间才可以准备就绪的情况下，因为并发启动，这段时间内，系统并不是完全无事可做，而是可以利用这段空余时间做更多的启动进程的事情，总的来说就缩短了系统启动时间</p>
+<ul>
+<li>服务的循环依赖</li>
+</ul>
+<p>Systemd 能保证事务完整性。Systemd 的事务概念和数据库中的有所不同，主要是为了保证多个依赖的配置单元之间没有环形引用，存在循环依赖，那么 systemd 将无法启动任意一个服务。此时 systemd 将会尝试解决这个问题，因为配置单元之间的依赖关系有两种：required 是强依赖；want 则是弱依赖，systemd 将去掉 wants 关键字指定的依赖看看是否能打破循环。如果无法修复，systemd 会报错。Systemd 能够自动检测和修复这类配置错误，极大地减轻了管理员的排错负担</p>
+<ul>
+<li>基于path激活机制</li>
+</ul>
+<p>判断一个文件在不在， 如果在可以立即激活一个进程或服务</p>
+<h5 id="System-V-init-和-Systemd命令对比"><a href="#System-V-init-和-Systemd命令对比" class="headerlink" title="System V init 和 Systemd命令对比"></a>System V init 和 Systemd命令对比</h5><table>
+<thead>
+<tr>
+<th>Sys V init</th>
+<th>Systemd</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>service NAME start</td>
+<td>systemtl start NAME.service</td>
+<td>启动</td>
+</tr>
+<tr>
+<td>service NAME stop</td>
+<td>systemctl stop NAME.service</td>
+<td>停止</td>
+</tr>
+<tr>
+<td>service NAME restart</td>
+<td>systemctl restart NAME.service</td>
+<td>重启</td>
+</tr>
+<tr>
+<td>service NAME status</td>
+<td>systemtl status NAME.service</td>
+<td>查看状态</td>
+</tr>
+<tr>
+<td>service NAME condrestart</td>
+<td>systemctl condrestart NAME.service</td>
+<td>条件重启</td>
+</tr>
+<tr>
+<td>service NAME reload</td>
+<td>systemctl reload NAME.service</td>
+<td>重载</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>systemctl is-active NAME.service</td>
+<td>查看服务当前激活状态</td>
+</tr>
+<tr>
+<td>chkconfig –list</td>
+<td>systemctl list-units -t service</td>
+<td>查看所有已激活服务</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>systemctl list-units -t service -a</td>
+<td>查看所有服务(包括未激活)</td>
+</tr>
+<tr>
+<td>chkconfig NAME on</td>
+<td>systemctl enable NAME.service</td>
+<td>设置开机启动</td>
+</tr>
+<tr>
+<td>chkconfig NAME off</td>
+<td>systemctl disable NAME.service</td>
+<td>禁止开机启动</td>
+</tr>
+<tr>
+<td>chkconfig –list NAME</td>
+<td>systemctl is-enabled NAME.service</td>
+<td>查看服务是否开机启动</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>systemctl mask NAME.service</td>
+<td>禁止服务设置开机启动</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>systemctl unmask NAME.service</td>
+<td>取消禁止服务设置开机启动</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>systemctl list-dependencies NAME.service</td>
+<td>查看服务依赖关系</td>
+</tr>
+<tr>
+<td>修改/etc/inittab文件</td>
+<td>systemctl set-default NAME.target</td>
+<td>修改默认运行级别</td>
+</tr>
+<tr>
+<td>init RUNLEVEL</td>
+<td>systemctl isolate NAME.target</td>
+<td>切换系统运行级别</td>
+</tr>
+<tr>
+<td>runlevel，who -r</td>
+<td>systemctl get-default</td>
+<td>查看运行级别</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Systemd-电源管理"><a href="#Systemd-电源管理" class="headerlink" title="Systemd 电源管理"></a>Systemd 电源管理</h5><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>systemctl reboot</td>
+<td>重启</td>
+</tr>
+<tr>
+<td>systemctl poweroff</td>
+<td>关机</td>
+</tr>
+<tr>
+<td>systemctl suspend</td>
+<td>挂起</td>
+</tr>
+<tr>
+<td>systemctl hibernate</td>
+<td>休眠</td>
+</tr>
+<tr>
+<td>systemctl hybrid</td>
+<td>混合休眠模块（快照并挂起）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Service-unit-file配置说明"><a href="#Service-unit-file配置说明" class="headerlink" title="Service unit file配置说明"></a>Service unit file配置说明</h4><p>Systemd的相关配置文件路径</p>
+<p><code>/etc/lib/systemd/system</code></p>
+<p><code>/run/systemd/system</code></p>
+<p><code>/etc/systemd/system</code></p>
+<p>文件通常由三个部分组成</p>
+<p><code>[Unit]</code>：    定义与unit类型无关的通用选项，用于提供当前unit描述信息，unit行为以及依赖关系等</p>
+<p><code>[Service]</code>：定义与此处类型相关的专用选项，此类为service类型</p>
+<p><code>[Install]</code>：定义由<code>systemctl enable</code>或者<code>systemtl disable</code>命令在实现服务启动或禁止用到的选项</p>
+<h5 id="Unit-常用选项"><a href="#Unit-常用选项" class="headerlink" title="Unit 常用选项"></a>Unit 常用选项</h5><p><code>Description</code>：    描述信。</p>
+<p><code>After</code>：        定义unit的启动次数，表示当前unit应该晚于哪些unit启动，功能和before相反</p>
+<p><code>Requies</code>：        依赖到其他units，强依赖，被依赖的units无法激活时，当前unit即无法激活</p>
+<p><code>Wants</code>：        指明依赖到其他的units，弱依赖，依赖的units无法激活时，当前unit无影响</p>
+<p><code>Conflicts</code>：    定义units见的冲突关系</p>
+<h5 id="Service-常用选项"><a href="#Service-常用选项" class="headerlink" title="Service 常用选项"></a>Service 常用选项</h5><p><code>Type</code>：        用于定义影<code>execstart</code>及相关参数的功能的unit进程启动</p>
+<p><code>Simple</code>：        由<code>execstart</code>启动的命令为主进程</p>
+<p><code>Forking</code>：        由<code>execstart</code>启动的命令，其中一个子进程会成为主进程，父进程会退出</p>
+<p><code>onehot</code>：        功能类似<code>simple dubs</code></p>
+<p><code>notify</code>：        类似于<code>simple idle</code></p>
+<p><code>environmentfile</code>：    启动时环境配置文件，为<code>execstart</code>提供变量</p>
+<p><code>execstart</code>：    指明启动unit要运行的命令或脚本，<code>execstartpre</code>，<code>execstartpost</code></p>
+<p><code>execreload</code>：    指明重载unit要运行的命令或脚本</p>
+<p><code>execstop</code>：    指明要停止units要运行的命令或脚本</p>
+<p><code>restart</code>：        指明要重启units要运行命令或脚本</p>
+<h5 id="Install-常用选项"><a href="#Install-常用选项" class="headerlink" title="Install 常用选项"></a>Install 常用选项</h5><p><code>alias</code>：</p>
+<p><code>requireby</code>：    被那些units所依赖，强依赖</p>
+<p><code>wantsby</code>：        被那些units所依赖，弱依赖</p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>当对新创建的unit文件或修改了unit文件，都需要重载配置文件</p>
+<p><code>systemctl daemon-reload</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>看完了?赏个鸡腿钱,谢谢老板!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Zandy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Zandy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Systemd/" rel="tag"># Systemd</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/03/MongoDB/" rel="next" title="MongoDB">
+                <i class="fa fa-chevron-left"></i> MongoDB
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/05/Nginx-uWSGI-Django/" rel="prev" title="Nginx-uWSGI-Django">
+                Nginx-uWSGI-Django <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Zandy">
+            
+              <p class="site-author-name" itemprop="name">Zandy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhuxyid" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhuxyid@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope-o"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/nihaozhuxy" target="_blank" title="WeiBo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>WeiBo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/zhuxyid" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhige.me/" title="211志哥" target="_blank">211志哥</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://haobing.wang/" title="上海黄牛浩兵" target="_blank">上海黄牛浩兵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://weibo.com/u/1729104997" title="河西最美敏爷" target="_blank">河西最美敏爷</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bidianer.com/" title="未来首富严颖" target="_blank">未来首富严颖</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.yuhang.tech/" title="未来阿里CTO_大眼" target="_blank">未来阿里CTO_大眼</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Systemd"><span class="nav-number">1.</span> <span class="nav-text">Systemd</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#System-V介绍"><span class="nav-number">1.1.</span> <span class="nav-text">System V介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#System-V基本工具"><span class="nav-number">1.2.</span> <span class="nav-text">System V基本工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Systemd介绍"><span class="nav-number">1.3.</span> <span class="nav-text">Systemd介绍</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Systemd特点"><span class="nav-number">2.</span> <span class="nav-text">Systemd特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点说明："><span class="nav-number">2.1.</span> <span class="nav-text">特点说明：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Systemd基本概念"><span class="nav-number">3.</span> <span class="nav-text">Systemd基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Systemd单元概念"><span class="nav-number">3.1.</span> <span class="nav-text">Systemd单元概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置单元常见类型"><span class="nav-number">3.2.</span> <span class="nav-text">配置单元常见类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Target和运行级别对应关系"><span class="nav-number">3.3.</span> <span class="nav-text">Target和运行级别对应关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Systemd并发启动原理"><span class="nav-number">3.4.</span> <span class="nav-text">Systemd并发启动原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#System-V-init-和-Systemd命令对比"><span class="nav-number">3.5.</span> <span class="nav-text">System V init 和 Systemd命令对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Systemd-电源管理"><span class="nav-number">3.6.</span> <span class="nav-text">Systemd 电源管理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-unit-file配置说明"><span class="nav-number">4.</span> <span class="nav-text">Service unit file配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Unit-常用选项"><span class="nav-number">4.1.</span> <span class="nav-text">Unit 常用选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Service-常用选项"><span class="nav-number">4.2.</span> <span class="nav-text">Service 常用选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Install-常用选项"><span class="nav-number">4.3.</span> <span class="nav-text">Install 常用选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意："><span class="nav-number">4.4.</span> <span class="nav-text">注意：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zandy</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://英雄.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.zhuxyid.com/2018/12/05/Systemd/';
+          this.page.identifier = '2018/12/05/Systemd/';
+          this.page.title = 'Systemd';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://英雄.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
