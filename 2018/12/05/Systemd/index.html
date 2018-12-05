@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T08:36:00.641Z">
+<meta property="og:updated_time" content="2018-12-05T08:39:38.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Systemd">
 <meta name="twitter:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
@@ -426,37 +426,37 @@
 <thead>
 <tr>
 <th>级别</th>
-<th>说明</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
-<td>关机状态，默认系统启动级别不能设置0，否则不能正常启动</td>
+<td style="text-align:left">关机状态，默认系统启动级别不能设置0，否则不能正常启动</td>
 </tr>
 <tr>
 <td>1</td>
-<td>单用户，无网络，用于系统维护，类似windows下的安全模式</td>
+<td style="text-align:left">单用户，无网络，用于系统维护，类似windows下的安全模式</td>
 </tr>
 <tr>
 <td>2</td>
-<td>多用户</td>
+<td style="text-align:left">多用户</td>
 </tr>
 <tr>
 <td>3</td>
-<td>完整多用户模式。</td>
+<td style="text-align:left">完整多用户模式。</td>
 </tr>
 <tr>
 <td>4</td>
-<td>自定义，通常保留不用</td>
+<td style="text-align:left">自定义，通常保留不用</td>
 </tr>
 <tr>
 <td>5</td>
-<td>图形模式，如果系统有安装GUI软件，XWindows会进入图形模式</td>
+<td style="text-align:left">图形模式，如果系统有安装GUI软件，XWindows会进入图形模式</td>
 </tr>
 <tr>
 <td>6</td>
-<td>重启系统，默认系统启动级别也不能设置6，否则不能正常启动</td>
+<td style="text-align:left">重启系统，默认系统启动级别也不能设置6，否则不能正常启动</td>
 </tr>
 </tbody>
 </table>
@@ -467,7 +467,7 @@
 <p>rc3目录下存放两种文件，一种S开头：表示启动服务，一种K开头：表示禁止服务，字母后面的数字表示启动顺序，按小到大执行</p>
 </blockquote>
 <h5 id="System-V基本工具"><a href="#System-V基本工具" class="headerlink" title="System V基本工具"></a>System V基本工具</h5><p>System V主要用<code>chkconfig</code>,<code>service</code>,命令管理服务，在使用命令前需要将相应服务脚本放在/etc/init.d目录下。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>chekconfig格式</span><br><span class="line">chkconfig --add | --del | --list | --level &lt;levelnum&gt; &lt;servicename&gt; &lt;on|off|reset&gt; | &lt;servicename&gt;</span><br><span class="line"><span class="meta">#</span>实例:</span><br><span class="line">chkconfig --add httpd			#添加httpd服务</span><br><span class="line">chkconfig --list				#查看所有服务的启动级别</span><br><span class="line">chkconfig --del httpd			#删除httpd服务</span><br><span class="line">chkconfig --level 35 httpd on	#将httpd服务运行在3,5级别模式下，下次开机后生效</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>service格式</span><br><span class="line">service &lt;servicename&gt; start|stop|restart</span><br><span class="line"><span class="meta">#</span>实例</span><br><span class="line">service httpd start</span><br><span class="line">service httpd stop</span><br><span class="line">service httpd restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果需要修改启动优先级可以使用如下方法</span><br><span class="line">ln -s /etc/init.d/httpd /etc/rc.d/rc3.d/S60httpd	#将httpd服务在init3级别下的开机启动优先级为60，值越大启动顺序越低</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在ubuntu下可使用update-rc.d命令</span><br><span class="line">update-rc.d -f httpd remove</span><br><span class="line">update-rc.d httpd start 2 3 5 . stop 60 0 1 6 .</span><br><span class="line"><span class="meta">#</span>在235级别启动，优先级016级别关闭，优先级60，值越大启动顺序越低</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>chekconfig格式</span><br><span class="line">chkconfig --add | --del | --list | --level &lt;levelnum&gt; &lt;servicename&gt; &lt;on|off|reset&gt; | &lt;servicename&gt;</span><br><span class="line"><span class="meta">#</span>实例:</span><br><span class="line">chkconfig --add httpd			#添加httpd服务</span><br><span class="line">chkconfig --list			#查看所有服务的启动级别</span><br><span class="line">chkconfig --del httpd			#删除httpd服务</span><br><span class="line">chkconfig --level 35 httpd on		#将httpd服务运行在3,5级别模式下，下次开机后生效</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>service格式</span><br><span class="line">service &lt;servicename&gt; start|stop|restart</span><br><span class="line"><span class="meta">#</span>实例</span><br><span class="line">service httpd start</span><br><span class="line">service httpd stop</span><br><span class="line">service httpd restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果需要修改启动优先级可以使用如下方法</span><br><span class="line">ln -s /etc/init.d/httpd /etc/rc.d/rc3.d/S60httpd	</span><br><span class="line"><span class="meta">#</span>将httpd服务在init3级别下的开机启动优先级为60，值越大启动顺序越低</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在ubuntu下可使用update-rc.d命令</span><br><span class="line">update-rc.d -f httpd remove</span><br><span class="line">update-rc.d httpd start 2 3 5 . stop 60 0 1 6 .</span><br><span class="line"><span class="meta">#</span>在235级别启动，优先级016级别关闭，优先级60，值越大启动顺序越低</span><br></pre></td></tr></table></figure>
 <h5 id="Systemd介绍"><a href="#Systemd介绍" class="headerlink" title="Systemd介绍"></a>Systemd介绍</h5><p>Systemd是Linux最新的初始化系统。取代了之前Unix时代一直使用的init系统，兼容Syst V init 和 LSB  init script，而且在进程启动过程中更有效的引导加载服务。</p>
 <p>在Systemd管理体系中，老的<code>运行级别(runlevel)</code>的概念被新的    <code>运行目标(target)</code> 所取代。</p>
 <p><code>target</code>命名类似<code>multi-user.targe</code>t这种形式。</p>
