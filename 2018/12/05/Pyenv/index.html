@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Pyenv通常在我们所使用的系统上，如Linux或者macOS上Python默认版本是2.x。如果想让系统保持原有Python的又想使用新版本怎么办？ Pyenv就是一个Python版本管理器，使多个Python版本共存。 Pyenv项目地址 Pyenv工作原理其实就是利用系统的环境变量，PATH优先级。根据用户所在环境或者目录，使用不同版本的Python。 Pyenv作用：自动安装python解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T16:02:03.620Z">
+<meta property="og:updated_time" content="2018-12-06T01:54:44.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pyenv+ipython+Jupyter">
 <meta name="twitter:description" content="Pyenv通常在我们所使用的系统上，如Linux或者macOS上Python默认版本是2.x。如果想让系统保持原有Python的又想使用新版本怎么办？ Pyenv就是一个Python版本管理器，使多个Python版本共存。 Pyenv项目地址 Pyenv工作原理其实就是利用系统的环境变量，PATH优先级。根据用户所在环境或者目录，使用不同版本的Python。 Pyenv作用：自动安装python解">
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  819
+                  1.9k
                 </span>
               
 
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  7
                 </span>
               
             </div>
@@ -469,6 +469,33 @@
 <p>trusted-host = mirrors.aliyun.com</p>
 </blockquote>
 <h5 id="安装Ipython"><a href="#安装Ipython" class="headerlink" title="安装Ipython"></a>安装Ipython</h5><p>安装Ipython很简单，只需要执行<code>pip install ipython</code>即可安装ipython。</p>
+<h4 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h4><p>Jupyter是一个开源web应用服务器，允许创建包含实时的代码，方程式，可视化，支持40多种语言如（Python，R等），支持分享笔记，互动输出，主要作用就是方便学习，如：数值模拟，数据可视化，统计建模，机器学习等。</p>
+<h5 id="安装Jupyter"><a href="#安装Jupyter" class="headerlink" title="安装Jupyter"></a>安装Jupyter</h5><p><code>pip install jupyter</code></p>
+<p>这里我们使用jupyter向后台的Ipython的服务器发送请求，并显示结果，在浏览器的界面中使用单元Cell保存各种信息。Cell有多种类型，经常使用的有表示格式化文本的Markdown单元，和表示代码的Code单元。需要安装MarkDown使用：<code>pip install markdown</code></p>
+<h5 id="启动jupyter"><a href="#启动jupyter" class="headerlink" title="启动jupyter"></a>启动jupyter</h5><p><code>jupyter notebook</code></p>
+<blockquote>
+<p>从命令行启动notebook服务器，启动后可使用<a href="http://localhost:8888访问，需要输入token，退出使用`ctrl+c`" target="_blank" rel="noopener">http://localhost:8888访问，需要输入token，退出使用`ctrl+c`</a></p>
+</blockquote>
+<p><code>jupyter notebook project.ipynb</code></p>
+<blockquote>
+<p>启动project.ipynb笔记本</p>
+</blockquote>
+<p><code>jupyter notebook --port 8000</code>        </p>
+<blockquote>
+<p>以8000端口启动notebook</p>
+</blockquote>
+<p><code>jupyter notebook --no-browser</code>    </p>
+<blockquote>
+<p>无需打开web游览器启动notebook</p>
+</blockquote>
+<p><code>jupyter notebook --ip=0.0.0.0 --port 80 --no-browser</code></p>
+<blockquote>
+<p>绑定本地所有接口使用80端口启动notebook</p>
+</blockquote>
+<p>部署完成后就可以使用游览器与Ipython进行交互啦，</p>
+<h5 id="Jupyterk-notebook快捷键"><a href="#Jupyterk-notebook快捷键" class="headerlink" title="Jupyterk notebook快捷键"></a>Jupyterk notebook快捷键</h5><p>编辑模式：允许输入代码/文本到单元格，通过绿色单元格表示</p>
+<p>命令模式：结合系统的版本，如果是Linux可使用VI，并通过灰色单元格带有蓝色左边距</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">#命令模式，按ESC</span><br><span class="line">F:              #查找和替换</span><br><span class="line">Ctrl-Shift-P:   #打开命令面板</span><br><span class="line">Enter:          #进入【编辑模式】</span><br><span class="line">Shift-Enter:    #运行(当前)单元，选中下一单元 #Tips：cell 单元(就指每一行的语句)</span><br><span class="line">Ctrl-Enter:     #仅运行(当前)单元</span><br><span class="line">Alt-Enter:      #运行(当前)单元，在下面插入一单元</span><br><span class="line">Y:              #单元转入代码状态(Code)</span><br><span class="line">M:              #单元转入标记状态(markdown)</span><br><span class="line">R:              #单元转入原始状态（raw）</span><br><span class="line">1:              #设定 1 级标题 #Tips：数值越大字体越小</span><br><span class="line">2:              #设定 2 级标题</span><br><span class="line">3:              #设定 3 级标题</span><br><span class="line">4:              #设定 4 级标题</span><br><span class="line">5:              #设定 5 级标题</span><br><span class="line">6:              #设定 6 级标题</span><br><span class="line">K:              #选择单元以上 #Tips：类似VIM里面命令模式下的“k”功能</span><br><span class="line">Up:             #同上</span><br><span class="line">Down:           #选择单元以下 #Tips：类似VIM里面命令模式下的“j”功能</span><br><span class="line">J:              #同上</span><br><span class="line">Shift-K:        #扩展选择单元以上(选择多行）</span><br><span class="line">Shift-Up:       #同上</span><br><span class="line">Shift-Down:     #扩展选择单元以下(选择多行）</span><br><span class="line">Shift-J:        #同上</span><br><span class="line">A:              #向(当前单元位置）上插入一个单元</span><br><span class="line">B:              #向(当前单元位置）下插入一个单元</span><br><span class="line">X:              #剪切所选择的单元</span><br><span class="line">C:              #复制所选择的单元</span><br><span class="line">Shift-V:        #粘贴所选择的单元到(当前单元位置）上面</span><br><span class="line">V:              #粘贴所选择的单元到(当前单元位置）下面</span><br><span class="line">Z:              #撤销一次单元的删除动作</span><br><span class="line">D,D:            #删除一个单元(配合shift-K or UP、shift-J or Donw可以删除多行）</span><br><span class="line">Shift-M:        #合并选中的行</span><br><span class="line">Ctrl-S:         #文件存盘</span><br><span class="line">S:              #文件存盘</span><br><span class="line">L:              #显示当前单元的【行号】</span><br><span class="line">O:              #转换（折叠）输出</span><br><span class="line">Shift-O:        #转换输出为有滚动条的</span><br><span class="line">H:              #查看快捷键的帮助信息</span><br><span class="line">I,I:            #中断Notebook内核</span><br><span class="line">0,0:            #重启Notebook内核</span><br><span class="line">Esc:            #关闭页面</span><br><span class="line">Q:              #关闭页面</span><br><span class="line">Shift-Space:    #向上回滚内容</span><br><span class="line">Space:          #向下回滚内容</span><br><span class="line"></span><br><span class="line">#编辑模式，按Enter</span><br><span class="line">Tab:            #代码缩进，【代码补全】</span><br><span class="line">Shift-Tab:      #向前缩进，显示提示信息</span><br><span class="line">Ctrl-]:         #缩进</span><br><span class="line">Ctrl-[:         #恢复缩进</span><br><span class="line">Ctrl-A:         #选择全部</span><br><span class="line">Ctrl-Z:         #撤销</span><br><span class="line">Ctrl-Shift-Z:   #恢复撤销</span><br><span class="line">Ctrl-Y:         #同上</span><br><span class="line">Ctrl-Home:      #移动光标到单元开头</span><br><span class="line">Ctrl-Up:        #移动光标上移一次(行) #Tips：多行的时候使用一次仅移动一行</span><br><span class="line">Ctrl-End:       #移动光标到单元结尾</span><br><span class="line">Ctrl-Down:      #移动光标下移一次(行)</span><br><span class="line">Ctrl-Left:      #向左移动一个单词</span><br><span class="line">Ctrl-Right:     #向右移动一个单词</span><br><span class="line">Ctrl-Backspace: #删除当前光标位置之前的单词</span><br><span class="line">Ctrl-Delete:    #删除当前光标位置之后的单词</span><br><span class="line">Ctrl-M:         #进入命令(Command Mode)模式</span><br><span class="line">Ctrl-Shift-P:   #打开命令面板（和命令模式一样）</span><br><span class="line">Esc:            #进入命令(Command Mode)模式</span><br><span class="line">Shift-Enter:    #运行单元内容，选择下一单元</span><br><span class="line">Ctrl-Enter:     #仅运行(当前)单元内容</span><br><span class="line">Alt-Enter:      #运行(当前)单元内容，插入一个新单元</span><br><span class="line">Ctrl-Shift-Minus:  #水平分割当前单元内容为新单元 #Tips:Minus =（减号&quot;-&quot;分隔符） Ctrl-Shift-“-”</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -744,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pyenv"><span class="nav-number">1.</span> <span class="nav-text">Pyenv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署Pyenv"><span class="nav-number">2.</span> <span class="nav-text">部署Pyenv</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Pyenv参数说明"><span class="nav-number">2.1.</span> <span class="nav-text">Pyenv参数说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Python3-5-2"><span class="nav-number">2.2.</span> <span class="nav-text">安装Python3.5.2</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ipython"><span class="nav-number">3.</span> <span class="nav-text">Ipython</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Ipython"><span class="nav-number">3.1.</span> <span class="nav-text">安装Ipython</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pyenv"><span class="nav-number">1.</span> <span class="nav-text">Pyenv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署Pyenv"><span class="nav-number">2.</span> <span class="nav-text">部署Pyenv</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Pyenv参数说明"><span class="nav-number">2.1.</span> <span class="nav-text">Pyenv参数说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Python3-5-2"><span class="nav-number">2.2.</span> <span class="nav-text">安装Python3.5.2</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ipython"><span class="nav-number">3.</span> <span class="nav-text">Ipython</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Ipython"><span class="nav-number">3.1.</span> <span class="nav-text">安装Ipython</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jupyter"><span class="nav-number">4.</span> <span class="nav-text">Jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Jupyter"><span class="nav-number">4.1.</span> <span class="nav-text">安装Jupyter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动jupyter"><span class="nav-number">4.2.</span> <span class="nav-text">启动jupyter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Jupyterk-notebook快捷键"><span class="nav-number">4.3.</span> <span class="nav-text">Jupyterk notebook快捷键</span></a></li></ol></li></ol></div>
             
 
           </div>
