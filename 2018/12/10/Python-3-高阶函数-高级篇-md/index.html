@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="高阶函数">
+<meta name="description" content="高阶函数函数返回参数或者参数是函数，这类函数就是高阶函数 12345678910def counter(i):	base = i	def inc(x=1):	    nonlocal base	    base += x	    return base	return incinc = counter(3)inc(3)">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-3.高阶函数(高级篇).md">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/10/Python-3-高阶函数-高级篇-md/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
-<meta property="og:description" content="高阶函数">
+<meta property="og:description" content="高阶函数函数返回参数或者参数是函数，这类函数就是高阶函数 12345678910def counter(i):	base = i	def inc(x=1):	    nonlocal base	    base += x	    return base	return incinc = counter(3)inc(3)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog.zhuxyid.com/images/python/python.jpeg">
-<meta property="og:updated_time" content="2018-12-10T14:40:45.261Z">
+<meta property="og:updated_time" content="2018-12-10T14:43:24.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-3.高阶函数(高级篇).md">
-<meta name="twitter:description" content="高阶函数">
+<meta name="twitter:description" content="高阶函数函数返回参数或者参数是函数，这类函数就是高阶函数 12345678910def counter(i):	base = i	def inc(x=1):	    nonlocal base	    base += x	    return base	return incinc = counter(3)inc(3)">
 <meta name="twitter:image" content="https://blog.zhuxyid.com/images/python/python.jpeg">
 
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4
+                  48
                 </span>
               
 
@@ -447,7 +447,9 @@
       
 
       
-        <h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4>
+        <h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p>函数返回参数或者参数是函数，这类函数就是高阶函数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def counter(i):</span><br><span class="line">	base = i</span><br><span class="line">	def inc(x=1):</span><br><span class="line">	    nonlocal base</span><br><span class="line">	    base += x</span><br><span class="line">	    return base</span><br><span class="line">	return inc</span><br><span class="line"></span><br><span class="line">inc = counter(3)</span><br><span class="line">inc(3)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
