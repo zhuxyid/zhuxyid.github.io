@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式 行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强 实例： &amp;lt;p style=&amp;quot">
+<meta name="description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式#####行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强  实例： &amp;lt;p style=">
 <meta name="keywords" content="HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML-2.DIV+CSS">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/12/HTML-2-DIV-CSS/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
-<meta property="og:description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式 行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强 实例： &amp;lt;p style=&amp;quot">
+<meta property="og:description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式#####行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强  实例： &amp;lt;p style=">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T03:23:32.539Z">
+<meta property="og:updated_time" content="2018-12-12T04:33:19.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML-2.DIV+CSS">
-<meta name="twitter:description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式 行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强 实例： &amp;lt;p style=&amp;quot">
+<meta name="twitter:description" content="CSS （Cascading Style Sheets）层叠样式表。用于控制网页数据的表现，实现网页的表现与数据内容分离 通过（标签选择器）找到标签。 通过（element）操作标签对象。  CSS引入方式#####行内式  行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用 CSS很多的时候，如果全写在行内的话，耦合性过强  实例： &amp;lt;p style=">
 
 
 
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.6k
+                  1.5k
                 </span>
               
 
@@ -436,48 +436,45 @@
 <p>通过（标签选择器）找到标签。</p>
 <p>通过（element）操作标签对象。</p>
 </blockquote>
-<h4 id="CSS引入方式"><a href="#CSS引入方式" class="headerlink" title="CSS引入方式"></a>CSS引入方式</h4><blockquote>
-<p>行内式</p>
+<h4 id="CSS引入方式"><a href="#CSS引入方式" class="headerlink" title="CSS引入方式"></a>CSS引入方式</h4><p>#####行内式</p>
 <blockquote>
 <p>行内式是标记的style属性中设定的css样式，这种方式没有体现出CSS优势，不推荐使用</p>
 <p>CSS很多的时候，如果全写在行内的话，耦合性过强</p>
+</blockquote>
 <p>实例：</p>
 <p><code>&lt;p style=&quot;background-color:red&quot;&gt;this is p title&lt;/p&gt;</code></p>
-</blockquote>
-<p>导入式</p>
-<blockquote>
+<h5 id="导入式"><a href="#导入式" class="headerlink" title="导入式"></a>导入式</h5><blockquote>
 <p>在其他文件写好CSS文件，然后使用<code>@import</code>导入样式。</p>
 <p>导入式属于CSS代码范畴，数量有限制，有顺序，从上往下，如果文件大，则导入慢。通常用的也不多</p>
+</blockquote>
 <p>实例：</p>
-<p>新建test.css文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; h1 &#123;</span><br><span class="line">&gt; &gt;     background-color: red;</span><br><span class="line">&gt; &gt;     color:white;</span><br><span class="line">&gt; &gt;     font-size:2px</span><br><span class="line">&gt; &gt; &#125;</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</blockquote>
 <blockquote>
-<blockquote>
-<p>在<code>&lt;head&gt;</code>标签中导入</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt;     <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">@import "/path/test.css";</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt; 	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>this is h1 title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>新建test.css文件</li>
+</ol>
 </blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    color:white;</span><br><span class="line">    font-size:2px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="2">
+<li>在<code>&lt;head&gt;</code>标签中导入</li>
+</ol>
 </blockquote>
-<blockquote>
-<p>链接式</p>
-<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">@import "/path/test.css";</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>this is h1 title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="链接式"><a href="#链接式" class="headerlink" title="链接式"></a>链接式</h5><blockquote>
 <p>类似导入式，在<code>&lt;head&gt;</code>中使用<code>&lt;link&gt;</code>引入样式</p>
 <p>链接式属于HTML代码范畴，不限引入次数，通常用于第三方css样式</p>
+</blockquote>
 <p>实例：</p>
+<blockquote>
 <p>新建test.css文件</p>
 <p>在<code>&lt;head&gt;</code>中引入</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt;     <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/path/test.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt;     <span class="tag">&lt;<span class="name">h1</span>&gt;</span>this is h1 title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt; #href指定css路径，rel告知游览器是个css文件stylesheet层叠样式</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-</blockquote>
-<blockquote>
-<p>嵌入式</p>
-<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/path/test.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>this is h1 title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">#href指定css路径，rel告知游览器是个css文件stylesheet层叠样式</span><br></pre></td></tr></table></figure>
+<h5 id="嵌入式"><a href="#嵌入式" class="headerlink" title="嵌入式"></a>嵌入式</h5><blockquote>
 <p>嵌入式就是将css样式集中写在网页中的<code>&lt;head&gt;</code>标签下</p>
+</blockquote>
 <p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt;     p&#123;</span><br><span class="line">&gt; &gt;     	background-color: red;</span><br><span class="line">&gt; &gt;     	color: green;</span><br><span class="line">&gt; &gt;     	font-size: 40px;</span><br><span class="line">&gt; &gt;     &#125;</span><br><span class="line">&gt; &gt;     a&#123;</span><br><span class="line">&gt; &gt;     	text-decoration: none;</span><br><span class="line">&gt; &gt;     &#125;</span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt;     <span class="tag">&lt;<span class="name">p</span>&gt;</span>this is p tilte<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&gt; &gt;     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.zhuxyid.com"</span>&gt;</span>zhuxyid<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&gt; &gt; <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    p&#123;</span><br><span class="line">    	background-color: red;</span><br><span class="line">    	color: green;</span><br><span class="line">    	font-size: 40px;</span><br><span class="line">    &#125;</span><br><span class="line">    a&#123;</span><br><span class="line">    	text-decoration: none;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>this is p tilte<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.zhuxyid.com"</span>&gt;</span>zhuxyid<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h4><blockquote>
 <p>css选择器（selector）</p>
 <p>选择器指明{ } 中的“样式”作用对象，也就是”样式”作用于网页中的那些元素</p>
@@ -786,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS"><span class="nav-number">1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS引入方式"><span class="nav-number">2.</span> <span class="nav-text">CSS引入方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS选择器"><span class="nav-number">3.</span> <span class="nav-text">CSS选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组合选择器"><span class="nav-number">3.2.</span> <span class="nav-text">组合选择器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS"><span class="nav-number">1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS引入方式"><span class="nav-number">2.</span> <span class="nav-text">CSS引入方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#导入式"><span class="nav-number">2.1.</span> <span class="nav-text">导入式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#链接式"><span class="nav-number">2.2.</span> <span class="nav-text">链接式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#嵌入式"><span class="nav-number">2.3.</span> <span class="nav-text">嵌入式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS选择器"><span class="nav-number">3.</span> <span class="nav-text">CSS选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组合选择器"><span class="nav-number">3.2.</span> <span class="nav-text">组合选择器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li></ol></li></ol></div>
             
 
           </div>
