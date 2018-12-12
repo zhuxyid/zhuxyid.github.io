@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="前言： 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 123456789101112131415161718192">
+<meta name="description" content="前言 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 1234567891011121314151617181920">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-2.函数(进阶篇)">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/07/Python-2.函数(进阶篇)/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
-<meta property="og:description" content="前言： 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 123456789101112131415161718192">
+<meta property="og:description" content="前言 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 1234567891011121314151617181920">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog.zhuxyid.com/images/python/python.jpeg">
-<meta property="og:updated_time" content="2018-12-11T06:53:44.635Z">
+<meta property="og:updated_time" content="2018-12-12T03:26:33.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-2.函数(进阶篇)">
-<meta name="twitter:description" content="前言： 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 123456789101112131415161718192">
+<meta name="twitter:description" content="前言 上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念 这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器 下节课说下高阶函数和装饰器  闭包很多无编程基础的小伙伴在刚学python时，说到闭包概念就开始晕(包括我)，从而搞不懂后面的高阶函数，装饰圈等概念。 看看下面写的内容希望有帮助。 1234567891011121314151617181920">
 <meta name="twitter:image" content="https://blog.zhuxyid.com/images/python/python.jpeg">
 
 
@@ -447,7 +447,7 @@
       
 
       
-        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><blockquote>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>上节记录了一些函数的基础，如函数的参数，函数的返回值，参数结构，函数的作用域等概念</p>
 <p>这节说下函数的几个特性，比如闭包，应用传递，函数执行流程，生成器</p>
 <p>下节课说下高阶函数和装饰器</p>
@@ -816,7 +816,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用传递"><span class="nav-number">3.</span> <span class="nav-text">引用传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数执行流程"><span class="nav-number">4.</span> <span class="nav-text">函数执行流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归函数"><span class="nav-number">5.</span> <span class="nav-text">递归函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#生成式"><span class="nav-number">5.1.</span> <span class="nav-text">生成式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成器"><span class="nav-number">5.2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#生成器函数"><span class="nav-number">5.2.1.</span> <span class="nav-text">生成器函数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迭代器"><span class="nav-number">5.3.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">5.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器用法"><span class="nav-number">6.</span> <span class="nav-text">生成器用法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用传递"><span class="nav-number">3.</span> <span class="nav-text">引用传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数执行流程"><span class="nav-number">4.</span> <span class="nav-text">函数执行流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归函数"><span class="nav-number">5.</span> <span class="nav-text">递归函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#生成式"><span class="nav-number">5.1.</span> <span class="nav-text">生成式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成器"><span class="nav-number">5.2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#生成器函数"><span class="nav-number">5.2.1.</span> <span class="nav-text">生成器函数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迭代器"><span class="nav-number">5.3.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">5.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器用法"><span class="nav-number">6.</span> <span class="nav-text">生成器用法</span></a></li></ol></div>
             
 
           </div>
