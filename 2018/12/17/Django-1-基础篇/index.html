@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="DjangoDjango是什么？简单来说Django就是Python下的一种WEB框架，Python有很多优秀的WEB框架，如Tornado，Flask，Web2py等。 框架（Framework）解决一个开发性问题而设计的具有一定约束的支撑结构，使用框架可以帮你快速开发特定的系统，简单说，就是别人搭建好的舞台你来表演。对于所有的web应用，本质上就是一个socket服务器，用户的游览器就是一个s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T02:23:54.384Z">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/Django/1/www.zhuxyid.com.jpg">
+<meta property="og:updated_time" content="2018-12-18T02:25:42.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-1.基础篇">
 <meta name="twitter:description" content="DjangoDjango是什么？简单来说Django就是Python下的一种WEB框架，Python有很多优秀的WEB框架，如Tornado，Flask，Web2py等。 框架（Framework）解决一个开发性问题而设计的具有一定约束的支撑结构，使用框架可以帮你快速开发特定的系统，简单说，就是别人搭建好的舞台你来表演。对于所有的web应用，本质上就是一个socket服务器，用户的游览器就是一个s">
+<meta name="twitter:image" content="http://blog.zhuxyid.com/images/Django/1/www.zhuxyid.com.jpg">
 
 
 
@@ -465,8 +467,7 @@
 <p>响应内容是由服务器发给游览器内容，游览器器会根据响应内容来显示</p>
 <h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><p>比如访问<a href="http://www.zhuxyid.com" target="_blank" rel="noopener">www.zhuxyid.com</a></p>
 <p>可以使用chrome游览器的开发者模式查看响应内容。</p>
-<src img="https://blog.zhuxyid.com/images/Django/1/www.zhuxyid.com.jpg">
-
+<p><img src="/images/Django/1/www.zhuxyid.com.jpg"></p>
 <blockquote>
 <p>General 整体信息</p>
 <blockquote>
@@ -500,7 +501,7 @@
 <h4 id="简单的web框架"><a href="#简单的web框架" class="headerlink" title="简单的web框架"></a>简单的web框架</h4><p>如果实现一个简单的web框架呢？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WSGI服务器是python内部服务器，可以用wsgiref模块来来实现</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wsgiref.simple_server <span class="keyword">import</span> make_server</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">webservers</span><span class="params">(environ,start_response)</span>:</span></span><br><span class="line">    <span class="comment"># print(environ)</span></span><br><span class="line">    print(environ[<span class="string">'PATH_INFO'</span>])</span><br><span class="line">    <span class="comment"># for k,v in environ.items():</span></span><br><span class="line">    <span class="comment">#     print('&#123;&#125;==&gt;&#123;&#125;'.format(k,v))</span></span><br><span class="line">    <span class="comment"># print(start_response)</span></span><br><span class="line">    start_response(<span class="string">'200 OK'</span>,[(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>)])</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">b'&lt;h1&gt;Hello,Web Server!&lt;/h1&gt;'</span>]</span><br><span class="line">httpd = make_server(<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>,webservers)</span><br><span class="line">print(<span class="string">'Serving HTTP on port 8888....'</span>)</span><br><span class="line">httpd.serve_forever() </span><br><span class="line"></span><br><span class="line">application() 函数就是符合WSGI标准的一个HTTP处理函数，他接受两个函数</span><br><span class="line">    <span class="comment">#environ         #一个包含所有HTTP请求信息的dict对象(接受)</span></span><br><span class="line">    <span class="comment">#start_response  #一个发送HTTP响应函数</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#在application()函数中，调用：start_response('200 OK',[('Content-Type','text/html')])</span></span><br><span class="line"><span class="comment">#就发送了HTTP响应的Header，注意Header只能发送一次，也就是只能调用一次start_response()函数</span></span><br><span class="line"><span class="comment">#start_response()函数接受两个参数：</span></span><br><span class="line">    <span class="comment"># 一个HTTP响应状态码</span></span><br><span class="line">    <span class="comment"># 一个是一组list表示HTTP的Headr(每个Header用一个包含两个str的tuple表示)</span></span><br></pre></td></tr></table></figure>
-</src>
+
       
     </div>
     
