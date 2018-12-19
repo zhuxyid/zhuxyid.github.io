@@ -79,15 +79,20 @@
 
 
 
+<meta name="description" content="JavaScript-DOM操作 DOM是W3C标准，DOM定义了访问HTML和XML文档标准 DOM（Document Object Models）W3C文档对象模型中立平台和语言的接口，它允许程序和脚本动态访问和更新文档，结构和样式  DOM分为三个部分  核心 DOM    针对任何结构化文档标准模型 XML DOM    针对XML文档标准模型，定义了所有XML元素对象和属性，已经访问它们">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript-2.DOM操作">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/19/JavaScript-2-DOM操作/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
+<meta property="og:description" content="JavaScript-DOM操作 DOM是W3C标准，DOM定义了访问HTML和XML文档标准 DOM（Document Object Models）W3C文档对象模型中立平台和语言的接口，它允许程序和脚本动态访问和更新文档，结构和样式  DOM分为三个部分  核心 DOM    针对任何结构化文档标准模型 XML DOM    针对XML文档标准模型，定义了所有XML元素对象和属性，已经访问它们">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-19T07:39:05.735Z">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/javascript/dom.png">
+<meta property="og:updated_time" content="2018-12-19T08:34:41.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-2.DOM操作">
+<meta name="twitter:description" content="JavaScript-DOM操作 DOM是W3C标准，DOM定义了访问HTML和XML文档标准 DOM（Document Object Models）W3C文档对象模型中立平台和语言的接口，它允许程序和脚本动态访问和更新文档，结构和样式  DOM分为三个部分  核心 DOM    针对任何结构化文档标准模型 XML DOM    针对XML文档标准模型，定义了所有XML元素对象和属性，已经访问它们">
+<meta name="twitter:image" content="http://blog.zhuxyid.com/images/javascript/dom.png">
 
 
 
@@ -391,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  519
                 </span>
               
 
@@ -428,7 +433,68 @@
       
 
       
-        
+        <h4 id="JavaScript-DOM操作"><a href="#JavaScript-DOM操作" class="headerlink" title="JavaScript-DOM操作"></a>JavaScript-DOM操作</h4><blockquote>
+<p>DOM是W3C标准，DOM定义了访问HTML和XML文档标准</p>
+<p>DOM（Document Object Models）W3C文档对象模型中立平台和语言的接口，它允许程序和脚本动态访问和更新文档，结构和样式</p>
+</blockquote>
+<p><strong>DOM分为三个部分</strong></p>
+<blockquote>
+<p>核心 DOM    针对任何结构化文档标准模型</p>
+<p>XML DOM    针对XML文档标准模型，定义了所有XML元素对象和属性，已经访问它们的方法。</p>
+<p>HTML DOM    针对HTML文档标准模型，定义了所有HTML元素对象和属性，已经访问它们的方法</p>
+</blockquote>
+<h4 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h4><blockquote>
+<p>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点（Node）</p>
+<ol>
+<li>整个文档是一个文档节点（document对象）    #整个HTML文档</li>
+<li>HTML元素都是元素节点（element对象）         #相当于标签</li>
+<li>HTML元素内的文本是文本节点（text对象）     #相当于文本</li>
+<li>HTML元素中属性都是属性节点（attribute对象）   #相当于标签属性</li>
+<li>HTML文档中注释是注释节点（comment对象）</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DOM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/javascript/dom.png"></td>
+</tr>
+</tbody>
+</table>
+<h5 id="节点属性"><a href="#节点属性" class="headerlink" title="节点属性"></a>节点属性</h5><blockquote>
+<p>节点自身的属性</p>
+<p><code>attributes</code>节点元素属性节点</p>
+<p><code>nodeType</code>    节点类型</p>
+<p><code>nodeValue</code>    节点值</p>
+<p><code>nodeName</code>    节点名称</p>
+<p><code>innerHTML</code>    节点元素文本值</p>
+</blockquote>
+<h5 id="导航属性"><a href="#导航属性" class="headerlink" title="导航属性"></a>导航属性</h5><blockquote>
+<p><code>parentNode</code>    节点元素</p>
+<p><code>firstChild</code>    节点下第一个元素</p>
+<p><code>lastChild</code>        节点下最后一个元素</p>
+<p><code>childNode</code>        节点（元素）子节点</p>
+<p><strong>常用导航属性</strong></p>
+<p><code>parentElement</code>        父节点标签属性</p>
+<p><code>children</code>        所有子节点标签</p>
+<p><code>firstElementChild</code>        第一个子标签元素</p>
+<p><code>lastElementChild</code>        最后一个子标签元素</p>
+<p><code>nextElementSibling</code>    下一个兄弟标签元素</p>
+<p><code>previousElementSibling</code>    上一个兄弟标签元素</p>
+</blockquote>
+<h5 id="节点彼此层级关系"><a href="#节点彼此层级关系" class="headerlink" title="节点彼此层级关系"></a>节点彼此层级关系</h5><blockquote>
+<p><code>父</code>，<code>子</code>，<code>兄弟</code>等属于描述这些关系</p>
+<p><code>父节点（parent）</code> 拥有 <code>子节点（child）</code>，同级子节点统称为<code>兄弟节点（sibling）</code></p>
+<p>在节点数中，顶端节点称为<code>根（root）</code>  ，也就是<code>&lt;html&gt;&lt;/html&gt;</code>节点</p>
+<p>每个节点都有父节点，除了 <code>根节点</code></p>
+<p>一个节点可拥有任意数量的<code>子节点</code></p>
+<p><code>兄弟节点</code>是拥有相同父节点的节点</p>
+</blockquote>
+
       
     </div>
     
@@ -581,8 +647,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -702,6 +777,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript-DOM操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript-DOM操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM节点"><span class="nav-number">2.</span> <span class="nav-text">DOM节点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#节点属性"><span class="nav-number">2.1.</span> <span class="nav-text">节点属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#导航属性"><span class="nav-number">2.2.</span> <span class="nav-text">导航属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#节点彼此层级关系"><span class="nav-number">2.3.</span> <span class="nav-text">节点彼此层级关系</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

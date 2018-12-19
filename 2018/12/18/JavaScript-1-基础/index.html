@@ -87,10 +87,13 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="ECMAScript ECMAScript是一种标准，而实现这一标准的是JavaScript。 JavaScript是1996年出生，1997年提交给ECMA International，因此才有了ECMAScript标准。 2015年ECMA-262发出第6个版本，简称ES6或者ES2015。 ECMAScript基于JavaScript，而JavaScript也是遵循ECMAScript，两者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-19T07:38:56.874Z">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/javascript/javascript.png">
+<meta property="og:image" content="http://blog.zhuxyid.com/images/javascript/bom.png">
+<meta property="og:updated_time" content="2018-12-19T08:36:50.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-1.基础">
 <meta name="twitter:description" content="ECMAScript ECMAScript是一种标准，而实现这一标准的是JavaScript。 JavaScript是1996年出生，1997年提交给ECMA International，因此才有了ECMAScript标准。 2015年ECMA-262发出第6个版本，简称ES6或者ES2015。 ECMAScript基于JavaScript，而JavaScript也是遵循ECMAScript，两者">
+<meta name="twitter:image" content="http://blog.zhuxyid.com/images/javascript/javascript.png">
 
 
 
@@ -443,6 +446,18 @@
 <p>BOM：    游览器对象模型</p>
 </blockquote>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/javascript/javascript.png"></td>
+</tr>
+</tbody>
+</table>
 <h4 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h4><blockquote>
 <p>JavaScript在开发中基本都是基于对象也是面向对象操作对象</p>
 <p>ES大致包含语法，类型，语句，关键字，保留字，运算符，对象（封装，基础，多态）基于对象的语言使用对象</p>
@@ -601,9 +616,25 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//示例</span></span><br><span class="line"><span class="keyword">var</span> city=<span class="string">'nj'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> city=<span class="string">'sh'</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> city=<span class="string">'bj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(city);</span><br><span class="line">    &#125;</span><br><span class="line">    inner();</span><br><span class="line">    <span class="built_in">console</span>.log(city);</span><br><span class="line">&#125;</span><br><span class="line">func()	<span class="comment">//返回bj,在返回sh</span></span><br><span class="line"><span class="built_in">console</span>.log(city)	<span class="comment">//返回nj</span></span><br><span class="line"><span class="comment">//类似python中闭包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> city=<span class="string">'nj'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(city)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> city=<span class="string">'sh'</span>;</span><br><span class="line">    <span class="keyword">return</span> Bar</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> ret=func()</span><br><span class="line">ret()	<span class="comment">//返回nj</span></span><br></pre></td></tr></table></figure>
 <h4 id="BOM对象"><a href="#BOM对象" class="headerlink" title="BOM对象"></a>BOM对象</h4><blockquote>
 <p>游览器对象模型（Browse Object Models）</p>
-<p>​    对游览器窗口进行访问操作，使用BOM，开发者可以移动窗口，改变状态栏中文本以及执行其他页面内容的动作</p>
-<p>​    使javascript又有能力跟游览器交互。​    </p>
+<ol>
+<li><p>对游览器窗口进行访问操作，使用BOM，开发者可以移动窗口，改变状态栏中文本以及执行其他页面内容的动作</p>
+</li>
+<li><p>使javascript又有能力跟游览器交互。​    </p>
+</li>
+</ol>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">BOM对象模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/javascript/bom.png"></td>
+</tr>
+</tbody>
+</table>
 <h5 id="Window对象"><a href="#Window对象" class="headerlink" title="Window对象"></a>Window对象</h5><blockquote>
 <p>所有游览器对象都支持window对象</p>
 <ol>
