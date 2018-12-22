@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="AJAX Asynchronous JavaScript And XML    异步javascript和xml AJAX只是一个标准方法，用于创建动态页面的技术。 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XHR对象 XMLHttpRequest对象用于在和后端服务器交换数据。 XMLHttpRequest简称XHR">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-22T03:36:13.699Z">
+<meta property="og:updated_time" content="2018-12-22T03:44:55.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-3.AJAX">
 <meta name="twitter:description" content="AJAX Asynchronous JavaScript And XML    异步javascript和xml AJAX只是一个标准方法，用于创建动态页面的技术。 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XHR对象 XMLHttpRequest对象用于在和后端服务器交换数据。 XMLHttpRequest简称XHR">
@@ -485,7 +485,7 @@
 <blockquote>
 <p>0-未初始化，尚未调用open()方法；<br>1-启动，调用了open()方法，未调用send()方法；<br>2-发送，已经调用了send()方法，未接收到响应；<br>3-接收，已经接收到部分响应数据；<br>4-完成，已经接收到全部响应数据；</p>
 </blockquote>
-<p><code>statue</code>属性：200表示正常，400表示页面没找到</p>
+<p><code>statue</code>属性：200表示正常，404表示页面没找到</p>
 <p>实例:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> XhrObj=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">    XhrObj.open(<span class="string">'POST'</span>,<span class="string">'get_study.html'</span>);</span></span><br><span class="line"><span class="javascript">    XhrObj.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span></span><br><span class="line"><span class="undefined">    XhrObj.send();</span></span><br><span class="line"><span class="javascript">    XhrObj.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(XhrObj.readState==<span class="number">4</span> &amp;&amp; XhrObj.statue==<span class="number">200</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'数据发送完成，请求成功'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
