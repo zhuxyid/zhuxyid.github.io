@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="AJAX Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
+<meta name="description" content="Ajax Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
 <meta name="keywords" content="JavaScript,Ajax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript-3.AJAX">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/22/JavaScript-3-AJAX/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
-<meta property="og:description" content="AJAX Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
+<meta property="og:description" content="Ajax Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-22T09:11:52.731Z">
+<meta property="og:updated_time" content="2018-12-22T10:10:39.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-3.AJAX">
-<meta name="twitter:description" content="AJAX Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
+<meta name="twitter:description" content="Ajax Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
 
 
 
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.4k
                 </span>
               
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -431,7 +431,7 @@
       
 
       
-        <h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><blockquote>
+        <h4 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h4><blockquote>
 <p>Asynchronous JavaScript And XML    异步javascript和xml</p>
 <p>AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。</p>
 <p>通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作</p>
@@ -489,6 +489,14 @@
 <p><code>statue</code>属性：200表示正常，404表示页面没找到</p>
 <p>实例:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> XhrObj=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">    XhrObj.open(<span class="string">'POST'</span>,<span class="string">'get_study.html'</span>);</span></span><br><span class="line"><span class="javascript">    XhrObj.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span></span><br><span class="line"><span class="undefined">    XhrObj.send();</span></span><br><span class="line"><span class="javascript">    XhrObj.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(XhrObj.readState==<span class="number">4</span> &amp;&amp; XhrObj.statue==<span class="number">200</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'数据发送成功,结果为'</span>,XhrObj.responseText)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h4><blockquote>
+<p>游览器都有同源策略，XMLHttpRequest遵循这种策略，只允许本地发送本地的请求。</p>
+<p>默认情况下不允许跨域，一旦出现跨域就提示Access-Control-Allow-Origin，主要是为了安全起见。</p>
+<p>可以通过JSONP方式实现跨域。</p>
+<p>JSONP只是一种方式，不是数据结构，JSONP默认是使用GET请求，如果POST请求返回也是GET请求</p>
+<p>原理是利用<code>&lt;script&gt;</code>块，在其执行src属性为所需要跨的域，函数(返回值)</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"JSONP方式获取"</span> <span class="attr">onclick</span>=<span class="string">"remoteJsonp();"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scirpt</span>&gt;</span></span><br><span class="line">	function remoteJsonp()&#123;</span><br><span class="line">        var tag = document.createElement('script');	//先创建script元素</span><br><span class="line">        tag.src='http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&amp;_=1454376870403';</span><br><span class="line">        // $(document.head).append(tag);   //每次请求都会增加<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">标签,其实不需要</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.head.appendChild(tag);    <span class="comment">//增加一次，就删除一次</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.head.removeChild(tag);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params">arg</span>)</span>&#123;		<span class="comment">//对方约定好，需要有个list函数，当请求地址后，就会执行list函数，函数里面arg就是数据</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data[<span class="number">0</span>]);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">scirpt</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <h4 id="Ajax伪提交"><a href="#Ajax伪提交" class="headerlink" title="Ajax伪提交"></a>Ajax伪提交</h4><h5 id="补充HTML之iframe"><a href="#补充HTML之iframe" class="headerlink" title="补充HTML之iframe"></a>补充HTML之iframe</h5><blockquote>
 <p><code>iframe</code>元素会创建包含另一个文档的内联框架(行内框架)</p>
 <p>这里点击页面，不刷新全部页面，只刷新iframe内部定义的页面</p>
@@ -793,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#AJAX"><span class="nav-number">1.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XHR对象"><span class="nav-number">2.</span> <span class="nav-text">XHR对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建XHR对象"><span class="nav-number">2.1.</span> <span class="nav-text">创建XHR对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XHR请求方法"><span class="nav-number">2.2.</span> <span class="nav-text">XHR请求方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XHR响应方法"><span class="nav-number">2.3.</span> <span class="nav-text">XHR响应方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onreadystatechange事件"><span class="nav-number">2.4.</span> <span class="nav-text">onreadystatechange事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax伪提交"><span class="nav-number">3.</span> <span class="nav-text">Ajax伪提交</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#补充HTML之iframe"><span class="nav-number">3.1.</span> <span class="nav-text">补充HTML之iframe</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax上传文件"><span class="nav-number">4.</span> <span class="nav-text">Ajax上传文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax"><span class="nav-number">1.</span> <span class="nav-text">Ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XHR对象"><span class="nav-number">2.</span> <span class="nav-text">XHR对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建XHR对象"><span class="nav-number">2.1.</span> <span class="nav-text">创建XHR对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XHR请求方法"><span class="nav-number">2.2.</span> <span class="nav-text">XHR请求方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XHR响应方法"><span class="nav-number">2.3.</span> <span class="nav-text">XHR响应方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onreadystatechange事件"><span class="nav-number">2.4.</span> <span class="nav-text">onreadystatechange事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax跨域"><span class="nav-number">3.</span> <span class="nav-text">Ajax跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax伪提交"><span class="nav-number">4.</span> <span class="nav-text">Ajax伪提交</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#补充HTML之iframe"><span class="nav-number">4.1.</span> <span class="nav-text">补充HTML之iframe</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax上传文件"><span class="nav-number">5.</span> <span class="nav-text">Ajax上传文件</span></a></li></ol></div>
             
 
           </div>
