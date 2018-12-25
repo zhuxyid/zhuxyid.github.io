@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Ajax Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-22T10:10:39.585Z">
+<meta property="og:updated_time" content="2018-12-25T08:15:19.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-3.AJAX">
 <meta name="twitter:description" content="Ajax Asynchronous JavaScript And XML    异步javascript和xml AJAX并不是JavaScript的范畴，只是用JavaScript执行异步网络请求而已。 通常JavaScript用Ajax技术提交表单，上传文件，跨域等操作 传统的网页，如果需要更新内容，那必须重载页面，而使用AJAX在不重载整个页面的情况下，和后端服务交换数据并更新显示。  XH">
@@ -496,7 +496,7 @@
 <p>JSONP只是一种方式，不是数据结构，JSONP默认是使用GET请求，如果POST请求返回也是GET请求</p>
 <p>原理是利用<code>&lt;script&gt;</code>块，在其执行src属性为所需要跨的域，函数(返回值)</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"JSONP方式获取"</span> <span class="attr">onclick</span>=<span class="string">"remoteJsonp();"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scirpt</span>&gt;</span></span><br><span class="line">	function remoteJsonp()&#123;</span><br><span class="line">        var tag = document.createElement('script');	//先创建script元素</span><br><span class="line">        tag.src='http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&amp;_=1454376870403';</span><br><span class="line">        // $(document.head).append(tag);   //每次请求都会增加<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">标签,其实不需要</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.head.appendChild(tag);    <span class="comment">//增加一次，就删除一次</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.head.removeChild(tag);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params">arg</span>)</span>&#123;		<span class="comment">//对方约定好，需要有个list函数，当请求地址后，就会执行list函数，函数里面arg就是数据</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data[<span class="number">0</span>]);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">scirpt</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"JSONP方式获取"</span> <span class="attr">onclick</span>=<span class="string">"remoteJsonp();"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scirpt</span>&gt;</span></span><br><span class="line">	function remoteJsonp()&#123;</span><br><span class="line">    	var tag = document.createElement('script');	//先创建script元素</span><br><span class="line">    	tag.src='http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&amp;_=1454376870403';</span><br><span class="line">        // $(document.head).append(tag);   //每次请求都会增加<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">标签,其实不需要</span></span><br><span class="line"><span class="javascript">    	<span class="built_in">document</span>.head.appendChild(tag);    <span class="comment">//增加一次，就删除一次</span></span></span><br><span class="line"><span class="javascript">    	<span class="built_in">document</span>.head.removeChild(tag);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params">arg</span>)</span>&#123;		<span class="comment">//对方约定好，需要有个list函数，当请求地址后，就会执行list函数，函数里面arg就是数据</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(arg.data[<span class="number">0</span>]);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">scirpt</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <h4 id="Ajax伪提交"><a href="#Ajax伪提交" class="headerlink" title="Ajax伪提交"></a>Ajax伪提交</h4><h5 id="补充HTML之iframe"><a href="#补充HTML之iframe" class="headerlink" title="补充HTML之iframe"></a>补充HTML之iframe</h5><blockquote>
 <p><code>iframe</code>元素会创建包含另一个文档的内联框架(行内框架)</p>
 <p>这里点击页面，不刷新全部页面，只刷新iframe内部定义的页面</p>
@@ -595,6 +595,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/12/24/Node-js-基础/" rel="prev" title="Node.js-基础">
+                Node.js-基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -688,7 +692,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -710,7 +714,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
