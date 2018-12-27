@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-11T07:58:31.675Z">
+<meta property="og:updated_time" content="2018-12-27T02:41:19.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Systemd">
 <meta name="twitter:description" content="SystemdSystemd是Linux系统中最新的初始化系统（init），如CentOS 7。它主要解决CentOS7之前的System V init的缺点，提高系统启动速度，Systemd的概念来自于MacOS上的Launchd System V介绍 Linux系统类似Windows一样可以自启动和禁止一些服务程序，在Syst V init的管理体系中，这些服务脚本程序存放在/etc/init">
@@ -696,7 +696,6 @@
 <p>那么服务如何使用由 init 进程创建的套接字呢？Linux 操作系统有一个特性，当进程调用 fork 或者 exec 创建子进程之后，所有在父进程中被打开的文件句柄 (file descriptor) 都被子进程所继承。套接字也是一种文件句柄，进程 A 可以创建一个套接字，此后当进程 A 调用 exec 启动一个新的子进程时，只要确保该套接字的 close_on_exec 标志位被清空，那么新的子进程就可以继承这个套接字。子进程看到的套接字和父进程创建的套接字是同一个系统套接字，就仿佛这个套接字是子进程自己创建的一样，没有任何区别。</p>
 <p>这个特性以前被一个叫做 inetd 的系统服务所利用。Inetd 进程会负责监控一些常用套接字端口，比如 Telnet，当该端口有连接请求时，inetd 才启动 telnetd 进程，并把有连接的套接字传递给新的 telnetd 进程进行处理。这样，当系统没有 telnet 客户端连接时，就不需要启动 telnetd 进程。Inetd 可以代理很多的网络服务，这样就可以节约很多的系统负载和内存资源，只有当有真正的连接请求时才启动相应服务，并把套接字传递给相应的服务进程。</p>
 <p>和 inetd 类似，systemd 是所有其他进程的父进程，它可以先建立所有需要的套接字，然后在调用 exec 的时候将该套接字传递给新的服务进程，而新进程直接使用该套接字进行服务即可。</p>
-<p>###### </p>
 <ul>
 <li>解决D-bus依赖</li>
 </ul>
@@ -1061,7 +1060,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1083,7 +1082,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
