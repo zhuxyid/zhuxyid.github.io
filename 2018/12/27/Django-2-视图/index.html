@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Django视图和模板 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isinstance方法来检测 HttpRequest类在django.http.request  12345">
+<meta name="description" content="Django视图 Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isins">
 <meta name="keywords" content="Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django-2.视图">
 <meta property="og:url" content="http://blog.zhuxyid.com/2018/12/27/Django-2-视图/index.html">
 <meta property="og:site_name" content="旭悦的分享笔记">
-<meta property="og:description" content="Django视图和模板 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isinstance方法来检测 HttpRequest类在django.http.request  12345">
+<meta property="og:description" content="Django视图 Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-27T07:16:01.370Z">
+<meta property="og:updated_time" content="2018-12-27T07:28:58.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-2.视图">
-<meta name="twitter:description" content="Django视图和模板 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isinstance方法来检测 HttpRequest类在django.http.request  12345">
+<meta name="twitter:description" content="Django视图 Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isins">
 
 
 
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  309
+                  427
                 </span>
               
 
@@ -431,20 +431,21 @@
       
 
       
-        <h4 id="Django视图和模板"><a href="#Django视图和模板" class="headerlink" title="Django视图和模板"></a>Django视图和模板</h4><blockquote>
+        <h4 id="Django视图"><a href="#Django视图" class="headerlink" title="Django视图"></a>Django视图</h4><blockquote>
+<p>Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。</p>
 <p>http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下</p>
 </blockquote>
 <h5 id="HttpRequest属性"><a href="#HttpRequest属性" class="headerlink" title="HttpRequest属性"></a>HttpRequest属性</h5><blockquote>
 <p>在views视图函数中定义的<code>request</code>就是<code>HttpRequest</code>对象，监测可使用<code>isinstance</code>方法来检测</p>
 <p><code>HttpRequest</code>类在django.http.request</p>
 </blockquote>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    print(isinstance(request,HttpRequest))</span><br><span class="line">    return HttpResponse('...')</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#HttpRequest方法</span><br><span class="line">request.GET.get('key')  #如果客户端是GET方式提交，这里使用GET.get方法来获取key</span><br><span class="line"></span><br><span class="line">request.POST.get('key') #如果客户端是POST方式提交，这里使用POST.get方式来获取key</span><br><span class="line"></span><br><span class="line">request.path            #获取客户端url</span><br><span class="line"></span><br><span class="line">request.get_full_path() #获取客户端的URL路径并获取传入的数据</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    print(isinstance(request,HttpRequest))</span><br><span class="line">    return HttpResponse('...')</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#HttpRequest方法</span><br><span class="line">request.GET.get('key')  #如果客户端是GET方式提交，这里使用GET.get方法来获取key</span><br><span class="line"></span><br><span class="line">request.POST.get('key') #如果客户端是POST方式提交，这里使用POST.get方式来获取key</span><br><span class="line"></span><br><span class="line">request.path            #获取客户端url</span><br><span class="line"></span><br><span class="line">request.get_full_path() #获取客户端的URL路径并获取传入的数据</span><br><span class="line"></span><br><span class="line">request.method			#获取客户端请求的方法</span><br><span class="line"></span><br><span class="line">request.FILES			#如果客户端上传的是文件需要这个属性,比如&lt;form enctype="multipart/form-data"&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">request.session			#SessionMiddleware中间件，可读写的类似字典对象，表示当前回话</span><br></pre></td></tr></table></figure>
 <h5 id="HttpResponse属性"><a href="#HttpResponse属性" class="headerlink" title="HttpResponse属性"></a>HttpResponse属性</h5><blockquote>
 <p>对应HttpResponse对象来说，是由django自动创建，但httpresponse返回是我们自己去定义，每个view请求处理的方法返回必须是一个HttpResponse对象，</p>
 <p>template里面的内容并不是html，只是一个模板，因为有渲染功能</p>
 <p><code>HttpResponse</code>类在django.http.response</p>
 </blockquote>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    var name = zhuxy</span><br><span class="line">	return render(request,'index.html',locals())</span><br><span class="line">	</span><br><span class="line">#HttpRequest方法</span><br><span class="line">render()            #页面渲染，</span><br><span class="line">    #render()和render_to_response()区别是render需要加request而render_to_response()不需要</span><br><span class="line">redirect('url')     #页面跳转</span><br><span class="line">HttpResponse('..')	#直接返回内容</span><br><span class="line"></span><br><span class="line">#django默认导入render方法，如果需要用到redirect和HttpResponse需要提前导入</span><br><span class="line">from django.shortcuts import render,HttpResponse,redirect</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    var name = zhuxy</span><br><span class="line">	return render(request,'index.html',locals())</span><br><span class="line">	</span><br><span class="line">#HttpRequest方法</span><br><span class="line">render()            #页面渲染，</span><br><span class="line">    #render()和render_to_response()区别是render需要加request而render_to_response()不需要</span><br><span class="line">redirect('url')     #页面跳转</span><br><span class="line">HttpResponse('..')	#直接放回</span><br><span class="line">HttpResponse(status=200)	#直接返回状态，可以是200，404等状态码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#django默认导入render方法，如果需要用到redirect和HttpResponse需要提前导入</span><br><span class="line">from django.shortcuts import render,HttpResponse,redirect</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -737,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Django视图和模板"><span class="nav-number">1.</span> <span class="nav-text">Django视图和模板</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpRequest属性"><span class="nav-number">1.1.</span> <span class="nav-text">HttpRequest属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpResponse属性"><span class="nav-number">1.2.</span> <span class="nav-text">HttpResponse属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Django视图"><span class="nav-number">1.</span> <span class="nav-text">Django视图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpRequest属性"><span class="nav-number">1.1.</span> <span class="nav-text">HttpRequest属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpResponse属性"><span class="nav-number">1.2.</span> <span class="nav-text">HttpResponse属性</span></a></li></ol></li></ol></div>
             
 
           </div>
