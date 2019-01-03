@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="Django视图 Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-03T08:23:46.880Z">
+<meta property="og:updated_time" content="2019-01-03T08:37:41.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-2.视图和模板">
 <meta name="twitter:description" content="Django视图 Django中视图函数，简称视图，相当于一个函数，接受客户端的请求的数据，进行处理，然后在响应给客户端。 http请求产生两个核心对象，分别为HttpRequest（请求）对象，HttpResponse（响应）对象，这两个方法在django.http目录下  HttpRequest属性 在views视图函数中定义的request就是HttpRequest对象，监测可使用isins">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.8k
+                  3.4k
                 </span>
               
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  14
                 </span>
               
             </div>
@@ -499,6 +499,10 @@
 <h5 id="Template继承"><a href="#Template继承" class="headerlink" title="Template继承"></a>Template继承</h5><blockquote>
 <p>如果一个页面叫index.html，如果想要用其他页面也嵌套index.html就可以使用继承，在index.html(也叫母板)，添加<code></code></p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block test %&#125;</span><br><span class="line">	设置母板block名称为test</span><br><span class="line">	&lt;h1&gt;release system&lt;/h1&gt;</span><br><span class="line">	&lt;!--相当于放了一个盒子--&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">其他页面比如hello.html想调用index.html</span><br><span class="line">&#123;% extends &quot;index.html&quot; %&#125;</span><br><span class="line">调用index.html母板，必须是第一个标记</span><br><span class="line">    &#123;&#123; block.super &#125;&#125;</span><br><span class="line">    调用母板上的内容</span><br><span class="line">    &#123;% block.test %&#125;</span><br><span class="line">    如果想修改，直接调用母板block名称</span><br><span class="line">	&#123;% for info in information %&#125;</span><br><span class="line">		&lt;h1&gt;&#123;&#123; info &#125;&#125;&lt;/h1&gt;</span><br><span class="line">	&#123;% endfor %&#125;</span><br><span class="line">&#123;% endextends %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#如果想要修改样式该怎么办？</span><br><span class="line"></span><br><span class="line">在母板上样板加个&#123;% block style %&#125; &#123;% endblock %&#125;</span><br><span class="line">其他页面如果想要修改样式，就在&#123;% block style %&#125; &#123;% endblock %&#125;之间修改样式内容。</span><br><span class="line">可以根据需求定义&#123;% block %&#125;，就是修改的内容用盒子包装下，下次修改直接调用盒子在修改。</span><br></pre></td></tr></table></figure>
+<p><strong>注意事项</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">如果在母板中使用&#123;% extends %&#125;必须保证其为模板的第一个标记，否则模板不会继承作用</span><br><span class="line"></span><br><span class="line">一般来说，基础模板中的&#123;% block %&#125;标记越多越好。子模板不必定义母板中的所有代码，因此你可以用合理的缺省值对一些代码进行填充，然后只对子模板所需的代码块进行(重定义)。这样可扩展性强</span><br><span class="line"></span><br><span class="line">如果发现自己在多个模板之间考代码，你应该考虑将代码放到母板的某个&#123;% block %&#125;中，如果你需要访问母板中的模块内容，使用&#123;&#123;block.super&#125;&#125;这个标签，这一个魔法变量将会表现出母模板中的内容，如果只想在上级代码块基础上添加内容，而不是全部重载，改代码块非常有作用</span><br><span class="line"></span><br><span class="line">不允许在同一个模板中定义多个同名的&#123;% block %&#125;,存在这样限制是因为block标签工作方式是双向的，也就是，block标签不仅挖了一个要填的坑，也定义了在母模板中这个坑所填充的内容，如果模板中出现了两个相同名称的&#123;% block %&#125;标签，母模板将无从得知要使用哪个块的内容</span><br><span class="line"></span><br><span class="line">如果想要添加其他页面内容</span><br><span class="line">&#123;% extends &quot;index.html&quot; %&#125;</span><br><span class="line">&#123;% load  staticfiles %&#125;            #需要引入文件位置</span><br><span class="line">&#123;% include &quot;other.html&quot; %&#125;         #引入其他内容</span><br></pre></td></tr></table></figure>
 
       
     </div>
