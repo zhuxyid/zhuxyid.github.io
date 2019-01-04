@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T03:07:12.045Z">
+<meta property="og:updated_time" content="2019-01-04T03:37:07.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-3.ORM">
 <meta name="twitter:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  244
+                  678
                 </span>
               
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -438,7 +438,7 @@
 </blockquote>
 <p><strong>实例</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Emp():</span><br><span class="line">    id=...</span><br><span class="line">    name=...</span><br><span class="line">    salary=...</span><br><span class="line">    age=...</span><br><span class="line">emp=Emp()</span><br><span class="line">emp.id</span><br></pre></td></tr></table></figure>
-<h4 id="Django数据库配置"><a href="#Django数据库配置" class="headerlink" title="Django数据库配置"></a>Django数据库配置</h4><blockquote>
+<h5 id="Django数据库配置"><a href="#Django数据库配置" class="headerlink" title="Django数据库配置"></a>Django数据库配置</h5><blockquote>
 <p>Django支持sqlite，mysql，oracle，postgresql数据库</p>
 <p>Django默认使用sqlite数据库，默认自带sqlite数据库驱动，引擎名称</p>
 <p><code>django.db.backends.sqlite3</code></p>
@@ -447,7 +447,23 @@
 <p>在python2中使用MySQLdb，在python3中使用PyMySQL</p>
 </blockquote>
 <figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#在django项目中默认使用sqlite数据库，在setting里面有如下配置:</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.sqlite3',</span><br><span class="line">        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">#sqlite 小,简单.</span><br><span class="line"></span><br><span class="line">#如果django连mysql就在setting配置</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',	#mysql驱动程序</span><br><span class="line">        'NAME': 'info',	#数据库名称,需要事先创建好数据库create database info</span><br><span class="line">        'USER': 'root',</span><br><span class="line">        'PASSWORD': '1991',</span><br><span class="line">        'HOST': 'localhost',</span><br><span class="line">        'PORT': '3306',</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h5 id="Django创建表"><a href="#Django创建表" class="headerlink" title="Django创建表"></a>Django创建表</h5><p><strong>实例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#1.创建app下的models.py文件</span><br><span class="line">#more app/models.py</span><br><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">#使用SQL语句创建表</span><br><span class="line">#CREATE TABLE Book(id not null primary key auto_incremenet,book_name varchar(20),price float)</span><br><span class="line"></span><br><span class="line">#使用ORM创建表</span><br><span class="line">class Book(models.Model):</span><br><span class="line">    #如果不加models.Model，django不能区分是类还是表</span><br><span class="line">    book_name = models.CharField(max_length=20);</span><br><span class="line">    #相当于varchar(20)</span><br><span class="line">    price = models.FloatField();</span><br><span class="line">    #相当于float</span><br><span class="line"></span><br><span class="line">#2.创建完了后执行</span><br><span class="line">python manage.py makemigrations</span><br><span class="line">#生成数据库脚本</span><br><span class="line"></span><br><span class="line">#如果没有安装MySQL-python模块会提示找不到，django默认引擎是python2的MySQLdb，所有需要在项目下的__init__中添加</span><br><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br><span class="line">#让pymysql代替MySQLdb</span><br><span class="line"></span><br><span class="line">python manage.py migrate</span><br><span class="line">#执行生成脚本</span><br><span class="line"></span><br><span class="line">#3.如果后期添加表，都需要执行</span><br><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br><span class="line"></span><br><span class="line">#4.如果需要增加字段，直接在class里面写字段，执行makemigrations时会提示是否新增默认字段</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ORM优点：</p>
+<blockquote>
+<p>如果项目后期更换数据库时，直接改下驱动，而不需要修改SQL语句</p>
+<p>如果是源生SQL语句，后期更换数据库还需要转换语法等信息</p>
+<p>但是源生SQL语句效率比ORM高，ORM需要转化源生SQL</p>
+</blockquote>
+</blockquote>
+<h5 id="Django数据库操作日志"><a href="#Django数据库操作日志" class="headerlink" title="Django数据库操作日志"></a>Django数据库操作日志</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">LOGGING = &#123;</span><br><span class="line">    &apos;version&apos;: 1,</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;:&#123;</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">            &apos;class&apos;:&apos;logging.StreamHandler&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;django.db.backends&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;propagate&apos;: True,</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="表与表的之间的关系"><a href="#表与表的之间的关系" class="headerlink" title="表与表的之间的关系"></a>表与表的之间的关系</h5><blockquote>
+<p>一对多，一个表与另外一个表关联，另一个表可以对应这个表的多条记录</p>
+<p>多对多，需要三张表，其中一个表记录 表A 和 表B 的两个关系。</p>
+<p>一对一，通常用作详细页，自关联</p>
+</blockquote>
+<h4 id="ORM操作"><a href="#ORM操作" class="headerlink" title="ORM操作"></a>ORM操作</h4><h5 id="增"><a href="#增" class="headerlink" title="增"></a>增</h5>
       
     </div>
     
@@ -740,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM"><span class="nav-number">1.</span> <span class="nav-text">ORM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Django数据库配置"><span class="nav-number">2.</span> <span class="nav-text">Django数据库配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM"><span class="nav-number">1.</span> <span class="nav-text">ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库配置"><span class="nav-number">1.1.</span> <span class="nav-text">Django数据库配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django创建表"><span class="nav-number">1.2.</span> <span class="nav-text">Django创建表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库操作日志"><span class="nav-number">1.3.</span> <span class="nav-text">Django数据库操作日志</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表与表的之间的关系"><span class="nav-number">1.4.</span> <span class="nav-text">表与表的之间的关系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM操作"><span class="nav-number">2.</span> <span class="nav-text">ORM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#增"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li></ol></li></ol></div>
             
 
           </div>
