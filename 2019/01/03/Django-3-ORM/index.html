@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T03:01:00.363Z">
+<meta property="og:updated_time" content="2019-01-04T03:07:12.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-3.ORM">
 <meta name="twitter:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  280
+                  244
                 </span>
               
 
@@ -446,7 +446,7 @@
 <p><code>django.db.backends.mysql</code></p>
 <p>在python2中使用MySQLdb，在python3中使用PyMySQL</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#在django项目中默认使用sqlite数据库，在setting里面有如下配置:</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.sqlite3&apos;,</span><br><span class="line">        &apos;NAME&apos;: os.path.join(BASE_DIR, &apos;db.sqlite3&apos;),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">#sqlite 小,简单.</span><br><span class="line"></span><br><span class="line">#如果django连mysql就在setting配置</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">	    #mysql驱动程序</span><br><span class="line">	    &apos;NAME&apos;: &apos;info&apos;,</span><br><span class="line">	    #数据库名称,需要事先创建好数据库create database info</span><br><span class="line">	    &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">	    &apos;PASSWORD&apos;: &apos;1991&apos;,</span><br><span class="line">	    &apos;HOST&apos;: &apos;localhost&apos;,</span><br><span class="line">	    &apos;PORT&apos;: &apos;3306&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#在django项目中默认使用sqlite数据库，在setting里面有如下配置:</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.sqlite3',</span><br><span class="line">        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">#sqlite 小,简单.</span><br><span class="line"></span><br><span class="line">#如果django连mysql就在setting配置</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',	#mysql驱动程序</span><br><span class="line">        'NAME': 'info',	#数据库名称,需要事先创建好数据库create database info</span><br><span class="line">        'USER': 'root',</span><br><span class="line">        'PASSWORD': '1991',</span><br><span class="line">        'HOST': 'localhost',</span><br><span class="line">        'PORT': '3306',</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
