@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旭悦的分享笔记">
 <meta property="og:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T09:45:01.956Z">
+<meta property="og:updated_time" content="2019-01-07T09:56:17.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-3.ORM">
 <meta name="twitter:description" content="ORM 对象关系映射表（Object Relation Mapping），基于ORM Python类操作数据库的表。 Django的ORM只能在Django使用，这里ORM是Django中独有的ORM。 Django通过类操作数据库的表，一个类相当于一张表。一个实例相当于一条记录  实例 1234567class Emp():    id=...    name=...    salary=...">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  2.3k
                 </span>
               
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -457,7 +457,8 @@
 <p>但是源生SQL语句效率比ORM高，ORM需要转化源生SQL</p>
 </blockquote>
 </blockquote>
-<h5 id="Django数据库操作日志"><a href="#Django数据库操作日志" class="headerlink" title="Django数据库操作日志"></a>Django数据库操作日志</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">LOGGING = &#123;</span><br><span class="line">    &apos;version&apos;: 1,</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;:&#123;</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">            &apos;class&apos;:&apos;logging.StreamHandler&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;django.db.backends&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;propagate&apos;: True,</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="原生SQL使用"><a href="#原生SQL使用" class="headerlink" title="原生SQL使用"></a>原生SQL使用</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pip install PyMySQL</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入模块，连接数据库</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">db=pymysql.connect(<span class="string">'localhost'</span>,<span class="string">'user'</span>,<span class="string">'passwd'</span>,<span class="string">'dbname'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#cursor()方法创建一个游标对象cursor</span></span><br><span class="line">cursor = db.cursor()</span><br><span class="line"></span><br><span class="line"><span class="comment">#游标对象执行`select version()`</span></span><br><span class="line">cursor.execute(<span class="string">'select version()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#游标对象使用fetchone()方法获取单条数据</span></span><br><span class="line">data = cursor.fetchone()</span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line">关闭mysql连接</span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
+<h5 id="Django数据库操作日志"><a href="#Django数据库操作日志" class="headerlink" title="Django数据库操作日志"></a>Django数据库操作日志</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">方法1:</span><br><span class="line">直接修改mysql的配置文件my.cnf</span><br><span class="line">more my.cnf</span><br><span class="line">general_log = 1</span><br><span class="line">重启后</span><br><span class="line">mysql&gt;show variables like &apos;%general_log%&apos;</span><br><span class="line">查看general_log日志路径</span><br><span class="line">每次执行SQL语句，就在general_log中产生日志</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">方法2:</span><br><span class="line">在django项目中的setting.py设置</span><br><span class="line">LOGGING = &#123;</span><br><span class="line">    &apos;version&apos;: 1,</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;:&#123;</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">            &apos;class&apos;:&apos;logging.StreamHandler&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;django.db.backends&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;propagate&apos;: True,</span><br><span class="line">            &apos;level&apos;:&apos;DEBUG&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="ORM操作"><a href="#ORM操作" class="headerlink" title="ORM操作"></a>ORM操作</h4><blockquote>
 <p>表记录添加数据，一个类对应一张表，如何对表进行修改呢？通过实例化来修改，实例化一个对象就是一条记录</p>
 </blockquote>
@@ -770,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM"><span class="nav-number">1.</span> <span class="nav-text">ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库配置"><span class="nav-number">1.1.</span> <span class="nav-text">Django数据库配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django创建表"><span class="nav-number">1.2.</span> <span class="nav-text">Django创建表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库操作日志"><span class="nav-number">1.3.</span> <span class="nav-text">Django数据库操作日志</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM操作"><span class="nav-number">2.</span> <span class="nav-text">ORM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#增"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删"><span class="nav-number">2.2.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#改"><span class="nav-number">2.3.</span> <span class="nav-text">改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查"><span class="nav-number">2.4.</span> <span class="nav-text">查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#查询结果过滤"><span class="nav-number">2.4.1.</span> <span class="nav-text">查询结果过滤</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例"><span class="nav-number">2.5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模糊查询"><span class="nav-number">2.6.</span> <span class="nav-text">模糊查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM多表操作"><span class="nav-number">3.</span> <span class="nav-text">ORM多表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#表与表的之间的关系"><span class="nav-number">3.1.</span> <span class="nav-text">表与表的之间的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一对多"><span class="nav-number">3.2.</span> <span class="nav-text">一对多</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM"><span class="nav-number">1.</span> <span class="nav-text">ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库配置"><span class="nav-number">1.1.</span> <span class="nav-text">Django数据库配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django创建表"><span class="nav-number">1.2.</span> <span class="nav-text">Django创建表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原生SQL使用"><span class="nav-number">1.3.</span> <span class="nav-text">原生SQL使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Django数据库操作日志"><span class="nav-number">1.4.</span> <span class="nav-text">Django数据库操作日志</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM操作"><span class="nav-number">2.</span> <span class="nav-text">ORM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#增"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删"><span class="nav-number">2.2.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#改"><span class="nav-number">2.3.</span> <span class="nav-text">改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查"><span class="nav-number">2.4.</span> <span class="nav-text">查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#查询结果过滤"><span class="nav-number">2.4.1.</span> <span class="nav-text">查询结果过滤</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例"><span class="nav-number">2.5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模糊查询"><span class="nav-number">2.6.</span> <span class="nav-text">模糊查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM多表操作"><span class="nav-number">3.</span> <span class="nav-text">ORM多表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#表与表的之间的关系"><span class="nav-number">3.1.</span> <span class="nav-text">表与表的之间的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一对多"><span class="nav-number">3.2.</span> <span class="nav-text">一对多</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1002,6 +1003,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'x0v8BHEYsPjRpEtBs9y57dqq-gzGzoHsz',
+        appKey: 'b12t0zPh0Jluld91bHGNy7Xo',
+        placeholder: '欢迎来评论，有错误请指出，有用请打赏，谢谢',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
